@@ -1,0 +1,129 @@
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 448,123
+Fixed-effects: year: 12,  month: 12,  fips: 782
+Standard-errors: Clustered (fips & year) 
+             Estimate Std. Error  t value   Pr(>|t|)    
+Hur_Threat   0.107273   0.156394 0.685911 5.0697e-01    
+Hur_Landfall 0.448141   0.068299 6.561417 4.0717e-05 ***
+temp_mean    0.004590   0.001042 4.406380 1.0520e-03 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.573719     Adj. R2: 0.770154
+                 Within R2: 0.002733
+
+
+
+
+Historical Count
+
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 448,123
+Fixed-effects: year: 12,  month: 12,  fips: 782
+Standard-errors: Clustered (fips & year) 
+                     Estimate Std. Error   t value   Pr(>|t|)    
+Hur_Threat           0.122048   0.167047  0.730623 4.8028e-01    
+Hur_Landfall         0.415665   0.064986  6.396258 5.1069e-05 ***
+temp_mean            0.004817   0.000958  5.026440 3.8611e-04 ***
+total_hist_landfall -0.083143   0.026516 -3.135591 9.4827e-03 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.570787     Adj. R2: 0.772496
+                 Within R2: 0.012898
+
+
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 448,123
+Fixed-effects: year: 12,  month: 12,  fips: 782
+Standard-errors: Clustered (fips & year) 
+                                  Estimate Std. Error  t value   Pr(>|t|)    
+Hur_Threat                       -0.837175   0.346209 -2.41812 3.4120e-02 *  
+Hur_Landfall                      1.362934   0.163070  8.35797 4.2980e-06 ***
+temp_mean                         0.004817   0.000958  5.02769 3.8535e-04 ***
+total_hist_landfall              -0.083137   0.026486 -3.13892 9.4265e-03 ** 
+Hur_Threat:total_hist_landfall    0.066222   0.031931  2.07390 6.2352e-02 .  
+Hur_Landfall:total_hist_landfall -0.065328   0.012117 -5.39126 2.1956e-04 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.570782     Adj. R2: 0.772499
+                 Within R2: 0.012918
+
+
+
+
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 217,176
+Fixed-effects: year: 12,  month: 12,  fips: 376
+Standard-errors: Clustered (fips & year) 
+                          Estimate Std. Error   t value   Pr(>|t|)    
+Hur_Threat               -0.050168   0.155615 -0.322387 7.5320e-01    
+Hur_Landfall              0.612683   0.067644  9.057495 1.9695e-06 ***
+temp_mean                 0.006420   0.001038  6.183838 6.8708e-05 ***
+years_since_landfall_hur  0.012983   0.007207  1.801428 9.9079e-02 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.517108     Adj. R2: 0.78891 
+                 Within R2: 0.010089
+
+
+
+
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 217,176
+Fixed-effects: year: 12,  month: 12,  fips: 376
+Standard-errors: Clustered (fips & year) 
+                                       Estimate Std. Error  t value   Pr(>|t|)    
+Hur_Threat                             1.156442   0.194166  5.95594 9.5104e-05 ***
+Hur_Landfall                          -0.541506   0.197957 -2.73547 1.9388e-02 *  
+temp_mean                              0.006421   0.001039  6.18251 6.8837e-05 ***
+years_since_landfall_hur               0.012987   0.007194  1.80524 9.8451e-02 .  
+Hur_Threat:years_since_landfall_hur   -0.139018   0.021953 -6.33254 5.5787e-05 ***
+Hur_Landfall:years_since_landfall_hur  0.130721   0.019869  6.57918 3.9746e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.517084     Adj. R2: 0.788928
+                 Within R2: 0.010183
+
+
+
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 217,176
+Fixed-effects: year: 12,  month: 12,  fips: 376
+Standard-errors: Clustered (fips & year) 
+                          Estimate Std. Error   t value   Pr(>|t|)    
+Hur_Threat               -0.043372   0.157520 -0.275345 7.8815e-01    
+Hur_Landfall              0.596023   0.068445  8.708065 2.8909e-06 ***
+temp_mean                 0.006393   0.001040  6.149686 7.2106e-05 ***
+years_since_landfall_hur  0.039938   0.014114  2.829657 1.6382e-02 *  
+yrs_since_hur_sq         -0.002064   0.000883 -2.337648 3.9335e-02 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.516093     Adj. R2: 0.789738
+                 Within R2: 0.013974
+
+
+
+OLS estimation, Dep. Var.: log(total_rev_per_cap)
+Observations: 217,176
+Fixed-effects: year: 12,  month: 12,  fips: 376
+Standard-errors: Clustered (fips & year) 
+                                       Estimate Std. Error   t value   Pr(>|t|)    
+Hur_Threat                             1.471162   0.535884  2.745301 1.9050e-02 *  
+Hur_Landfall                          -0.915801   0.551919 -1.659301 1.2526e-01    
+temp_mean                              0.006394   0.001040  6.146377 7.2445e-05 ***
+years_since_landfall_hur               0.039962   0.014101  2.833875 1.6259e-02 *  
+yrs_since_hur_sq                      -0.002066   0.000883 -2.338865 3.9251e-02 *  
+Hur_Threat:years_since_landfall_hur   -0.203828   0.144680 -1.408819 1.8652e-01    
+Hur_Landfall:years_since_landfall_hur  0.214272   0.142505  1.503612 1.6084e-01    
+Hur_Threat:yrs_since_hur_sq            0.003132   0.008632  0.362878 7.2357e-01    
+Hur_Landfall:yrs_since_hur_sq         -0.004327   0.008292 -0.521817 6.1214e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.516065     Adj. R2: 0.789756
+                 Within R2: 0.014081
+
