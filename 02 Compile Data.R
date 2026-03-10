@@ -1,11 +1,13 @@
 # combine scanner data with hurricane and demographics data
+
+# load in packages
 library(pacman)
 
 p_load(tidyverse, stringr, viridis, reshape2, jtools, sf, tmap,
        data.table, dtplyr, lubridate, plm, estimatr, fixest, stats)
 
 
-# load in scanner data and which counties are in it.
+# load in scanner data
 
 scanner <- fread('Data\\water_scanner.csv')
 
@@ -15,6 +17,7 @@ scanner <- scanner %>% mutate(
   fips = str_pad(fips, 5,'left', '0')
 )
 
+# get county shapes
 
 us_counties <- tigris::counties(state = c('01', '12', '13',
                                           '22', '28','37', '45',
@@ -25,19 +28,19 @@ scanner <- subset(scanner, fips %in% us_counties$GEOID10) # 907 counties
 image_df <- us_counties %>% filter(GEOID10 %in% scanner$fips)
 
 length(unique(scanner$fips))
-# Matches using 2010
+
+# map of counties represented in the dataset
 tm_shape(image_df) + tm_fill('pink')+
 tm_shape(us_counties) + tm_borders()+
   tm_layout(frame=FALSE)+tm_title("Counties Represented in Scanner Data", size = 4)
 
 
-
-
 # add in current hurricane information -------------------------------------------------
 
-
+# pull in data from GIS archive
 hur <- fread('Data/Daily_Hurricanes.csv')
 
+# build variables for if a county was in the cone of uncertainty for a given date
 hur <- hur %>% mutate(
   fips = str_pad(fips, 5,'left', '0'),
   week = ceiling_date(Date, "week")-1,
@@ -62,10 +65,10 @@ hur <- hur %>% group_by(fips, week) %>% summarize(
 )
 
 
+# merge with scanner data
 scanner <- left_join(scanner, hur, by = c("fips" = "fips", "week_end" = "week"))
 
 # plot total threats and landfall
-
 sub <-scanner %>% group_by(fips, week_end) %>% summarise(
   threat = ifelse(sum(Threat)>0, 1, 0),
   land = ifelse(sum(Landfall)> 0 ,1, 0)
@@ -82,7 +85,7 @@ sub <- sub %>% group_by(fips) %>% summarise(
 image_df <- left_join(image_df, sub, by = c('GEOID10' = 'fips'))
 im_df <- subset(image_df, total_land > 0)
 
-# landfall plot
+# total landfalls from 2008 to 2019
 tm_shape(us_counties)+tm_shape(im_df) + 
   tm_polygons(fill = 'total_land', 
               fill.scale = tm_scale_intervals(
@@ -109,6 +112,7 @@ tm_shape(us_counties)+tm_shape(im_df) +
 
 # add in historical hurricane variables ----------------------------------------
 
+# pull in historical count from file 01
 hist_hur_df <- read.csv("Data\\Historical Landfall Count.csv")
 
 hist_hur_df <- hist_hur_df %>% mutate(
@@ -116,6 +120,7 @@ hist_hur_df <- hist_hur_df %>% mutate(
 )
 
 
+# merge with scanner data
 scanner <- left_join(scanner, hist_hur_df, by = "fips")
 
 scanner <- scanner %>% mutate(
@@ -133,7 +138,7 @@ image_df <- left_join(image_df, sub, by = c('GEOID10' = 'fips'))
 hist_df <- subset(image_df, hist > 0)
 
 
-# history
+# plot of hurricane count from 1978 to 2007
 tm_shape(us_counties)+tm_borders()+
   tm_shape(hist_df)+
   tm_polygons(fill = 'hist', 
@@ -160,18 +165,20 @@ tm_shape(us_counties)+tm_borders()+
 
 # add in recency data ----------------------------------------------------------
 
+
+# pull in recency data from file 01
 rec_hur_df <- read.csv("Data\\Recent Landfall Date.csv")
 
 rec_hur_df <- rec_hur_df %>% mutate(
   fips = str_pad(fips, 5,'left', '0'),
 )
 
-
+# merge with scanner data
 scanner <- left_join(scanner, rec_hur_df, by = "fips")
 
 scanner <- scanner[order(scanner$fips, scanner$week_end)]
 
-
+# set up columns to fill in 
 scanner <- scanner %>% mutate(
   days_since_last = 0,
   days_since_last_hur = 0,
@@ -181,6 +188,7 @@ scanner <- scanner %>% mutate(
 
 county = scanner$fips[1000]
 
+# fill in columns to calculate length of time since last storm and last hurricane
 for(i in 1:length(scanner$fips)){
   
   new_county = scanner$fips[i]
@@ -237,6 +245,8 @@ image_df <- us_counties %>% filter(GEOID10 %in% scanner$fips)
 image_df <- left_join(image_df, sub_df, by = c('GEOID10' = 'fips'))
 image_df <- subset(image_df, !is.na(years_since_landfall))
 
+
+# years since last landfall in Dec 2008
 tm_shape(us_counties) +
   tm_shape(image_df) +
   tm_polygons(fill = 'years_since_landfall', 
@@ -277,6 +287,8 @@ image_df <- us_counties %>% filter(GEOID10 %in% scanner$fips)
 image_df <- left_join(image_df, sub_df, by = c('GEOID10' = 'fips'))
 image_df <- subset(image_df, !is.na(years_since_landfall))
 
+
+# years since last landfall in Dec 2012
 tm_shape(us_counties) +
   tm_shape(image_df) +
   tm_polygons(fill = 'years_since_landfall', 
@@ -319,6 +331,8 @@ image_df <- left_join(image_df, sub_df, by = c('GEOID10' = 'fips'))
 
 image_df <- subset(image_df, !is.na(years_since_landfall))
 
+
+# map of years since last landfall in Dec 2016
 tm_shape(us_counties) +
   tm_shape(image_df) +
   tm_polygons(fill = 'years_since_landfall', 

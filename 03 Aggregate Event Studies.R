@@ -1,16 +1,18 @@
 # Run aggregated event studies
+
+# Load in packages
 library(pacman)
 
 p_load(tidyverse, stringr, viridis, reshape2, jtools,
        data.table, dtplyr, lubridate, plm, estimatr, fixest)
 
-# Load in data
 
-# Run for water ----------------------------------------------------------------
+# Set up data ----------------------------------------------------------------
 
+# load in scanner data
 scanner <- read.csv('Data\\scanner_with_hur.csv')
 
-
+# fix format on dates and counties
 scanner <- scanner %>% mutate(
   fips = str_pad(fips, 5,'left', '0'),
   year = str_sub(week_end, end = 4),
@@ -19,13 +21,16 @@ scanner <- scanner %>% mutate(
 
 scanner<- scanner[order(scanner$fips, scanner$week_end),]
 
+# remove virginia
 scanner <- subset(scanner, fips_state_code != '51')
 
 
 # Event study for bottled water ------------------------------------------------
+
 L = length(scanner$fips)
 event_df <- scanner [0,]
 
+# find all landfalls observations and collect 10 weeks before and after for the county
 for(i in 1:L){
   
   if(scanner$Landfall[i] == 1){
@@ -42,6 +47,7 @@ for(i in 1:L){
   event_df <- rbind(event_df, result)
 }
 
+# Set week -2 as the refreence point
 event_df$ref_num = relevel(as.factor(event_df$ref_num), ref = "-2")
 
 # run event study
@@ -57,6 +63,7 @@ ES_results = results %>% mutate(
   time = as.integer(str_sub(term, start = 8))
 )
 
+# add reference point to the data
 ref_point <- results [1,]
 ref_point <- ref_point %>% mutate(
   term = "ref_num-2",
@@ -69,7 +76,7 @@ ref_point <- ref_point %>% mutate(
 
 ES_results <- rbind(ES_results, ref_point)
 
-#plot event study
+#plot baseline event study
 ggplot(data = ES_results, aes(x = time, y = estimate))+
   geom_line()+
   geom_point()+
@@ -86,7 +93,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 # SUBSET BY HURRIANE TYPE ------------------------------------------------------
 # <64 TS, 64+ HURRICANE, 96+ MAJOR HURRICANE
 
-# TS
+# Run for tropical storms: wind <64 knots
 event_df <- scanner [0,]
 
 for(i in 1:L){
@@ -136,7 +143,7 @@ ES_results <- mutate(ES_results,type = "TS")
 all_results <- ES_results
 
 
-# Hur
+# Rerun for hurricanes (cat 1-5)
 event_df <- scanner [0,]
 
 for(i in 1:L){
@@ -186,7 +193,7 @@ ES_results <- rbind(ES_results, ref_point)
 ES_results <- mutate(ES_results, type = "Minor")
 all_results <- rbind(all_results,ES_results)
 
-# Major Hur
+# Rerun for Major Hurricanes (Cat 3-5)
 event_df <- scanner [0,]
 
 for(i in 1:L){

@@ -1,7 +1,7 @@
 
 # Create Experience and Recency variables.
 
-# Scare and clean HURDAT 2 data
+# Load in Required Packages
 library(pacman)
 
 library(doParallel)
@@ -13,16 +13,15 @@ p_load(tidyverse, stringr, viridis, reshape2, jtools,foreach,
        sf, reshape2, ggmosaic, GISTools, tmap, ggthemes, huxtable, stargazer)
 
 # Get HURDAT Variables ----
-# Load in historical hurricanes
+# Load in HURDAT2 Data
 
 HURDAT <- fread("Data//HURDAT2.csv")
 
 
-# filter for landfalls after 1970
+# filter for landfalls after 1978
 HURDAT <- HURDAT %>% filter(Year >= 1978)
 HURDAT<- HURDAT %>% filter(Record_identifier == "L")
 
-# save data for later use
 
 # filter for before Nielsen starts
 HURDAT <- HURDAT %>% filter(Year < 2008)
@@ -71,8 +70,10 @@ HURDAT_sf <- st_as_sf(weather_t)
 # Make a 100 nautical mile buffer for each points
 HURDAT_buf <- st_buffer(HURDAT_sf, dist=185200)
 
+#initialize vector for landfall county-dates
 land_vec <- c()
 
+# fill in vector to indicate if a given county-date was affected by a landfall
 land_vec <- foreach( i = 1:length(landfall_df$fips),
  # i = 1:length(landfall_df$fips), 
                     #.combine=c, 
@@ -98,31 +99,35 @@ stopCluster(cl)
 
 landfall_res <- unlist(land_vec)
 
+# Add results to dataframe
 landfall_df$Landfall <- landfall_res
 
 
-rm( HURDAT_buf)
+rm(HURDAT_buf)
 gc()
 
+# filter for only past landfalls
 landfall_df <- subset(landfall_df, Landfall==1)
 
+# collapse data to show total historical landfalls for each county
 hist_df <- landfall_df %>% group_by(fips)%>% summarize(
   total_hist_landfall = sum(Landfall)
 )
 
+
+# Save total landfall count for each county from 1978 to 2007
 library(data.table)
 fwrite(hist_df , "Data\\Historical Landfall Count.csv", row.names = F)
 
 
-# get most recent landfall
-
-
+# condense data to only show last landfall before 2008
 recent_df <- landfall_df %>% group_by(fips) %>% summarize(
   recent_landfall = tail(Date, 1L)
 )
 
 land_type <- HURDAT[,c(17,31)]
 
+# add in windspeed to last landfall to set categories
 recent_df <- left_join(recent_df, land_type, by = c("recent_landfall" = "date"))
 recent_df <- rename(recent_df, "Last_Wind" = "Maximum_sustained_wind_in_knots")
 
@@ -133,10 +138,10 @@ recent_df <- recent_df %>% group_by(fips) %>% summarize(
   Last_Wind = max(Last_Wind)
 )
 
+# save last hurricane information
 fwrite(recent_df, "Data\\Recent Landfall Date.csv", row.names = F)
 
-# Maps of historical and recent info.
-
+# set up data to make map of total hurricae count at end of 2007
 hist_image_df <- left_join(us_counties, hist_df, by = "fips") 
 hist_image_df <- hist_image_df %>% mutate(
   total_hist_landfall = ifelse(is.na(total_hist_landfall), 0, total_hist_landfall) 
@@ -144,6 +149,7 @@ hist_image_df <- hist_image_df %>% mutate(
 
 hist_image_df <- subset(hist_image_df, total_hist_landfall > 0)
 
+# add in sales of bottled water. 
 scanner <- fread('Data\\water_scanner.csv')
 
 scanner <- scanner %>% mutate(
@@ -152,6 +158,7 @@ scanner <- scanner %>% mutate(
   fips = str_pad(fips, 5,'left', '0')
 )
 
+# subset for counties that are in both data sets
 hist_image_df <- subset(hist_image_df, fips %in% scanner$fips)
 
 quantile(hist_image_df$total_hist_landfall, probs = c(0, 0.33, 0.67, 1))
@@ -160,6 +167,7 @@ quantile(hist_image_df$total_hist_landfall, probs = c(0, 0.33, 0.67, 1))
 rm(scanner)
 gc()
 
+# map of historical landfall counts
 tm_shape(us_counties)+tm_borders()+
   tm_shape(hist_image_df)+
   tm_fill(col = 'total_hist_landfall', title = "Landfall Count", palette = 'mako',
