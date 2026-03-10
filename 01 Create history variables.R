@@ -1,4 +1,3 @@
-# testing branching
 
 # Create Experience and Recency variables.
 
@@ -23,7 +22,7 @@ HURDAT <- fread("Data//HURDAT2.csv")
 HURDAT <- HURDAT %>% filter(Year >= 1978)
 HURDAT<- HURDAT %>% filter(Record_identifier == "L")
 
-# save data
+# save data for later use
 
 # filter for before Nielsen starts
 HURDAT <- HURDAT %>% filter(Year < 2008)
