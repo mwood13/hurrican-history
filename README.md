@@ -12,4 +12,3 @@ Natural disasters have become more frequent and severe causing some people to ex
  - NOAA GIS Archive
  - NOAA HURDAT2 Data
  - NOAA Global Historical Climatology Network
- - U.S. Census Population Data 2010
