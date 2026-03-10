@@ -1,0 +1,148 @@
+\DeclareRobustCommand{\firstsecond}[2]{#2}
+\begin{thebibliography}{}
+
+\bibitem[Anderson and Bausch, 2006]{anderson2006climate}
+Anderson, J. and Bausch, C. (2006).
+\newblock Climate change and natural disasters: Scientific evidence of a
+  possible relation between recent natural disasters and climate change.
+\newblock {\em Policy department economic and scientific policy}, 2(2).
+
+\bibitem[Baker, 2011]{Baker11}
+Baker, E.~J. (2011).
+\newblock Household preparedness for the aftermath of hurricanes in florida.
+\newblock {\em Applied Geography}, 31:46--52.
+
+\bibitem[Bakkensen et~al., 2019]{bakkensen2019flood}
+Bakkensen, L.~A., Ding, X., and Ma, L. (2019).
+\newblock Flood risk and salience: New evidence from the sunshine state.
+\newblock {\em Southern Economic Journal}, 85(4):1132--1158.
+
+\bibitem[Beatty et~al., 2019]{beatty2019disaster}
+Beatty, T.~K., Shimshack, J.~P., and Volpe, R.~J. (2019).
+\newblock Disaster preparedness and disaster response: Evidence from sales of
+  emergency supplies before and after hurricanes.
+\newblock {\em Journal of the Association of Environmental and Resource
+  Economists}, 6(4):633--668.
+
+\bibitem[Bourdeau-Brien and Kryzanowski, 2020]{bourdeau2020natural}
+Bourdeau-Brien, M. and Kryzanowski, L. (2020).
+\newblock Natural disasters and risk aversion.
+\newblock {\em Journal of Economic Behavior \& Organization}, 177:818--835.
+
+\bibitem[Burke et~al., 2022]{burke2022exposures}
+Burke, M., Heft-Neal, S., Li, J., Driscoll, A., Baylis, P., Stigler, M., Weill,
+  J.~A., Burney, J.~A., Wen, J., Childs, M.~L., et~al. (2022).
+\newblock Exposures and behavioural responses to wildfire smoke.
+\newblock {\em Nature human behaviour}, 6(10):1351--1361.
+
+\bibitem[Deryugina, 2017]{deryugina2017fiscal}
+Deryugina, T. (2017).
+\newblock The fiscal cost of hurricanes: Disaster aid versus social insurance.
+\newblock {\em American Economic Journal: Economic Policy}, 9(3):168--198.
+
+\bibitem[Deryugina et~al., 2018]{deryugina2018economic}
+Deryugina, T., Kawano, L., and Levitt, S. (2018).
+\newblock The economic impact of hurricane katrina on its victims: Evidence
+  from individual tax returns.
+\newblock {\em American Economic Journal: Applied Economics}, 10(2):202--233.
+
+\bibitem[Gallagher, 2014]{gallagher2014learning}
+Gallagher, J. (2014).
+\newblock Learning about an infrequent event: Evidence from flood insurance
+  take-up in the united states.
+\newblock {\em American Economic Journal: Applied Economics}, pages 206--233.
+
+\bibitem[Groen and Polivka, 2008]{groen2008effect}
+Groen, J.~A. and Polivka, A.~E. (2008).
+\newblock The effect of hurricane katrina on the labor market outcomes of
+  evacuees.
+\newblock {\em American Economic Review}, 98(2):43--48.
+
+\bibitem[Hallstrom and Smith, 2005]{hallstrom2005market}
+Hallstrom, D.~G. and Smith, V.~K. (2005).
+\newblock Market responses to hurricanes.
+\newblock {\em Journal of Environmental Economics and Management},
+  50(3):541--561.
+
+\bibitem[Horner and Widener, 2011]{horner2011effects}
+Horner, M.~W. and Widener, M.~J. (2011).
+\newblock The effects of transportation network failure on people’s
+  accessibility to hurricane disaster relief goods: a modeling approach and
+  application to a florida case study.
+\newblock {\em Natural hazards}, 59:1619--1634.
+
+\bibitem[Ibarrar{\'a}n et~al., 2009]{ibarraran2009climate}
+Ibarrar{\'a}n, M.~E., Ruth, M., Ahmad, S., and London, M. (2009).
+\newblock Climate change and natural disasters: macroeconomic performance and
+  distributional impacts.
+\newblock {\em Environment, development and sustainability}, 11:549--569.
+
+\bibitem[Kelly et~al., 2012]{kelly2012evolution}
+Kelly, D.~L., Letson, D., Nelson, F., Nolan, D.~S., and Sol{\'\i}s, D. (2012).
+\newblock Evolution of subjective hurricane r isk perceptions: A bayesian
+  approach.
+\newblock {\em Journal of Economic Behavior \& Organization}, 81(2):644--663.
+
+\bibitem[Lazo et~al., 2010]{lazo2010household}
+Lazo, J.~K., Waldman, D.~M., Morrow, B.~H., and Thacher, J.~A. (2010).
+\newblock Household evacuation decision making and the benefits of improved
+  hurricane forecasting: Developing a framework for assessment.
+\newblock {\em Weather and Forecasting}, 25(1):207--219.
+
+\bibitem[McCoy and Walsh, 2018]{mccoy2018wildfire}
+McCoy, S.~J. and Walsh, R.~P. (2018).
+\newblock Wildfire risk, salience \& housing demand.
+\newblock {\em Journal of Environmental Economics and Management}, 91:203--228.
+
+\bibitem[Meyer et~al., 2014]{MeyerEtAl14}
+Meyer, R.~J., Baker, J., Broad, K., Czajkowski, J., and Orlove, B. (2014).
+\newblock The dynamics of hurricane risk perception: Real-time evidence from
+  the 2012 atlantic hurricane season.
+\newblock {\em Bulletin of the American Meteorological Society},
+  95(9):1389--1404.
+
+\bibitem[{\firstsecond{NielsenIQ}{Nielsen Consumer LLC}}, 2019]{Nielsen}
+{\firstsecond{NielsenIQ}{Nielsen Consumer LLC}} (2019).
+\newblock Nielseniq retail scanner data.
+
+\bibitem[{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}},
+  2014]{HurClimate}
+{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}} (2014).
+\newblock Impact of el nino and la nina on the hurricane season.
+
+\bibitem[{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}},
+  2022a]{GHCN}
+{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}} (2022a).
+\newblock Global historical climatology network daily.
+
+\bibitem[{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}},
+  2022b]{HURDAT2}
+{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}} (2022b).
+\newblock {HURDAT 2}.
+
+\bibitem[{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}},
+  2022c]{NOAAGIS}
+{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}} (2022c).
+\newblock {NHC GIS Archive - Tropical Cyclone Advisory Forecast}.
+
+\bibitem[{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}},
+  2024]{NOAAforecast}
+{\firstsecond{NOAA}{National Oceanic and Atmospheric Administration}} (2024).
+\newblock Saffir-simpson hurricane scale.
+
+\bibitem[Sytsma, 2020]{sytsma2020impact}
+Sytsma, T. (2020).
+\newblock The impact of hurricanes on trade and welfare: Evidence from us
+  port-level exports.
+\newblock {\em Economics of Disasters and Climate Change}, 4(3):625--655.
+
+\bibitem[{\firstsecond{U.S. Census}{United States Census Bureau}}, 2023]{USCB}
+{\firstsecond{U.S. Census}{United States Census Bureau}} (2023).
+\newblock {County Population Totals: 2010-2019}.
+
+\bibitem[Van~Aalst, 2006]{van2006impacts}
+Van~Aalst, M.~K. (2006).
+\newblock The impacts of climate change on the risk of natural disasters.
+\newblock {\em Disasters}, 30(1):5--18.
+
+\end{thebibliography}
