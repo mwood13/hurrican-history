@@ -1,11 +1,13 @@
 # robustness
 
+# load in packages
+
 library(pacman)
 
 p_load(tidyverse, stringr, viridis, reshape2, jtools,
        data.table, dtplyr, lubridate, plm, estimatr, fixest)
 
-# event study on prices
+# load in data
 
 scanner <- read.csv('Data\\scanner_with_hur.csv')
 
@@ -81,10 +83,6 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
   geom_point(aes(x = -2, y = 0), fill = "white", shape = 21, size = 2)+
   theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20))+
   labs(title = " ", x = "Weeks", y = "Average Price")
-
-
-
-
 
 
 
