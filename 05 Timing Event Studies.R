@@ -1,15 +1,18 @@
 # Recency Event Studies
 
+# load in packages
+
 library(pacman)
 
 p_load(tidyverse, stringr, viridis, reshape2, jtools,tmap,RColorBrewer,
        data.table, dtplyr, lubridate, plm, estimatr, fixest)
 
-# Calculate recency variable ----------------------------------------------------
+# load in data ----------------------------------------------------
 
+# load in full dataset
 scanner <- fread('Data\\scanner_with_hur.csv')
 
-
+# format data
 scanner <- scanner %>% mutate(
   fips = str_pad(fips, 5,'left', '0'),
   year = str_sub(week_end, end = 4),
@@ -20,16 +23,16 @@ scanner<- scanner[order(scanner$fips, scanner$week_end),]
 
 scanner <- subset(scanner, fips_state_code != '51')
 
-
+# subset for all hurricane level landfalls
 sub_df <- subset(scanner, Landfall == 1)
 sub_df <- subset(sub_df, Wind >= 64)
 
-
+# get quartiles of years since any landfall for hurricane level landfalls
 quantile(sub_df$years_since_landfall, prob = c(0, 0.25, 0.50, 0.75, 1), na.rm=T)
 
 # breaks 0,1,3,14
 
-# same season -------------------------------------------------------------------
+# Event study for 1st quartile (same season events) -----------------------------
 
 scanner <- na.omit(scanner)
 
@@ -97,7 +100,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
   theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20))+
   labs(title = " ", x = "Weeks", y = "Total Revenue per 100K Residents")
 
-# run event study for 2 to 3 landfall counties --------------------------------
+# run event study for 2nd quartile (1 to 2 seasons) --------------------------------
 
 
 L = length(scanner$fips)
@@ -166,7 +169,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
   labs(title = " ", x = "Weeks", y = "Total Revenue per 100K Residents")
 
 
-# run event study for 2 to 3 landfall counties --------------------------------
+# run event study for 3rd quartile (3 seasons) --------------------------------
 
 
 L = length(scanner$fips)
@@ -234,7 +237,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
   theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20))+
   labs(title = " ", x = "Weeks", y = "Total Revenue per 100K Residents")
 
-# run event study for 4 plus landfall counties --------------------------------
+# run event study for 4th quartile (more than 3 seasons) --------------------------------
 
 L = length(scanner$fips)
 event_df <- scanner [0,]
@@ -304,7 +307,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 #plot event study
 
-# plot all three on same graph
+# plot all results on the same graph
 
 graph_df <- subset(all_results, time == -1 | time == 0 | time == 1)
 
@@ -324,7 +327,7 @@ ggplot(data = graph_df, aes(y = estimate, x = seq(1,12, by = 1))) +
 
 
 
-# Rerun same breaks but looking at last land to be a hurricane -----------------
+# subset data to look at years since last true hurricane event -----------------
 
 
 scanner <- subset(scanner, last_wind_hur>= 64)
@@ -335,7 +338,7 @@ quantile(sub_df$years_since_landfall_hur, prob = c(0,0.25, 0.50, 0.75, 1), na.rm
 
 # 
 
-# 1 to 3 years ---------------------------------------------------------------
+# 1st quartile (1 to 2 years) ---------------------------------------------------------------
 
 scanner <- na.omit(scanner)
 
@@ -403,7 +406,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
   theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20))+
   labs(title = " ", x = "Weeks", y = "Total Revenue per 100K Residents")
 
-# run event study for 1 to 2 landfall counties --------------------------------
+# run event study for 2nd quartile (3 seasons) --------------------------------
 
 
 L = length(scanner$fips)
@@ -472,7 +475,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
   labs(title = " ", x = "Weeks", y = "Total Revenue per 100K Residents")
 
 
-# run event study for 2 to 4 landfall counties --------------------------------
+# run event study for 3rd quartile (4 to 6 seasons) --------------------------------
 
 
 L = length(scanner$fips)
@@ -542,7 +545,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 5 plus landfall counties --------------------------------
+# run event study for 4th quartile (7+ seasons) --------------------------------
 
 L = length(scanner$fips)
 event_df <- scanner [0,]
@@ -612,7 +615,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 #plot event study
 
-# plot all three on same graph
+# plot all results on the same graph
 
 graph_df <- subset(all_results, time == -1 | time == 0 | time == 1)
 

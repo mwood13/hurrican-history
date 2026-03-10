@@ -1,4 +1,6 @@
-# Event Studies by Historical Exposre
+# Event Studies by Historical Exposure
+
+# load packages
 
 library(pacman)
 
@@ -7,8 +9,10 @@ p_load(tidyverse, stringr, viridis, reshape2, jtools,tmap,RColorBrewer,
 
 # Current terciles ----------------------------------------------------
 
+# load data
 scanner <- read.csv('Data\\scanner_with_hur.csv')
 
+# adjust date and county formats
 scanner <- scanner %>% mutate(
   fips = str_pad(fips, 5,'left', '0'),
   year = str_sub(week_end, end = 4),
@@ -19,7 +23,7 @@ scanner<- scanner[order(scanner$fips, scanner$week_end),]
 
 scanner <- subset(scanner, fips_state_code != '51')
 
-# get tercile info and counties
+# subset data by county and year, then calculate total landfalls and cumulative landfalls for each county-year
 sub_df <- scanner %>% group_by(fips, year) %>% summarise(
   total_landfall = sum(Landfall),
   total_hist_landfall = head(total_hist_landfall, 1L)
@@ -27,6 +31,8 @@ sub_df <- scanner %>% group_by(fips, year) %>% summarise(
 
 old_county = sub_df$fips[200]
 
+
+# fill in data so that total landfall updates at the end of each year
 for (i in 1:length(sub_df$fips)) {
   new_county = sub_df$fips[i]
   
@@ -42,19 +48,22 @@ for (i in 1:length(sub_df$fips)) {
     
 }
 
-
+# rename variables for clarity
 scanner <- scanner %>% rename("past_hist_landfall" = "total_hist_landfall")
 
+# merge updated county with historical landfall data back into main dataset
 scanner <- left_join(scanner, sub_df, by = c("fips", "year"))
 
+# remove counties with no historical landfalls
 scanner <- subset(scanner, total_hist_landfall>0)
 
+# get quartiles
 quantile(scanner$total_hist_landfall, prob = c(0,0.25, 0.50, 0.75, 1), na.rm=T)
 # breaks = 1, 7, 12,16,26
 
 image_counties <- sub_df$fips
 
-# run event study for 7 or less prior landfall counties --------------------------------
+# run event study for 1st quartile (1 to 7 landfalls) --------------------------------
 
 
 scanner <- na.omit(scanner)
@@ -126,7 +135,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 10-13 landfall counties --------------------------------
+# run event study for 2nd quartile (8-12 landfall counties) --------------------------------
 
 
 
@@ -197,7 +206,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 14 to 16 landfall counties --------------------------------
+# run event study for 3rd quartile (13 to 16 landfall counties) --------------------------------
 
 
 L = length(scanner$fips)
@@ -268,7 +277,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 17 plus landfall counties --------------------------------
+# run event study for 4th quantile (17 plus landfall counties) --------------------------------
 
 
 L = length(scanner$fips)
@@ -338,13 +347,11 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 
 
-#plot event study
-
-# plot all three on same graph
-
+#subset for only weeks surrounding landfall
 graph_df <- subset(all_results, time == -1 | time == 0 | time == 1)
 
 
+# plot of quartile results
 ggplot(data = graph_df, aes(y = estimate, x = seq(1,12, by = 1))) + 
   geom_point(aes(y = estimate, color = tercile), size = 3)+
   geom_hline(yintercept = 0)+
