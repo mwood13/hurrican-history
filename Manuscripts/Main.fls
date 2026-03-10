@@ -1,6 +1,6 @@
-PWD c:\Users\mdwoo\OneDrive - Oglethorpe University\Research\Hist Trend Hurricanes\Manuscripts
+PWD c:\Users\mdwoo\OneDrive - Oglethorpe University\Research\Hist Trend Hurricanes\Data Analysis\hurrican-history\Manuscripts
 INPUT C:\Users\mdwoo\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\mdwoo\OneDrive - Oglethorpe University\Research\Hist Trend Hurricanes\Manuscripts\Main.tex
+INPUT c:\Users\mdwoo\OneDrive - Oglethorpe University\Research\Hist Trend Hurricanes\Data Analysis\hurrican-history\Manuscripts\Main.tex
 OUTPUT Main.log
 INPUT C:\Users\mdwoo\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\mdwoo\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
