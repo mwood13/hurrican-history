@@ -50,7 +50,9 @@ current_hur_lm <- feols(data = scanner,
 
 summary(current_hur_lm)
 
-
+esttex(current_hur_lm,
+       title = "Base Results",
+       fitstat = ~n + r2)
 
 # historical count regression ------------------------------------------------
 
@@ -280,11 +282,6 @@ summary(disc_hur2_sq_lm2)
 
 
 # get tables for latex ------------------------------------------
-
-
-esttex(current_hur_lm,
-       title = "Base Results",
-       fitstat = ~n + r2)
 
 esttex(current_hur_lm, hist_hur_lm2,
        title = "Historical Exposure Results",
