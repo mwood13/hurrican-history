@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.10)  11 MAR 2026 16:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.10)  12 MAR 2026 16:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -489,7 +489,11 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
  (C:\Users\mdwoo\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count366
-) (Main.aux)
+) (Main.aux
+
+LaTeX Warning: Label `eq:gen_reg' multiply defined.
+
+)
 \openout1 = `Main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -591,146 +595,152 @@ Package hyperref Info: Link coloring OFF on input line 33.
  [1
 
 {C:/Users/mdwoo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5]
-<images/Gustav Official.png, id=174, 672.26157pt x 536.75531pt>
+<images/Gustav Official.png, id=178, 672.26157pt x 536.75531pt>
 File: images/Gustav Official.png Graphic file (type png)
 <use images/Gustav Official.png>
 Package pdftex.def Info: images/Gustav Official.png  used on input line 79.
 (pdftex.def)             Requested size: 193.50076pt x 154.49203pt.
-<images/Gustav Rep.png, id=176, 1199.23032pt x 813.0375pt>
+<images/Gustav Rep.png, id=180, 1199.23032pt x 813.0375pt>
 File: images/Gustav Rep.png Graphic file (type png)
 <use images/Gustav Rep.png>
 Package pdftex.def Info: images/Gustav Rep.png  used on input line 83.
 (pdftex.def)             Requested size: 193.50076pt x 131.18037pt.
  [6 <./images/Gustav Official.png> <./images/Gustav Rep.png>]
-<images/Past Landfall Count.png, id=186, 1044.15094pt x 554.07pt>
+<images/Past Landfall Count.png, id=190, 1044.15094pt x 554.07pt>
 File: images/Past Landfall Count.png Graphic file (type png)
 <use images/Past Landfall Count.png>
 Package pdftex.def Info: images/Past Landfall Count.png  used on input line 96.
 (pdftex.def)             Requested size: 301.00192pt x 159.72083pt.
-<images/Current Landfalls.png, id=187, 1072.005pt x 578.91281pt>
+<images/Current Landfalls.png, id=191, 1072.005pt x 578.91281pt>
 File: images/Current Landfalls.png Graphic file (type png)
 <use images/Current Landfalls.png>
 Package pdftex.def Info: images/Current Landfalls.png  used on input line 100.
 (pdftex.def)             Requested size: 301.00192pt x 162.54498pt.
  [7]
-<images/Years since last 2012.png, id=198, 1080.28593pt x 574.39594pt>
+<images/Years since last 2012.png, id=202, 1080.28593pt x 574.39594pt>
 File: images/Years since last 2012.png Graphic file (type png)
 <use images/Years since last 2012.png>
 Package pdftex.def Info: images/Years since last 2012.png  used on input line 116.
 (pdftex.def)             Requested size: 301.00192pt x 160.04094pt.
-<images/Years since last 2016.png, id=199, 1093.08376pt x 575.14874pt>
+<images/Years since last 2016.png, id=203, 1093.08376pt x 575.14874pt>
 File: images/Years since last 2016.png Graphic file (type png)
 <use images/Years since last 2016.png>
 Package pdftex.def Info: images/Years since last 2016.png  used on input line 120.
 (pdftex.def)             Requested size: 301.00192pt x 158.37262pt.
  [8 <./images/Past Landfall Count.png> <./images/Current Landfalls.png>] [9 <./images/Years since last 2012.png> <./images/Years since last 2016.png>]
-<images/Sales Map.png, id=215, 1039.63406pt x 553.31718pt>
+<images/Sales Map.png, id=219, 1039.63406pt x 553.31718pt>
 File: images/Sales Map.png Graphic file (type png)
 <use images/Sales Map.png>
 Package pdftex.def Info: images/Sales Map.png  used on input line 136.
 (pdftex.def)             Requested size: 322.50346pt x 171.64474pt.
- [10 <./images/Sales Map.png>] [11] [12] [13]
-<images///ES Agg.png, id=253, 991.45406pt x 706.89093pt>
+ [10 <./images/Sales Map.png>] [11] [12] [13] [14] [15]
+<images///ES Agg.png, id=279, 991.45406pt x 706.89093pt>
 File: images///ES Agg.png Graphic file (type png)
 <use images///ES Agg.png>
-Package pdftex.def Info: images///ES Agg.png  used on input line 198.
+Package pdftex.def Info: images///ES Agg.png  used on input line 218.
 (pdftex.def)             Requested size: 193.50076pt x 137.95642pt.
-<images/ES Price.png, id=254, 889.82437pt x 612.78937pt>
+<images/ES Price.png, id=280, 889.82437pt x 612.78937pt>
 File: images/ES Price.png Graphic file (type png)
 <use images/ES Price.png>
-Package pdftex.def Info: images/ES Price.png  used on input line 202.
+Package pdftex.def Info: images/ES Price.png  used on input line 222.
 (pdftex.def)             Requested size: 193.50076pt x 133.25255pt.
- [14]
-<images/Agg by Type.png, id=264, 862.72313pt x 597.73312pt>
+<images/Agg by Type.png, id=284, 862.72313pt x 597.73312pt>
 File: images/Agg by Type.png Graphic file (type png)
 <use images/Agg by Type.png>
-Package pdftex.def Info: images/Agg by Type.png  used on input line 212.
+Package pdftex.def Info: images/Agg by Type.png  used on input line 233.
 (pdftex.def)             Requested size: 387.00153pt x 268.1292pt.
-<images/ES Hist.png, id=266, 860.46469pt x 598.48593pt>
+ [16 <./images///ES Agg.png> <./images/ES Price.png>]
+<images/ES Hist.png, id=296, 860.46469pt x 598.48593pt>
 File: images/ES Hist.png Graphic file (type png)
 <use images/ES Hist.png>
-Package pdftex.def Info: images/ES Hist.png  used on input line 225.
+Package pdftex.def Info: images/ES Hist.png  used on input line 245.
 (pdftex.def)             Requested size: 387.00153pt x 269.1792pt.
- [15 <./images///ES Agg.png> <./images/ES Price.png>]
-<images/ES Time Hur.png, id=277, 889.82437pt x 626.34pt>
+ [17 <./images/Agg by Type.png>]
+<images/ES Time Hur.png, id=307, 889.82437pt x 626.34pt>
 File: images/ES Time Hur.png Graphic file (type png)
 <use images/ES Time Hur.png>
-Package pdftex.def Info: images/ES Time Hur.png  used on input line 238.
+Package pdftex.def Info: images/ES Time Hur.png  used on input line 258.
 (pdftex.def)             Requested size: 387.00153pt x 272.4079pt.
- [16 <./images/Agg by Type.png>] [17 <./images/ES Hist.png>] [18 <./images/ES Time Hur.png>]
+ [18 <./images/ES Hist.png>] [19 <./images/ES Time Hur.png>]
 
-LaTeX Warning: Reference `tab:no_temp' on page 19 undefined on input line 290.
+LaTeX Warning: Reference `tab:no_temp' on page 20 undefined on input line 310.
 
-[19]
+[20] [21]
 
-LaTeX Warning: Reference `tab:hist_count' on page 20 undefined on input line 341.
+LaTeX Warning: Reference `tab:hist_count' on page 22 undefined on input line 361.
 
-[20]
+[22]
 
-LaTeX Warning: Reference `tab:recency' on page 21 undefined on input line 345.
+LaTeX Warning: Reference `tab:recency' on page 23 undefined on input line 365.
 
-[21]
 
-LaTeX Warning: Reference `tab:all_int' on page 22 undefined on input line 397.
+LaTeX Warning: Reference `tab:all_int' on page 23 undefined on input line 417.
 
-[22] [23]
-<images/ES Summer.png, id=332, 888.31876pt x 613.54219pt>
+[23] [24]
+<images/ES Summer.png, id=356, 888.31876pt x 613.54219pt>
 File: images/ES Summer.png Graphic file (type png)
 <use images/ES Summer.png>
-Package pdftex.def Info: images/ES Summer.png  used on input line 407.
+Package pdftex.def Info: images/ES Summer.png  used on input line 427.
 (pdftex.def)             Requested size: 387.00153pt x 267.29126pt.
 
 
-LaTeX Warning: Reference `tab:start_of_season' on page 24 undefined on input line 414.
+LaTeX Warning: Reference `tab:start_of_season' on page 25 undefined on input line 434.
 
-[24 <./images/ES Summer.png>] [25] (Main.bbl
+[25] [26 <./images/ES Summer.png>] [27] (Main.bbl
 LaTeX Info: Redefining \firstsecond on input line 1.
- [26] [27]) [28]
-<images/hist q1.png, id=357, 864.22874pt x 600.74437pt>
+ [28] [29]) [30]
+File: images/Agg by Type.png Graphic file (type png)
+<use images/Agg by Type.png>
+Package pdftex.def Info: images/Agg by Type.png  used on input line 464.
+(pdftex.def)             Requested size: 387.00153pt x 268.1292pt.
+<images/hist q1.png, id=385, 864.22874pt x 600.74437pt>
 File: images/hist q1.png Graphic file (type png)
 <use images/hist q1.png>
-Package pdftex.def Info: images/hist q1.png  used on input line 446.
+Package pdftex.def Info: images/hist q1.png  used on input line 475.
 (pdftex.def)             Requested size: 193.50076pt x 134.50165pt.
-<images/hist q2.png, id=358, 867.24pt x 599.99156pt>
+<images/hist q2.png, id=386, 867.24pt x 599.99156pt>
 File: images/hist q2.png Graphic file (type png)
 <use images/hist q2.png>
-Package pdftex.def Info: images/hist q2.png  used on input line 450.
+Package pdftex.def Info: images/hist q2.png  used on input line 479.
 (pdftex.def)             Requested size: 193.50076pt x 133.8662pt.
-<images/hist q3.png, id=359, 864.98157pt x 601.4972pt>
+<images/hist q3.png, id=387, 864.98157pt x 601.4972pt>
 File: images/hist q3.png Graphic file (type png)
 <use images/hist q3.png>
-Package pdftex.def Info: images/hist q3.png  used on input line 454.
+Package pdftex.def Info: images/hist q3.png  used on input line 483.
 (pdftex.def)             Requested size: 193.50076pt x 134.55089pt.
-<images/hist q4.png, id=360, 865.73438pt x 596.2275pt>
+<images/hist q4.png, id=388, 865.73438pt x 596.2275pt>
 File: images/hist q4.png Graphic file (type png)
 <use images/hist q4.png>
-Package pdftex.def Info: images/hist q4.png  used on input line 458.
+Package pdftex.def Info: images/hist q4.png  used on input line 487.
 (pdftex.def)             Requested size: 193.50076pt x 133.26292pt.
-<images/time hur q1.png, id=361, 886.06032pt x 623.32875pt>
-File: images/time hur q1.png Graphic file (type png)
-<use images/time hur q1.png>
-Package pdftex.def Info: images/time hur q1.png  used on input line 471.
-(pdftex.def)             Requested size: 193.50076pt x 136.12456pt.
-<images/time hur q2.png, id=362, 887.56593pt x 624.08156pt>
-File: images/time hur q2.png Graphic file (type png)
-<use images/time hur q2.png>
-Package pdftex.def Info: images/time hur q2.png  used on input line 475.
-(pdftex.def)             Requested size: 193.50076pt x 136.05089pt.
-<images/time hur q3.png, id=363, 888.31876pt x 622.57594pt>
-File: images/time hur q3.png Graphic file (type png)
-<use images/time hur q3.png>
-Package pdftex.def Info: images/time hur q3.png  used on input line 479.
-(pdftex.def)             Requested size: 193.50076pt x 135.60866pt.
-<images/time hur q4.png, id=364, 888.31876pt x 621.82312pt>
-File: images/time hur q4.png Graphic file (type png)
-<use images/time hur q4.png>
-Package pdftex.def Info: images/time hur q4.png  used on input line 483.
-(pdftex.def)             Requested size: 193.50076pt x 135.44469pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[29 <./images/hist q1.png> <./images/hist q2.png> <./images/hist q3.png> <./images/hist q4.png>] [30 <./images/time hur q1.png> <./images/time hur q2.png> <./images/time hur q3.png> <./images/time hur q4.png>] (Main.aux)
+<images/time hur q1.png, id=389, 886.06032pt x 623.32875pt>
+File: images/time hur q1.png Graphic file (type png)
+<use images/time hur q1.png>
+Package pdftex.def Info: images/time hur q1.png  used on input line 500.
+(pdftex.def)             Requested size: 193.50076pt x 136.12456pt.
+<images/time hur q2.png, id=390, 887.56593pt x 624.08156pt>
+File: images/time hur q2.png Graphic file (type png)
+<use images/time hur q2.png>
+Package pdftex.def Info: images/time hur q2.png  used on input line 504.
+(pdftex.def)             Requested size: 193.50076pt x 136.05089pt.
+<images/time hur q3.png, id=391, 888.31876pt x 622.57594pt>
+File: images/time hur q3.png Graphic file (type png)
+<use images/time hur q3.png>
+Package pdftex.def Info: images/time hur q3.png  used on input line 508.
+(pdftex.def)             Requested size: 193.50076pt x 135.60866pt.
+<images/time hur q4.png, id=392, 888.31876pt x 621.82312pt>
+File: images/time hur q4.png Graphic file (type png)
+<use images/time hur q4.png>
+Package pdftex.def Info: images/time hur q4.png  used on input line 512.
+(pdftex.def)             Requested size: 193.50076pt x 135.44469pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[31] [32 <./images/hist q1.png> <./images/hist q2.png> <./images/hist q3.png> <./images/hist q4.png>] [33 <./images/time hur q1.png> <./images/time hur q2.png> <./images/time hur q3.png> <./images/time hur q4.png>] (Main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -739,21 +749,24 @@ L3 programming layer <2026-01-19>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: D4291CBDF438D938D6CB21D325A92F60;1674.
+(rerunfilecheck)             Checksum: 1D794914BED2CDF6D1428FA738D6FEE7;1782.
  ) 
 Here is how much of TeX's memory you used:
- 14471 strings out of 467867
- 238102 string characters out of 5418334
- 679769 words of memory out of 5000000
- 43069 multiletter control sequences out of 15000+600000
+ 14483 strings out of 467867
+ 238238 string characters out of 5418334
+ 679882 words of memory out of 5000000
+ 43074 multiletter control sequences out of 15000+600000
  636558 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,2465b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,2465b,610s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\mdwoo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\mdwoo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0600.pk> <C:\Users\mdwoo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0800.pk> <C:\Users\mdwoo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/mdwoo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Main.pdf (30 pages, 1910814 bytes).
+Output written on Main.pdf (33 pages, 1919739 bytes).
 PDF statistics:
- 488 PDF objects out of 1000 (max. 8388607)
- 93 named destinations out of 1000 (max. 500000)
- 218 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 522 PDF objects out of 1000 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
+ 226 words of extra memory for PDF output out of 10000 (max. 10000000)
 
