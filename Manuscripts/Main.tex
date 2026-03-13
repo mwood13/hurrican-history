@@ -191,8 +191,8 @@ lnSales_{c,t} = &\beta_1 Threat_{c,t} + \beta_2 Landfall_{c,t} + \beta_3 H + \\
 &\beta_4 H\times Threat_{c,t} + \beta_5 H\times Landfall_{c,t}+\\
 & \beta_6 H^2\times Threat_{c,t} + \beta_7 H^2\times Landfall_{c,t}+\\
  &\alpha_c + \alpha_m + \alpha_y + \gamma X'_{c,t} + \varepsilon_{c,t}
-\label{eq:gen_reg}
 \end{split}
+\label{eq:square}
 \end{equation}
 If the quadratic terms are significant, then it is more likely that this is a behavioral response rather than one of the other mechanisms driving the change. 
 
@@ -238,18 +238,17 @@ I also run the event study on the entire panel using price as the outcome variab
 
 The HURDAT2 and GIS data include all classifications of tropical systems, yet news and social media sources tend to focus on systems classified as hurricanes and major hurricanes as these are the most destructive. I rerun the event study subdividing the data by three broad hurricane classification categories: less than hurricane, hurricane category 1--5, and major hurricanes (category 3--5). The results of the event study by category are in figure~\ref{fig:type}. It is clear from this figure that storms classified as a category 1 hurricane or stronger are driving all the results in Panel (a) of figure~\ref{fig:AGG_ES}. Confidence intervals can be seen in figure~\ref{fig:type_ci} in the appendix and show that the effects of hurricane and major hurricane landfalls are significantly different from the results from a landfall of a lesser system. Additionally, the effect of a lesser system are not significantly different from no storm at all. For the remainder of the analysis, I only look at the effects hurricane specific landfall.
 
-%START HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[t!]
     \centering
     \includegraphics[width =0.9\linewidth]{ES Hist.png}
     \caption{Event Studies of Historical Exposure on Sales}
     \label{fig:hist}
-    \floatfoot{Note: Results from event study with subsets based on historical exposure of the county to hurricanes. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
+    \floatfoot{Note: Results from event study with subsets based on historical exposure of the county to hurricanes. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 95\% confidence interval around the point estimate.}
 \end{figure}
 
 
-To see if there are any general effects of a county being located in a more hurricane prone portion of the coast, I rerun the event study above with the panel broken into quartiles along the variable $HurCount$. Figure~\ref{fig:hist} shows the results of the event study along quartiles. Since the primary times of interest are the weeks immediately surrounding a hurricane landfall, those are the only points shown in the graph. Results of each full event study are show in appendix figure~\ref{fig:hist_full}. Interestingly, while the hurricane leads to an increase in sales for all counties, there is little difference in sales for counties in different quantiles. The point estimates for the week before the hurricane makes landfall are nearly identical. While there is more variation in the week of landfall, there is not strong evidence that the response differs across groups. Thus, if hurricane exposure affects sales of emergency supplies, it is likely happening through some mechanism other than hurricane landfalls. Two additional methods by which hurricane exposure  be affect emergency supply sales is by either changing the average consumption of bottled water in a county, or by changing the sales of bottle water at the beginning of hurricane season. I later test for both of these possible mechanisms.
+I test for general effects of living in a more hurricane prone location by subsetting the data along the variable $HurCount$. The data is subset into the following quartiles: 1 to 7 prior landfalls, 8 to 12, 13 to 16, and 17 or more. Figure~\ref{fig:hist} shows the results of the event study along quartiles. The weeks shown in the graph are those immediately surrounding the hurricane landfall. Results of each full event study are show in appendix figure~\ref{fig:hist_full}. Consistent with the aggregate results, all quartiles respond significantly to a hurricane landfall, but the responses from one quartile to the next are not significantly different from one another. Additionally, the estimates on the week before landfall are not significantly different from one another. From this analysis alone, there is not enough evidence to support the argument that hurricane exposure directly increases knowledge. 
 
 
 % Recency
@@ -258,96 +257,34 @@ To see if there are any general effects of a county being located in a more hurr
         \includegraphics[width=.9\linewidth]{images/ES Time Hur.png}
     \caption{Event Studies of Timing on Sales}
     \label{fig:disc}
-        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 10\% confidence interval around the point estimate.}
+        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 95\% confidence interval around the point estimate.}
 \end{figure}
 
-To test for aggregate effects of repeated high intensity hurricane seasons, I repeat the event study from equation (\ref{eq:ES}) with the panel subset by variable $YrSince$. The results from this analysis are shown in Figure~\ref{fig:disc}. As the years between subsequent hurricane landfalls increases, there is a slight increase in sales during a hurricane for the first five years followed by a sharp decline in hurricane related sales. While the point estimates between each individual group are not significantly different from one another, the increase in sales from the first quartile to the third is significant, as well as the decline in sales starting at year 6. This increase in sales over the first five years is likely a combination of households having leftover bottled water from previous hurricanes if they are in the first quartile and having less clear memories of the needed quantities as time passes. What is most interesting is the drastic drop in the 6 or more year group. While the mechanism behind this behavior is uncertain, it is possible that as the years between subsequent hurricanes increases, the perceived risk associated with hurricanes is inflated. The increase in bottled water sales is consistent with this notion of risk perception. However, once 6 or more years have passed the perceived risk is so high that the average consumer would rather evacuate leading to the near insignificant change in sales. 
-
-
+I test for aggregate effects of repeated high intensity hurricane seasons by repeating the event study from equation (\ref{eq:ES}) with the panel subset by variable $YrSince$. The data is split into the following quartiles: 1 to 2 years between hurricanes, 3 year, 4 to 6 years, and 7 or more years. Figure~\ref{fig:disc} shows the results from this split of the data. The results seem to indicate a weak pattern of increased purchases as the number of years between subsequent years grows, eventually declining some time after year 6. The standard errors, however, are quite large resulting in estimates that are not significantly different from one another. 
 
 \subsection{Regression Results}
 
-% Replication 
-While the event studies above show the impact of having relatively more or less exposure or having relatively more recent exposure to tropical hurricanes of different classifications, they do not tell us the effect of a single additional hurricane on sales of emergency supplies in a county. To estimate the effect of an additional historic landfall or an additional year in between subsequent landfalls, I use interacted regression models. I begin by running a model similar to that presented in~\cite{beatty2019disaster} as a baseline. The regression used is as follows 
-\begin{equation}
-lnSales_{c,t} = \beta_1 Threatened_{c,t} + \beta_2 Struck_{c,t} + \beta_3 After_{c,t} + \alpha_c + \alpha_m + \alpha_y + \gamma X'_{c,t} + \varepsilon_{c,t}
-\label{eq:replication_reg}
-\end{equation}
-The outcome of interest is log total revenue from sales of emergency supplies for a given county-week, $lnSales_{c,t}$. $Threatened_{c,t}$ indicates if a county was in the projected path of a storm any day during a given week $t$. This variable was generated following~\cite{beatty2019disaster}: the county must be within the projected path of a storm and the storm is expected to make landfall within the next 72 hours. $Struck_{c,t}$ indicates if the eye of the storm landed within 100 nautical miles of the county. $ After_{c,t}$ indicates if a county was struck by a storm in the past 72 hours. This picks up any lagged effect on purchases. The vector of controls, $X_{c,t}$ includes minimum, maximum, and mean temperature for the week and total rainfall in inches. I also include county, month, and year fixed effects and cluster the standard errors two-ways, at the county and year levels. 
-
-
-\begin{table}[!t]
-   \caption{Base Results}
-   \centering
-   \begin{tabular}{lc}
-      \tabularnewline\midrule \midrule
-      Dependent Variable: & log (total\_rev\_per\_cap)\\     
-      Model:              & (1)\\  
-      \midrule
-      \emph{Variables}\\
-      Hur\_Threat         & 0.1073\\   
-                          & (0.1564)\\   
-      Hur\_Landfall       & 0.4481$^{***}$\\   
-                          & (0.0683)\\   
-      temp\_mean          & 0.0046$^{***}$\\   
-                          & (0.0010)\\   
-      \midrule
-      \emph{Fixed-effects}\\
-      year                & Yes\\  
-      month               & Yes\\  
-      fips                & Yes\\  
-      \midrule
-      \emph{Fit statistics}\\
-      Observations        & 448,123\\  
-      R$^2$               & 0.77057\\  
-      \midrule \midrule
-      \multicolumn{2}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{2}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
-   \end{tabular}
-   \label{tab:base}
-\end{table}
-
-The results for the regression in equation~\ref{eq:replication_reg} are presented in Table~\ref{tab:base}. I find that when a county is threatened by a storm, bottled water sales increase by 9.7\%, and by 15.4\% when a county is hit. Battery sales increase by 15.5\% and 60.48\%, and flashlight sales increase by 41.2\% and 160\% respectively. These increases in sales follow those seen in the aggregate event study for the same goods. Because the temperature controls are highly correlated with one another, and precipitation is highly correlated with the presence of a storm, I also run the regression omitting all weather controls expect mean temperature. The effect of removing the additional weather controls are minimal and presented in Table~\ref{tab:no_temp}. I only use mean temperature as a control variable in regressions for the remainder of the analysis. 
-
-% New Regressions
-To understand the effect of additional tropical hurricane landfall or an additional year since the last landfall, I interact the historical county level characteristics in the following manner.
-\begin{equation}
-\begin{split}
-      lnSales_{c,t} =& \beta_1 Threatened_{c,t} + \beta_2 Struck_{c,t} + \beta_3 After_{c,t} + \beta_4 H_{c,t}\\ 
-      &+ \beta_5 Threatened\times H_{c,t} + \beta_6 Struck\times H_{c,t} + \alpha_c + \alpha_m + \alpha_y + \gamma X'_{c,t} + \varepsilon_{c,t}
-\end{split}
-\label{eq:hist_reg}
-\end{equation}
-The variable $H_{c,t}$ captures the historical tropical hurricane characteristic of interest for that regression, historical count or years between landfalls.
-The historical count variable is created using HURDAT2 data in the following manner. The first week of 2008 is the total amount of storms to hit the county from 1980--2007. Afterwards the value is updated each time the county faces a new storm landfall of the classification of interest. The years between storms are created by determining the date of the last storm of a certain classification to make landfall before week 1 of 2008 for each county and calculating the time since the landfall in years. The value is then updated each week for that county. When the next storm of that classification makes landfall in the county, the date of the most recent storm is updated to reflect the new landfall in the subsequent weeks. 
-
+While the event studies above fail to show any significant impact of both additional hurricane exposure and additional timing between hurricanes for broad categories, it is still possible that the incremental changes are significant. I continue my analysis by estimated fixed-effects regression model in equation~\ref{eq:gen_reg} for both additional hurricane landfalls, and additional years between subsequent hurricanes.
 
 \begin{table}[t!]
-   \caption{Historical Exposure Results}
+   \caption{Results of Additional Exposure on Sales}
    \centering
    \begin{tabular}{lcc}
       \tabularnewline\midrule \midrule
-      Dependent Variable: & \multicolumn{2}{c}{log(total\_rev\_per\_cap)}\\
+      Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
       Model:                                           & (1)            & (2)\\  
       \midrule
       \emph{Variables}\\
-      Hur\_Threat                                      & 0.1073         & -0.8372$^{**}$\\   
+      Threat                                      & 0.1073         & -0.8372$^{**}$\\   
                                                        & (0.1564)       & (0.3462)\\   
-      Hur\_Landfall                                    & 0.4481$^{***}$ & 1.363$^{***}$\\   
+      Landfall                                    & 0.4481$^{***}$ & 1.363$^{***}$\\   
                                                        & (0.0683)       & (0.1631)\\   
-      temp\_mean                                       & 0.0046$^{***}$ & 0.0048$^{***}$\\   
-                                                       & (0.0010)       & (0.0010)\\   
-      total\_hist\_landfall                            &                & -0.0831$^{***}$\\   
+      Landfalls since 1980                          &                & -0.0831$^{***}$\\   
                                                        &                & (0.0265)\\   
-      Hur\_Threat $\times$ total\_hist\_landfall       &                & 0.0662$^{*}$\\   
+      Threat $\times$ Landfalls since 1980       &                & 0.0662$^{*}$\\   
                                                        &                & (0.0319)\\   
-      Hur\_Landfall $\times$ total\_hist\_landfall     &                & -0.0653$^{***}$\\   
-                                                       &                & (0.0121)\\   
-      \midrule
-      \emph{Fixed-effects}\\
-      year                                             & Yes            & Yes\\  
-      month                                            & Yes            & Yes\\  
-      fips                                             & Yes            & Yes\\  
+      Landfall $\times$Landfalls since 1980     &                & -0.0653$^{***}$\\   
+                                                       &                & (0.0121)\\    
       \midrule
       \emph{Fit statistics}\\
       Observations                                     & 448,123        & 448,123\\  
@@ -356,90 +293,67 @@ The historical count variable is created using HURDAT2 data in the following man
       \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
       \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
    \end{tabular}
+   \label{tab:hist}
 \end{table}
 
-The results in table~\ref{tab:hist_count} show the effect of additional hurricane landfalls on sales of emergency supplies in a county. Columns (1) and (2) show that the effect of additional hurricanes making landfall in a county has no significant effect on their sales of bottled water. The response still strongly follows that of the base regression and is driven by the presence of a hurricane threat. Batteries and flashlights sales respond differently to increased hurricane activity as seen in columns (3) through (6). As counties experience more hurricanes, the average sales of flashlights in these counties increases. Additionally, in the week that a hurricane makes landfall in a county, there are increased sales of both batteries and flashlights as the number of hurricanes that have previously made landfall increases. This indicates that the residents of these counties are learning that they need to have these supplies during a tropical hurricane. Because the sales in these counties are increasing as exposure to hurricanes increases, it is also possible that the need to purchase these supplies is not transparent enough in counties that have not had much historical exposure to hurricanes. 
+I start by estimating the effect of additional hurricane landfalls on sales. Table~\ref{tab:hist} shows the results from this specification. Column (1) shows the results of the base regression which excludes the historic county level variables. This column represents the average response of all counties. Although there is not a significant response to a hurricane threat, sales of bottled water increase by roughly 56\% when there is a hurricane landfall. 
 
+Column (2) shows the results from adding total hurricane landfalls since 1980 to the regression. It is clear that total exposure to hurricanes significantly affect not only the scale of purchases, but also the timing of such purchases. As a county experience additional hurricanes, sales shift to earlier in the forecast process. Specifically, there is a 6\% decrease in sales associated with landfall, that are balanced by an equal 6\% increase in sales from threats. While the event study results in figure~\ref{fig:hist} were week, they do visually follow this pattern of an increase in sales before a hurricane and a decrease in sales during the hurricane week. 
 
-
-The results for the heterogeneous effects of additional years since the last hurricane are presented in Table \ref{tab:recency}. I find that for each additional year since the last hurricane, average sales in a county increase by approximately 1.3\% for bottled water and 0.7\% for batteries. Sales from bottled water also increases in the week that a tropical hurricane threatens a county conditional on the years since the last hurricane. Additionally, the term $Threatened$ in column (2) has lost all significance. It appears that the number of years since the last hurricane is driving sales of bottled water in counties in the week before a hurricane landfall. These increases likely indicate that individuals have some leftover goods after the storm and are replenishing as time passes. Sales of water during the week before a storm is also consistent with people in a county having less water at home and needed to replenish more as they move farther away in time from the previous hurricane. 
-
-Flashlights have a different change in sales from additional years between storms than water and batteries, likely due to their durable nature. As the years since the previous landfall increases, the sales of flashlights actually decline by approximately 1.7\% per year. Because flashlights last a long time, individuals do not need to repeat purchases frequently. The increase in sales of 2.68\% on the interaction of $Years Between$ and $Threatened$ also follows with the durability of the good. The longer it has been since the last hurricane, the more likely a flashlight is to have been broken or misplaced leading to purchases increasing.
+% Rerun with looking at ts only, hur only, major hur only. See if get stronger results with more specificity.
 
 \begin{table}[!t]
    \caption{Recent Exposure Results}
    \centering
-   \begin{tabular}{lcccc}
+   \begin{tabular}{lccc}
       \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{4}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                                  & (1)            & (2)             & (3)             & (4)\\  
+      Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
+      Model:                                                  & (1)            & (2)             & (3)\\
       \midrule
       \emph{Variables}\\
-      Hur\_Threat                                             & 0.1073         & 3.423$^{***}$   & 1.156$^{***}$   & 1.471$^{**}$\\   
-                                                              & (0.1564)       & (0.6349)        & (0.1942)        & (0.5359)\\   
-      Hur\_Landfall                                           & 0.4481$^{***}$ & -2.981$^{***}$  & -0.5415$^{**}$  & -0.9158\\   
-                                                              & (0.0683)       & (0.5581)        & (0.1980)        & (0.5519)\\     
-      years\_since\_landfall                                  &                & 0.0147$^{*}$    &                 &   \\   
-                                                              &                & (0.0071)        &                 &   \\   
-      Hur\_Threat $\times$ years\_since\_landfall             &                & -0.6599$^{***}$ &                 &   \\   
-                                                              &                & (0.1870)        &                 &   \\   
-      Hur\_Landfall $\times$ years\_since\_landfall           &                & 0.7993$^{***}$  &                 &   \\   
-                                                              &                & (0.1256)        &                 &   \\   
-      Hur\_Threat $\times$ yrs\_since\_sq                     &                & 0.0223          &                 &   \\   
-                                                              &                & (0.0154)        &                 &   \\   
-      Hur\_Landfall $\times$ yrs\_since\_sq                   &                & -0.0392$^{***}$ &                 &   \\   
-                                                              &                & (0.0067)        &                 &   \\   
-      years\_since\_landfall\_hur                             &                &                 & 0.0130$^{*}$    & 0.0400$^{**}$\\   
-                                                              &                &                 & (0.0072)        & (0.0141)\\   
-      Hur\_Threat $\times$ years\_since\_landfall\_hur        &                &                 & -0.1390$^{***}$ & -0.2038\\   
-                                                              &                &                 & (0.0220)        & (0.1447)\\   
-      Hur\_Landfall $\times$ years\_since\_landfall\_hur      &                &                 & 0.1307$^{***}$  & 0.2143\\   
-                                                              &                &                 & (0.0199)        & (0.1425)\\   
-      yrs\_since\_hur\_sq                                     &                &                 &                 & -0.0021$^{**}$\\   
-                                                              &                &                 &                 & (0.0009)\\   
-      Hur\_Threat $\times$ yrs\_since\_hur\_sq                &                &                 &                 & 0.0031\\   
-                                                              &                &                 &                 & (0.0086)\\   
-      Hur\_Landfall $\times$ yrs\_since\_hur\_sq              &                &                 &                 & -0.0043\\   
-                                                              &                &                 &                 & (0.0083)\\   
+      Threat   & 0.1073         & 1.155$^{***}$   & 1.435$^{**}$\\
+               & (0.1564)       & (0.1954)        & (0.5516)\\
+      Landfall & 0.4481$^{***}$ & -0.5641$^{**}$  & -0.9166\\
+               & (0.0683)       & (0.1926)        & (0.5616)\\
+      Years    &                & 0.0065          & 0.0418$^{**}$\\
+               &                & (0.0078)        & (0.0143)\\
+     Threat $\times$ Years      &                & -0.1341$^{***}$ & -0.1830\\
+                                &                & (0.0220)        & (0.1503)\\
+      Landfall $\times$ Years   &                & 0.1278$^{***}$  & 0.1974\\
+                                &                & (0.0192)        & (0.1466)\\
+      Years squared     &                &                 & -0.0028$^{**}$\\
+                        &                &                 & (0.0009)\\
+      Threat $\times$ Years squared    &                &                 & 0.0021\\
+                 &               &                 & (0.0089)\\
+      Landfall $\times$ Years squared    &                &                 & -0.0033\\
+                 &                &                 & (0.0085)\\
       \midrule
       \emph{Fit statistics}\\
-      Observations                                            & 448,123        & 222,245         & 217,176         & 217,176\\  
-      R$^2$                                                   & 0.77057        & 0.78927         & 0.78932         & 0.79015\\  
+      Observations                                            & 448,123        & 217,176         & 217,176\\
+      R$^2$                                                   & 0.77057        & 0.79158         & 0.79303\\
       \midrule \midrule
-      \multicolumn{5}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{5}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+      \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
    \end{tabular}
+   \label{tab:years}
 \end{table}
 
+Next, I analyze the effect of additional years between subsequent hurricanes. Table~\ref{tab:years} shows the results from both equations~\ref{eq:gen_reg} and~\ref{eq:square}. In addition to controlling for temperature in these regressions, I also control for the total historical landfalls from above. The result is a significant decrease in early sales by roughly 13\% with an equal increase in sales closer to landfall. This is consistent with the results observed in the event study, and with the notion of fading memory. 
 
-
-
-The effects of historical count of hurricanes and years between hurricanes when using independent regressions impact different goods at different points in the hurricane preparation process. To see if the results are independent of one another, I run a regression that includes all county hurricane history terms and interactions. The results from this regression are shown in Table~\ref{tab:all_int} and reflect those shown in the prior tables. Sales of bottled water in a county that is threatened by a storm see significant increases directly related to the length of time that has passed since the last hurricane made landfall. The increases in battery sales in the presence of a storm are primarily driven by the historical exposure of the county to hurricanes. The increases in flashlight sales in the presence of a storm are largely driven by historical exposure of a county to hurricanes and partially by the length of time that has passed since the last hurricane. 
-
+% also need to run one that does a 7+ cutoff.
 
 \subsection{Robustness}
-%Paragraph on Beginning of Summer/Hurricane Season Regressions
-It is possible that the reason for the null response of historical exposure to hurricanes on bottled water sales and the weak response of years between on batteries and flashlights is driven partially by a shift in when people in those counties choose to purchase supplies. Rather than waiting for a hurricane to threaten a county, the average consumer  be preemptively purchase emergency supplies at the start of hurricane season. To test for a change in sales at the start of hurricane season, I run a regression similar to the ones above, but with the start of hurricane season as the explanatory variable rather than a hurricane landfall. The official start of hurricane season is June 1 of each year as defined by NOAA. I create an indicator variable for if the week either contains June 1 or is a week immediately before or after June 1 to catch any overlap from the way the scanner data is constructed. 
 
-\begin{figure}[t!]
-    \centering
+I test for the quadratic relationship of years between subsequent hurricanes and sales using the model in equation~\ref{eq:square}. Table~\ref{tab:years} column (3) shows the results from this specification. Adding the squared term affects the baseline holdings of water, but does not affect the sales during a hurricane forecast or landfall.
 
-        \includegraphics[width=.9\linewidth]{images/ES Summer.png}
-
-    \caption{Event Studies of Timing on Sales}
-    \label{fig:battery_rec}
-        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 10\% confidence interval around the point estimate.}
-\end{figure}
-
-The results for the beginning of hurricane season are in Table~\ref{tab:start_of_season} of the appendix. The coefficient on the start of season is significant and positive for batteries indicating that regardless of historical characteristics, sales in these counties see a significant increase at the start of summer. Bottled water and flashlights do not see these same increases. None of the coefficients on the interacted terms are significant indicating that the effect of past storms if fully felt by the average response to current storms that was found above.   
-
+% need placebo regressions
 % Show to ES also broken out by quartiles. This proves that no groups are balancing each other out by behaving oppositely.
 
 % Because of anti-price gouging laws implemented by states during natural disasters, it is possible that prices are not allowed to move as they normally would from week to week. To ensure that government intervention is not biasing the results I rerun the analysis above using volume rather than revenue. For bottled water I use gallons, and for batteries and flashlights I use individual items (this is items in a pack so a pack of four batteries is four). Results for both the event studies and regression are nearly identical as when I use total revenue indicating that the results are being entirely driven by the consumers. The graphs and tables for these results can be found in section B of the appendi
 
 \section{Conclusion}
 
-As climate change continues, the intensity of natural disasters and extent of their destruction are expected to increase. Because this destruction also inhibits relief efforts, it is crucial that people know how to prepare for such disasters so that this delay is not harmful. I find that as counties are exposed to more hurricanes, the sales of emergency supplies actually increase in the presence of a storm. This indicates that people in these counties are learning how to prepare for disasters and adjusting. Additionally, the sales of emergency supplies decline in a way that follows the pattern of risk salience that is seen in other parts of the natural disaster literature when people are faced with a recurring disaster. The combination of needing experience and recent storms to purchase larger quantities of emergency supplies could leave areas with less experience or without a recent storm unprepared when faced with a hurricane. To help reduce the strain on relief efforts during future disasters, it  be be useful to find ways to bridge these gaps in emergency purchases.
+As climate change continues, the intensity of natural disasters and extent of their destruction are expected to increase. Because this destruction also inhibits relief efforts, it is crucial that people know how to prepare for such disasters so that this delay is not harmful. I find that as counties are exposed to more hurricanes, the sales of emergency supplies actually increase in the presence of a storm. This indicates that people in these counties are learning how to prepare for disasters and adjusting. Additionally, the sales of emergency supplies decline in a way that follows the pattern of risk salience that is seen in other parts of the natural disaster literature when people are faced with a recurring disaster. The combination of needing experience and recent storms to purchase larger quantities of emergency supplies could leave areas with less experience or without a recent storm unprepared when faced with a hurricane. To help reduce the strain on relief efforts during future disasters, it be useful to find ways to bridge these gaps in emergency purchases.
 
 
 

@@ -227,7 +227,8 @@ summary(disc_hur_lm2)
 # regressions with years since last hurricane, but only looking at hurricanes
 disc_hur2_lm1 <- feols(data = scanner,
                        log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                         temp_mean + years_since_landfall_hur |
+                         temp_mean + years_since_landfall_hur  +
+                         total_hist_landfall |
                          year + month + fips,
                        cluster = c("fips", "year"),
                        mem.clean = TRUE)
@@ -240,7 +241,8 @@ disc_hur2_lm2 <- feols(data = scanner,
                        log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
                          temp_mean + years_since_landfall_hur +
                          Hur_Threat:years_since_landfall_hur +
-                         Hur_Landfall:years_since_landfall_hur |
+                         Hur_Landfall:years_since_landfall_hur +
+                         total_hist_landfall |
                          year + month + fips,
                        cluster = c("fips", "year"),
                        mem.clean = TRUE)
@@ -256,7 +258,7 @@ summary(disc_hur2_lm2)
 disc_hur2_sq_lm1 <- feols(data = scanner,
                           log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
                             temp_mean + years_since_landfall_hur +
-                            yrs_since_hur_sq |
+                            yrs_since_hur_sq + total_hist_landfall |
                             year + month + fips,
                           cluster = c("fips", "year"),
                           mem.clean = TRUE)
@@ -272,7 +274,8 @@ disc_hur2_sq_lm2 <- feols(data = scanner,
                             Hur_Threat:years_since_landfall_hur +
                             Hur_Landfall:years_since_landfall_hur +
                             Hur_Threat:yrs_since_hur_sq +
-                            Hur_Landfall:yrs_since_hur_sq |
+                            Hur_Landfall:yrs_since_hur_sq +
+                            total_hist_landfall |
                             year + month + fips,
                           cluster = c("fips", "year"),
                           mem.clean = TRUE)
@@ -288,6 +291,6 @@ esttex(current_hur_lm, hist_hur_lm2,
        fitstat = ~n + r2)
 
 
-esttex(current_hur_lm, disc_hur_lm2, disc_hur2_lm2, disc_hur2_sq_lm2,
+esttex(current_hur_lm, disc_hur2_lm2, disc_hur2_sq_lm2,
        title = "Recent Exposure Results",
        fitstat = ~n + r2)
