@@ -428,30 +428,68 @@ As climate change continues, the intensity of natural disasters and extent of th
    \begin{tabular}{lcc}
       \tabularnewline \midrule \midrule
       Dependent Variable: & \multicolumn{2}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                          & (1)             & (2)\\  
+      Model:                                          & (1)            & (2)\\  
       \midrule
       \emph{Variables}\\
-      plac\_threat                                    & -0.0054         & -0.0955\\   
-                                                      & (0.0810)        & (0.2699)\\   
-      plac\_land                                      & -0.0523         & 0.0280\\   
-                                                      & (0.0784)        & (0.1859)\\   
-      temp\_mean                                      & 0.0048$^{***}$  & 0.0048$^{***}$\\   
-                                                      & (0.0009)        & (0.0009)\\   
-      total\_hist\_landfall                           & -0.0971$^{***}$ & -0.0971$^{***}$\\   
-                                                      & (0.0249)        & (0.0249)\\   
-      plac\_threat $\times$ total\_hist\_landfall     &                 & 0.0059\\   
-                                                      &                 & (0.0169)\\   
-      plac\_land $\times$ total\_hist\_landfall       &                 & -0.0052\\   
-                                                      &                 & (0.0134)\\   
+      plac\_threat                                    & 0.0308         & -0.2274\\   
+                                                      & (0.0642)       & (0.2544)\\   
+      plac\_land                                      & 0.0748         & 0.2803$^{*}$\\   
+                                                      & (0.0575)       & (0.1311)\\   
+      temp\_mean                                      & 0.0057$^{***}$ & 0.0057$^{***}$\\   
+                                                      & (0.0007)       & (0.0007)\\   
+      total\_hist\_landfall                           & -0.0767$^{*}$  & -0.0768$^{*}$\\   
+                                                      & (0.0358)       & (0.0358)\\   
+      plac\_threat $\times$ total\_hist\_landfall     &                & 0.0181\\   
+                                                      &                & (0.0155)\\   
+      plac\_land $\times$ total\_hist\_landfall       &                & -0.0142\\   
+                                                      &                & (0.0110)\\   
       \midrule
       \emph{Fixed-effects}\\
-      year                                            & Yes             & Yes\\  
-      month                                           & Yes             & Yes\\  
-      fips                                            & Yes             & Yes\\  
+      year                                            & Yes            & Yes\\  
+      month                                           & Yes            & Yes\\  
+      fips                                            & Yes            & Yes\\  
       \midrule
       \emph{Fit statistics}\\
-      Observations                                    & 407,459         & 407,459\\  
-      R$^2$                                           & 0.77423         & 0.77423\\  
+      Observations                                    & 407,459        & 407,459\\  
+      R$^2$                                           & 0.79756        & 0.79756\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+\end{table}
+
+
+
+\begin{table}[htbp]
+   \caption{Years Between Robustness Test}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline \midrule \midrule
+      Dependent Variable: & \multicolumn{2}{c}{log(total\_rev\_per\_cap)}\\
+      Model:                                                 & (1)            & (2)\\  
+      \midrule
+      \emph{Variables}\\
+      plac\_threat                                           & 0.1025$^{**}$  & 0.2976\\   
+                                                             & (0.0428)       & (0.2509)\\   
+      plac\_land                                             & 0.0220         & 0.0297\\   
+                                                             & (0.0380)       & (0.1570)\\   
+      temp\_mean                                             & 0.0073$^{***}$ & 0.0073$^{***}$\\   
+                                                             & (0.0007)       & (0.0007)\\   
+      years\_since\_landfall\_hur                            & 0.0121         & 0.0122\\   
+                                                             & (0.0083)       & (0.0082)\\   
+      plac\_threat $\times$ years\_since\_landfall\_hur      &                & -0.0314\\   
+                                                             &                & (0.0407)\\   
+      plac\_land $\times$ years\_since\_landfall\_hur        &                & -0.0011\\   
+                                                             &                & (0.0177)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      year                                                   & Yes            & Yes\\  
+      month                                                  & Yes            & Yes\\  
+      fips                                                   & Yes            & Yes\\  
+      \midrule
+      \emph{Fit statistics}\\
+      Observations                                           & 197,654        & 197,654\\  
+      R$^2$                                                  & 0.82215        & 0.82217\\  
       \midrule \midrule
       \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
       \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\

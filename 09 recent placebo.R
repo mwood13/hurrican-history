@@ -1,4 +1,6 @@
-# robustness, random landfall date for hur count event study and regression. 
+# robustness test for timing results
+
+# Recency Event Studies
 
 # load in packages
 
@@ -9,10 +11,10 @@ p_load(tidyverse, stringr, viridis, reshape2, jtools,tmap,RColorBrewer,
 
 # load in data ----------------------------------------------------
 
-# load data
-scanner <- read.csv('Data\\scanner_with_hur.csv')
+# load in full dataset
+scanner <- fread('Data\\scanner_with_hur.csv')
 
-# adjust date and county formats
+# format data
 scanner <- scanner %>% mutate(
   fips = str_pad(fips, 5,'left', '0'),
   year = str_sub(week_end, end = 4),
@@ -23,83 +25,58 @@ scanner<- scanner[order(scanner$fips, scanner$week_end),]
 
 scanner <- subset(scanner, fips_state_code != '51')
 
-# subset data by county and year, then calculate total landfalls and cumulative landfalls for each county-year
-sub_df <- scanner %>% group_by(fips, year) %>% summarise(
-  total_landfall = sum(Landfall),
-  total_hist_landfall = head(total_hist_landfall, 1L)
-)%>%ungroup()
+# subset for all hurricane level landfalls
+sub_df <- subset(scanner, Landfall == 1)
+sub_df <- subset(sub_df, Wind >= 64)
 
-old_county = sub_df$fips[200]
+scanner <- subset(scanner, last_wind_hur>= 64)
 
+sub_df <- subset(scanner, Landfall == 1 & Wind >= 64)
 
-# fill in data so that total landfall updates at the end of each year
-for (i in 1:length(sub_df$fips)) {
-  new_county = sub_df$fips[i]
-  
-  if(old_county == new_county){
-    last_yr = sub_df$total_landfall[i-1]
-    sub_df$total_hist_landfall[i] = last_yr+sub_df$total_hist_landfall[i-1]
-    old_county = new_county
-    
-  }else{
-    sub_df$total_hist_landfall[i] = sub_df$total_hist_landfall[i]
-    old_county=new_county
-  }
-  
-}
+quantile(sub_df$years_since_landfall_hur, prob = c(0,0.25, 0.50, 0.75, 1), na.rm=T)
 
-# rename variables for clarity
-scanner <- scanner %>% rename("past_hist_landfall" = "total_hist_landfall")
+# breaks 0,1,3,14
 
-# merge updated county with historical landfall data back into main dataset
-scanner <- left_join(scanner, sub_df, by = c("fips", "year"))
+# Event study for 1st quartile (same season events) -----------------------------
 
-# remove counties with no historical landfalls
-scanner <- subset(scanner, total_hist_landfall>0)
-
-# get quartiles
-quantile(scanner$total_hist_landfall, prob = c(0,0.25, 0.50, 0.75, 1), na.rm=T)
-# breaks = 1, 7, 12,16,26
-
-
-# make event study function to wrap over. ---------------------------------------
 
 event_study <- function(data, quartile){
   data <- na.omit(data)
   
-  lb <- ifelse(quartile == 1, 1, 
-               ifelse(quartile == 2, 8,
-                      ifelse(quartile == 3, 13, 17)))
   
-  ub <- ifelse(quartile == 1, 7,
-               ifelse(quartile ==2, 12,
-                      ifelse(quartile == 3, 16, 26)))
+  lb <- ifelse(quartile == 1, 0, 
+               ifelse(quartile == 2, 2.86,
+                      ifelse(quartile == 3, 3.99,6.87)))
+  
+  ub <- ifelse(quartile == 1, 2.86,
+               ifelse(quartile ==2, 3.99,
+                      ifelse(quartile == 3, 6.87, 17)))
   
   L = length(data$fips)
-  event_df <- data [0,]
+  event_df <- data[0,]
   
   for(i in 1:L){
     
-    if(data$Landfall[i] == 1 & (
-      data$total_hist_landfall[i]> lb & data$total_hist_landfall[i]<= ub) & 
-       data$Wind[i] >= 64){
+    if(data$Landfall[i] == 1 & 
+       (data$years_since_landfall[i] > lb & data$years_since_landfall[i]<= ub) & 
+       data$Wind[i] >=64){
       df <- data[i,]
       week <- (as.Date(df$week_end) - 365)
       fip_now <- df$fips[1]
       county <- data %>% filter(data$fips == fip_now)
-      result <- county %>% filter(week_end >= (week-74) & week_end <= (week+70))
+      result <- county %>% filter(week_end >= (week-75) & week_end <= (week+70))
       result <- result %>% mutate(
         ref_num = round((as.Date(week_end) - week)/7,0)
       )
     }else{next}
     
-    event_df <- rbind(event_df, result)
+    event_df <- rbind(event_df, result, fill=TRUE)
   }
   
   event_df$ref_num = relevel(as.factor(event_df$ref_num), ref = "-2")
   
   # run event study
-  ES = feols(data = event_df, total_rev_per_cap ~ ref_num + temp_mean| fips + year + month, cluster = event_df$fips)
+  ES = feols(data = event_df, total_rev_per_cap ~ ref_num + temp_mean | fips + year + month, cluster = event_df$fips)
   results= tidy(ES)     
   
   test <- confint(ES, level =0.95)
@@ -124,16 +101,15 @@ event_study <- function(data, quartile){
   ES_results <- rbind(ES_results, ref_point)
   
   ES_results <- ES_results %>% mutate(
-    group = ifelse(quartile == 1, "1-7",
-                   ifelse(quartile == 2, "8-12",
-                          ifelse(quartile == 3, "13-16", "17-26")))
+    group = ifelse(quartile == 1, "1-2", 
+                   ifelse(quartile == 2, "3",
+                          ifelse(quartile == 3, "4-6", "7+")) )
   )
-  
-  return(ES_results)
 }
 
 
-# run event study for quartiles and combine results ----------------------------
+
+# run event studies ------------------------------------------------------------
 
 esq1 <- event_study(scanner, 1)
 esq2 <- event_study(scanner, 2)
@@ -162,7 +138,7 @@ ggplot(data = graph_df, aes(y = estimate, x = seq(1,12, by = 1))) +
         legend.text = element_text(size = 15), legend.title = element_text(size = 20), 
         plot.title = element_text(size = 30))+
   labs(title = "", x = "Weeks", 
-       y = "Total Revenue per 100K Residents", color="Landfalls since 1980")
+       y = "Total Revenue per 100K Residents", color="Years Between Hurricanes")
 
 
 
@@ -220,8 +196,8 @@ ggplot(data = esq4, aes(x = time, y = estimate))+
 
 
 
-# regressions of the same thing ------------------------------------------------
 
+# regressions of same thing ----------------------------------------------------
 
 scanner <- fread("Data\\scanner_with_hur.csv")
 
@@ -239,35 +215,6 @@ scanner <- scanner[order(scanner$fips, scanner$week_end), ]
 
 scanner <- subset(scanner, fips_state_code != "51")
 
-
-sub_df <- scanner |>
-  group_by(fips, year) |>
-  summarise(
-    total_landfall = sum(Landfall),
-    total_hist_landfall = head(total_hist_landfall, 1L)
-  ) |>
-  ungroup()
-
-old_county <- sub_df$fips[200]
-
-# update variable at the end of each year to include new hurricanes
-for (i in seq_along(sub_df$fips)) {
-  new_county <- sub_df$fips[i]
-  if (old_county == new_county) {
-    last_yr = sub_df$total_landfall[i - 1]
-    sub_df$total_hist_landfall[i] = last_yr + sub_df$total_hist_landfall[i - 1]
-    old_county = new_county
-  }else {
-    sub_df$total_hist_landfall[i] = sub_df$total_hist_landfall[i]
-    old_county = new_county
-  }
-}
-
-
-scanner <- scanner |> rename("past_hist_landfall" = "total_hist_landfall")
-
-scanner <- left_join(scanner, sub_df, by = c("fips", "year"))
-
 scanner <- scanner |> 
   group_by(fips) |>
   mutate(
@@ -277,30 +224,30 @@ scanner <- scanner |>
   ungroup()
 
 
-hist_hur_lm1 <- feols(data = scanner,
-                      log(total_rev_per_cap) ~ plac_threat + plac_land +
-                        temp_mean + total_hist_landfall |
-                        year + month + fips,
-                      cluster = c("fips", "year"),
-                      mem.clean = TRUE)
+# regressions with years since last hurricane, but only looking at hurricanes
+disc_hur2_lm1 <- feols(data = scanner,
+                       log(total_rev_per_cap) ~ plac_threat + plac_land +
+                         temp_mean + years_since_landfall_hur|
+                         year + month + fips,
+                       cluster = c("fips", "year"),
+                       mem.clean = TRUE)
 
-summary(hist_hur_lm1)
+summary(disc_hur2_lm1)
 
-
-#regression with historical landfall count and interaction,
+# regression with years since last hurricane and interaction,
 # but only looking at hurricanes
-hist_hur_lm2 <- feols(data = scanner,
-                      log(total_rev_per_cap) ~ plac_threat + plac_land +
-                        temp_mean + total_hist_landfall +
-                        plac_threat:total_hist_landfall +
-                        plac_land:total_hist_landfall |
-                        year + month + fips,
-                      cluster = c("fips", "year"),
-                      mem.clean = TRUE)
+disc_hur2_lm2 <- feols(data = scanner,
+                       log(total_rev_per_cap) ~ plac_threat + plac_land +
+                         temp_mean + years_since_landfall_hur +
+                         plac_threat:years_since_landfall_hur +
+                         plac_land:years_since_landfall_hur  |
+                         year + month + fips,
+                       cluster = c("fips", "year"),
+                       mem.clean = TRUE)
 
-summary(hist_hur_lm2)
+summary(disc_hur2_lm2)
 
 
-esttex(hist_hur_lm1, hist_hur_lm2,
-       title = "Historical Exposure Robustness Test",
+esttex(disc_hur2_lm1, disc_hur2_lm2,
+       title = "Years Between Robustness Test",
        fitstat = ~n + r2)
