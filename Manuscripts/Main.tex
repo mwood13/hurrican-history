@@ -422,6 +422,42 @@ As climate change continues, the intensity of natural disasters and extent of th
         \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
 \end{figure}
 
+\begin{table}[htbp]
+   \caption{Historical Exposure Robustness Test}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline \midrule \midrule
+      Dependent Variable: & \multicolumn{2}{c}{log(total\_rev\_per\_cap)}\\
+      Model:                                          & (1)             & (2)\\  
+      \midrule
+      \emph{Variables}\\
+      plac\_threat                                    & -0.0054         & -0.0955\\   
+                                                      & (0.0810)        & (0.2699)\\   
+      plac\_land                                      & -0.0523         & 0.0280\\   
+                                                      & (0.0784)        & (0.1859)\\   
+      temp\_mean                                      & 0.0048$^{***}$  & 0.0048$^{***}$\\   
+                                                      & (0.0009)        & (0.0009)\\   
+      total\_hist\_landfall                           & -0.0971$^{***}$ & -0.0971$^{***}$\\   
+                                                      & (0.0249)        & (0.0249)\\   
+      plac\_threat $\times$ total\_hist\_landfall     &                 & 0.0059\\   
+                                                      &                 & (0.0169)\\   
+      plac\_land $\times$ total\_hist\_landfall       &                 & -0.0052\\   
+                                                      &                 & (0.0134)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      year                                            & Yes             & Yes\\  
+      month                                           & Yes             & Yes\\  
+      fips                                            & Yes             & Yes\\  
+      \midrule
+      \emph{Fit statistics}\\
+      Observations                                    & 407,459         & 407,459\\  
+      R$^2$                                           & 0.77423         & 0.77423\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+\end{table}
+
 
 \end{appendices}
 

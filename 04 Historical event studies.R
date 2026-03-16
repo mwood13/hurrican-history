@@ -61,7 +61,6 @@ scanner <- subset(scanner, total_hist_landfall>0)
 quantile(scanner$total_hist_landfall, prob = c(0,0.25, 0.50, 0.75, 1), na.rm=T)
 # breaks = 1, 7, 12,16,26
 
-image_counties <- sub_df$fips
 
 # run event study for 1st quartile (1 to 7 landfalls) --------------------------------
 
