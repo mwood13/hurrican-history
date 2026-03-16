@@ -26,8 +26,8 @@
 \DeclareRobustCommand{\firstsecond}[2]{#1}
 
 
-\title{Nurture vs. Nature: The Effects of Location and Experience on Hurricane Adaptation\footnote{I thank John Chalmers at the University of Oregon for providing access to the \citeauthor{Nielsen} Datasets. This paper represents the researcher's own analyses calculated (or derived) based in part on data from Nielsen Consumer LLC and marketing databases provided through the NielsenIQ Datasets at the Kilts Center for Marketing Data Center at The University of Chicago Booth School of Business. Conclusions drawn from the NielsenIQ data are those of the researcher and do not reflect the views of NielsenIQ.\@ NielsenIQ is not responsible for, had no role in, and was not involved in analyzing and preparing the results reported herein}}
-\author{\href{https://www.micaelawood.com/}{Micaela D. Wood}\footnote{Email: mwood13@uoregeon.edu Website: micaelawood.com}}
+\title{Experience, Memory, and the Timing of Disaster Preparation\footnote{I thank John Chalmers at the University of Oregon for providing access to the \citeauthor{Nielsen} Datasets. This paper represents the researcher's own analyses calculated (or derived) based in part on data from Nielsen Consumer LLC and marketing databases provided through the NielsenIQ Datasets at the Kilts Center for Marketing Data Center at The University of Chicago Booth School of Business. Conclusions drawn from the NielsenIQ data are those of the researcher and do not reflect the views of NielsenIQ.\@ NielsenIQ is not responsible for, had no role in, and was not involved in analyzing and preparing the results reported herein}}
+\author{\href{https://www.micaelawood.com/}{Micaela D. Wood}\footnote{Email: mwood1@oglethorpe.edu Website: micaelawood.com}}
 %\date{\today}
 
 \begin{document}
@@ -228,14 +228,6 @@ I begin my analysis by testing for aggregate effects of hurricane forecasts and 
 
 I also run the event study on the entire panel using price as the outcome variable rather than sales. Since the data is at a weekly level, price is the average price of bottled water in each county for the week. For any changes in sales responses to be behaviorally driven, it must come from a change in the amount that people are purchasing, not from changes in the pricing structure. Figure~\ref{fig:AGG_ES} panel (b) shows the results from the pricing event study. Here there are no significant changes in the price of bottled water, and the largest deviation seen during the hurricane is less than 1 cent. Thus, any changes in sales are likely from changes in consumer behavior.   
 
-\begin{figure}[t!]
-    \centering
-    \includegraphics[width =0.9\linewidth]{Agg by Type.png}
-    \caption{Event Studies by Hurricane Category}
-    \label{fig:type}
-    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county.}
-\end{figure}
-
 The HURDAT2 and GIS data include all classifications of tropical systems, yet news and social media sources tend to focus on systems classified as hurricanes and major hurricanes as these are the most destructive. I rerun the event study subdividing the data by three broad hurricane classification categories: less than hurricane, hurricane category 1--5, and major hurricanes (category 3--5). The results of the event study by category are in figure~\ref{fig:type}. It is clear from this figure that storms classified as a category 1 hurricane or stronger are driving all the results in Panel (a) of figure~\ref{fig:AGG_ES}. Confidence intervals can be seen in figure~\ref{fig:type_ci} in the appendix and show that the effects of hurricane and major hurricane landfalls are significantly different from the results from a landfall of a lesser system. Additionally, the effect of a lesser system are not significantly different from no storm at all. For the remainder of the analysis, I only look at the effects hurricane specific landfall.
 
 
@@ -375,7 +367,7 @@ As climate change continues, the intensity of natural disasters and extent of th
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.9\linewidth]{Agg by Type.png}
+    \includegraphics[width =0.9\linewidth]{Agg by Type Error.png}
     \caption{Event Studies by Hurricane Category}
     \label{fig:type_ci}
     \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
