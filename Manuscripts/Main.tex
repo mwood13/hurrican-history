@@ -366,18 +366,18 @@ As climate change continues, the intensity of natural disasters and extent of th
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.9\linewidth]{historical count hist.png}
+    \includegraphics[width =0.65\linewidth]{historical count hist.png}
     \caption{Histogram of Observation Level Total Landfalls}
     \label{fig:type_ci}
-    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
+    \floatfoot{Note:}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.9\linewidth]{years since hist.png}
+    \includegraphics[width =0.65\linewidth]{years since hist.png}
     \caption{Histogram of Years Betwen Hurricanes}
     \label{fig:type_ci}
-    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
+    \floatfoot{Note: }
 \end{figure}
 
 \begin{figure}[h!]
@@ -392,13 +392,29 @@ As climate change continues, the intensity of natural disasters and extent of th
    \centering
 	\begin{subfigure}{0.75\linewidth}
 		\caption{All Hurricane Landfalls}
-		\includegraphics[width=\linewidth]{ES hist minor.png}
+		\includegraphics[width=\linewidth]{ES Hist.png}
 	\end{subfigure}
 	\begin{subfigure}{0.75\linewidth}
 		\caption{Minor Hurricane Landfalls}
-		\includegraphics[width=\linewidth]{Es hist major.png}
+		\includegraphics[width=\linewidth]{Es hist minor.png}
 	\end{subfigure}
     \caption{Event Studies of Historical Landfalls by Type}
+    \label{fig:hist_full}
+        \floatfoot{Note: Results from event study with subsets based on the total count of prior hurricanes to hit the county since 1980. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
+\end{figure}
+
+
+\begin{figure}[h!]
+   \centering
+	\begin{subfigure}{0.75\linewidth}
+		\caption{All Hurricane Landfalls}
+		\includegraphics[width=\linewidth]{ES Time Hur.png}
+	\end{subfigure}
+	\begin{subfigure}{0.75\linewidth}
+		\caption{Minor Hurricane Landfalls}
+		\includegraphics[width=\linewidth]{ES Years minor.png}
+	\end{subfigure}
+    \caption{Event Studies of Recency Landfalls by Type}
     \label{fig:hist_full}
         \floatfoot{Note: Results from event study with subsets based on the total count of prior hurricanes to hit the county since 1980. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
 \end{figure}
