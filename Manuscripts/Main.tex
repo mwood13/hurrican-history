@@ -182,7 +182,7 @@ The log of population-store weighted average total revenue from bottled water sa
 
 \subsection{Robustness}
 
-Significant positive results of the coefficients from the linear model of years between are not inherently causal. Purchasing patterns could increase for a myriad of reasons beyond fading memory. Sales may also increase as years between subsequent hurricane increases because people's purchasing changes to early in the hurricane season and then slowly changes back to a ``panic'' response. Sales could also increase because people have a stockpile from the prior hurricane that runs out over time, and the more time that passes, the more likely they are to need to restock. 
+Significant positive results of the coefficients from the linear model of years between are not inherently causal. Purchasing patterns could increase for a myriad of reasons beyond fading memory. Sales may also increase as years between subsequent hurricanes increases because people's purchasing changes to early in the hurricane season and then slowly changes back to a ``panic'' response. Sales could also increase because people have a stockpile from the prior hurricane that runs out over time, and the more time that passes, the more likely they are to need to restock. 
 
 The first way to test for causality is to test if the change in response follows that of prior literature. Past literature on natural disasters and memory effects find a consistent result of an initial reaction followed by a dropoff in responsiveness \citep{gallagher2014learning,kelly2012evolution,MeyerEtAl14}. I test for changes in responsiveness in two ways. First, the event study model provides a visual test for any patterns in responsiveness. Second, I add a quadratic interaction in equation~\ref{eq:gen_reg} so that the new model is as follows.  
 \begin{equation}
@@ -258,52 +258,76 @@ I test for aggregate effects of repeated high intensity hurricane seasons by rep
 
 While the event studies above fail to show any significant impact of both additional hurricane exposure and additional timing between hurricanes for broad categories, it is still possible that the incremental changes are significant. I continue my analysis by estimated fixed-effects regression model in equation~\ref{eq:gen_reg} for both additional hurricane landfalls, and additional years between subsequent hurricanes.
 
+\begin{table}[t!]
+   \caption{Results of Additional Exposure on Sales}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline\midrule \midrule
+      Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
+      Model:                                           & (1)            & (2)\\  
+      \midrule
+      \emph{Variables}\\
+      Threat                                      & 0.1073         & -0.8372$^{**}$\\   
+                                                       & (0.1564)       & (0.3462)\\   
+      Landfall                                    & 0.4481$^{***}$ & 1.363$^{***}$\\   
+                                                       & (0.0683)       & (0.1631)\\   
+      Landfalls since 1980                          &                & -0.0831$^{***}$\\   
+                                                       &                & (0.0265)\\   
+      Threat $\times$ Landfalls since 1980       &                & 0.0662$^{*}$\\   
+                                                       &                & (0.0319)\\   
+      Landfall $\times$Landfalls since 1980     &                & -0.0653$^{***}$\\   
+                                                       &                & (0.0121)\\    
+      \midrule
+      \emph{Fit statistics}\\
+      Observations                                     & 448,123        & 448,123\\  
+      R$^2$                                            & 0.77057        & 0.77291\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+   \label{tab:hist}
+\end{table}
+
 I start by estimating the effect of additional hurricane landfalls on sales. Table~\ref{tab:hist} shows the results from this specification. Column (1) shows the results of the base regression which excludes the historic county level variables. This column represents the average response of all counties. Although there is not a significant response to a hurricane threat, sales of bottled water increase by roughly 56\% when there is a hurricane landfall. 
 
 Column (2) shows the results from adding total hurricane landfalls since 1980 to the regression. It is clear that total exposure to hurricanes significantly affect not only the scale of purchases, but also the timing of such purchases. As a county experience additional hurricanes, sales shift to earlier in the forecast process. Specifically, there is a 6\% decrease in sales associated with landfall, that are balanced by an equal 6\% increase in sales from threats. While the event study results in figure~\ref{fig:hist} were week, they do visually follow this pattern of an increase in sales before a hurricane and a decrease in sales during the hurricane week. 
 
 % Rerun with looking at ts only, hur only, major hur only. See if get stronger results with more specificity.
 
-\begin{table}[htbp]
-   \caption{Historical Exposure Results}
+\begin{table}[!t]
+   \caption{Recent Exposure Results}
    \centering
    \begin{tabular}{lccc}
       \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{3}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                                  & (1)            & (2)             & (3)\\  
+      Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
+      Model:                                                  & (1)            & (2)             & (3)\\
       \midrule
       \emph{Variables}\\
-      Hur\_Threat                                             & 0.1073         & -0.8372$^{**}$  & 1.155$^{***}$\\   
-                                                              & (0.1564)       & (0.3462)        & (0.1954)\\   
-      Hur\_Landfall                                           & 0.4481$^{***}$ & 1.363$^{***}$   & -0.5641$^{**}$\\   
-                                                              & (0.0683)       & (0.1631)        & (0.1926)\\   
-      temp\_mean                                              & 0.0046$^{***}$ & 0.0048$^{***}$  & 0.0066$^{***}$\\   
-                                                              & (0.0010)       & (0.0010)        & (0.0010)\\   
-      total\_hist\_landfall                                   &                & -0.0831$^{***}$ & -0.0779$^{**}$\\   
-                                                              &                & (0.0265)        & (0.0290)\\   
-      Hur\_Threat $\times$ total\_hist\_landfall              &                & 0.0662$^{*}$    &   \\   
-                                                              &                & (0.0319)        &   \\   
-      Hur\_Landfall $\times$ total\_hist\_landfall            &                & -0.0653$^{***}$ &   \\   
-                                                              &                & (0.0121)        &   \\   
-      years\_since\_landfall\_hur                             &                &                 & 0.0065\\   
-                                                              &                &                 & (0.0078)\\   
-      Hur\_Threat $\times$ years\_since\_landfall\_hur        &                &                 & -0.1341$^{***}$\\   
-                                                              &                &                 & (0.0220)\\   
-      Hur\_Landfall $\times$ years\_since\_landfall\_hur      &                &                 & 0.1278$^{***}$\\   
-                                                              &                &                 & (0.0192)\\   
-      \midrule
-      \emph{Fixed-effects}\\
-      year                                                    & Yes            & Yes             & Yes\\  
-      month                                                   & Yes            & Yes             & Yes\\  
-      fips                                                    & Yes            & Yes             & Yes\\  
+      Threat   & 0.1073         & 1.155$^{***}$   & 1.435$^{**}$\\
+               & (0.1564)       & (0.1954)        & (0.5516)\\
+      Landfall & 0.4481$^{***}$ & -0.5641$^{**}$  & -0.9166\\
+               & (0.0683)       & (0.1926)        & (0.5616)\\
+      Years    &                & 0.0065          & 0.0418$^{**}$\\
+               &                & (0.0078)        & (0.0143)\\
+     Threat $\times$ Years      &                & -0.1341$^{***}$ & -0.1830\\
+                                &                & (0.0220)        & (0.1503)\\
+      Landfall $\times$ Years   &                & 0.1278$^{***}$  & 0.1974\\
+                                &                & (0.0192)        & (0.1466)\\
+      Years squared     &                &                 & -0.0028$^{**}$\\
+                        &                &                 & (0.0009)\\
+      Threat $\times$ Years squared    &                &                 & 0.0021\\
+                 &               &                 & (0.0089)\\
+      Landfall $\times$ Years squared    &                &                 & -0.0033\\
+                 &                &                 & (0.0085)\\
       \midrule
       \emph{Fit statistics}\\
-      Observations                                            & 448,123        & 448,123         & 217,176\\  
-      R$^2$                                                   & 0.77057        & 0.77291         & 0.79158\\  
+      Observations                                            & 448,123        & 217,176         & 217,176\\
+      R$^2$                                                   & 0.77057        & 0.79158         & 0.79303\\
       \midrule \midrule
       \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
       \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
    \end{tabular}
+   \label{tab:years}
 \end{table}
 
 Next, I analyze the effect of additional years between subsequent hurricanes. Table~\ref{tab:years} shows the results from both equations~\ref{eq:gen_reg} and~\ref{eq:square}. In addition to controlling for temperature in these regressions, I also control for the total historical landfalls from above. The result is a significant decrease in early sales by roughly 13\% with an equal increase in sales closer to landfall. This is consistent with the results observed in the event study, and with the notion of fading memory. 
@@ -340,6 +364,21 @@ As climate change continues, the intensity of natural disasters and extent of th
 \renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\thefigure}{A\arabic{figure}}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width =0.9\linewidth]{historical count hist.png}
+    \caption{Histogram of Observation Level Total Landfalls}
+    \label{fig:type_ci}
+    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width =0.9\linewidth]{years since hist.png}
+    \caption{Histogram of Years Betwen Hurricanes}
+    \label{fig:type_ci}
+    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
+\end{figure}
 
 \begin{figure}[h!]
     \centering
@@ -417,12 +456,10 @@ As climate change continues, the intensity of natural disasters and extent of th
 		\caption{7 of More Years}
 		\includegraphics[width=\linewidth]{hist pl q4.png}
 	\end{subfigure}
-    \caption{Placebo test of total Exposure}
-    \label{fig:plac_hist}
+    \caption{Placebo History}
+    \label{fig:disc_full}
         \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
 \end{figure}
-
-
 
 \begin{figure}[h!]
    \centering
@@ -442,12 +479,13 @@ As climate change continues, the intensity of natural disasters and extent of th
 		\caption{7 of More Years}
 		\includegraphics[width=\linewidth]{year pl q4.png}
 	\end{subfigure}
-    \caption{Placebo test of years between}
+    \caption{Placebo By Years Between Subsequent Hurricanes}
     \label{fig:disc_full}
         \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
 \end{figure}
 
-\begin{table}[htbp]
+
+\begin{table}[h!]
    \caption{Historical Exposure Robustness Test}
    \centering
    \begin{tabular}{lcc}
@@ -485,7 +523,7 @@ As climate change continues, the intensity of natural disasters and extent of th
 
 
 
-\begin{table}[htbp]
+\begin{table}[h!]
    \caption{Years Between Robustness Test}
    \centering
    \begin{tabular}{lcc}

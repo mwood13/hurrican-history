@@ -294,3 +294,10 @@ esttex(current_hur_lm, hist_hur_lm2,
 esttex(current_hur_lm, disc_hur2_lm2, disc_hur2_sq_lm2,
        title = "Recent Exposure Results",
        fitstat = ~n + r2)
+
+
+
+esttex(current_hur_lm, hist_hur_lm2,disc_hur2_lm2,
+       title = "Historical Exposure Results",
+       fitstat = ~n + r2)
+

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Main"] 1773765821.58612 "Main.aux" "Main.bbl" "Main" 1773765826.50444 0
+["bibtex Main"] 1773766932.56113 "Main.aux" "Main.bbl" "Main" 1773768902.49093 0
   "./biblio.bib" 1773344916 24650 44e4645802b61ae0159fb2a8472a5980 ""
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/apalike.bst" 1291972791 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "Main.aux" 1773765825 8523 2b42abd88a1200e00712ed7578b0b380 "pdflatex"
+  "Main.aux" 1773768901 9363 1c76597728db88f373e84cfff26c3c6e "pdflatex"
   (generated)
   "Main.bbl"
   "Main.blg"
   (rewritten before read)
-["pdflatex"] 1773765822.03391 "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" "Main.pdf" "Main" 1773765826.50594 0
+["pdflatex"] 1773768898.06134 "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" "Main.pdf" "Main" 1773768902.49251 0
   "C:/Users/mwood1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1773674131 172975 d4e9b4c3f33aea9e16fec33229dd8a1b ""
   "C:/Users/mwood1/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0600.pk" 1757688793 7284 589e7340cece601f629680426368d8af ""
   "C:/Users/mwood1/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0800.pk" 1757688793 9292 5acc8533f3090065ebe4bce4dfefd7e1 ""
@@ -125,15 +125,15 @@
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/tex/latex/tools/multicol.sty" 1749468414 33259 db80f750a01491473161bd4d0f6986d2 ""
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1749468414 4545 d7bb86d489a8ad5263e4c34304c03aee ""
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "Main.aux" 1773765825 8523 2b42abd88a1200e00712ed7578b0b380 "pdflatex"
-  "Main.bbl" 1773765821 6956 244a5ddc1e658ccbc0777c5294378c03 "bibtex Main"
-  "Main.out" 1773765825 1782 1d794914bed2cdf6d1428fa738d6fee7 "pdflatex"
-  "Main.tex" 1773765815 57592 7f6df8159a9b6ac30085ea5614570b7a ""
-  "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" 1773765815 57592 7f6df8159a9b6ac30085ea5614570b7a ""
+  "Main.aux" 1773768901 9363 1c76597728db88f373e84cfff26c3c6e "pdflatex"
+  "Main.bbl" 1773766932 6956 244a5ddc1e658ccbc0777c5294378c03 "bibtex Main"
+  "Main.out" 1773768901 1782 1d794914bed2cdf6d1428fa738d6fee7 "pdflatex"
+  "Main.tex" 1773768899 59121 db5e213dc09a3efc553fa77d13ee85c0 ""
+  "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" 1773768899 59121 db5e213dc09a3efc553fa77d13ee85c0 ""
   "images///ES Agg.png" 1773174800 65549 26f72b59e277dd312b8fa57489ec42b9 ""
   "images/Agg by Type Error.png" 1773174800 100089 49fd1e6ec1f4f6eb73f66aa82414ba62 ""
   "images/Current Landfalls.png" 1773174800 243850 63a212c414046f35f6c00a63b541b326 ""
-  "images/ES Hist.png" 1773174800 79391 00f4fa69269868529b218dead7a979ff ""
+  "images/ES Hist.png" 1773768897 100573 f85a6dddfb9a1afd6a200824a87cf07e ""
   "images/ES Price.png" 1773174800 70842 24ae0c5fff70a4edcdee460b51f47554 ""
   "images/ES Time Hur.png" 1773174800 100700 d37f2d25cc845dfee3a5cce53ba2f635 ""
   "images/Gustav Official.png" 1773174800 53103 8213cf4f60f7ab0d0a14407366c9854f ""
@@ -146,10 +146,11 @@
   "images/hist pl q2.png" 1773680196 78042 27112bda50c9d4678e8451fa3d81eb46 ""
   "images/hist pl q3.png" 1773680214 78759 96e334d827835ebd4d544eaaaf0a27a8 ""
   "images/hist pl q4.png" 1773680232 80573 c8e34dd8a99412f7395f366ca7e4874c ""
-  "images/hist q1.png" 1773174800 77323 e0e3cda87cb691881b1a4deb33adcf33 ""
-  "images/hist q2.png" 1773174800 82422 9e0c55434dae788ac62fff4a2dae7583 ""
-  "images/hist q3.png" 1773174800 78756 d246baaa0e722d91abc09f5c12e31a6b ""
-  "images/hist q4.png" 1773174800 75547 e600f2317b3bf81b6d34f8cf23345445 ""
+  "images/hist q1.png" 1773768785 81039 b98e4b28e9a2d84f255e05d0f6fceb23 ""
+  "images/hist q2.png" 1773768808 81414 cb4a3c262800973fe80cf622e0492b3f ""
+  "images/hist q3.png" 1773768835 84748 75b49000744aef94fd4bee12823b5cfa ""
+  "images/hist q4.png" 1773768858 80144 ada37bb456f824a92b594d71273ca715 ""
+  "images/historical count hist.png" 1773768345 64612 62f13af14d1e43a794332ac886709008 ""
   "images/time hur q1.png" 1773174800 85616 46ca9710fe1ac4e096d511916917bb30 ""
   "images/time hur q2.png" 1773174800 74466 fd7c9f47a2ed9676110059dea6421e2c ""
   "images/time hur q3.png" 1773174800 83749 cb6233bd7fe32513a2b4018a16973e71 ""
@@ -158,6 +159,7 @@
   "images/year pl q2.png" 1773680345 79477 12c7d8bdd1e04c71c486c3de35840e69 ""
   "images/year pl q3.png" 1773680365 81087 7d9c452001aeffe6b4c5ad0cbba17ee6 ""
   "images/year pl q4.png" 1773680383 82475 79f9defdd93ff1e2b31478d70b99b0cc ""
+  "images/years since hist.png" 1773766751 68178 c4ee87548dfe625f4bedb92b2e900358 ""
   (generated)
   "Main.aux"
   "Main.log"

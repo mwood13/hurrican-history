@@ -455,9 +455,13 @@ tm_shape(us_counties) +
            size=4)
 
 
-
+scanner <- scanner %>% mutate(
+  major_hur = ifelse(Wind >= 96, 1, 0)
+)
 
 # save base dataframes
 
 fwrite(scanner, "Data/scanner_with_hur.csv", row.names = F)
 scanner <- fread("Data/scanner_with_hur.csv")
+
+
