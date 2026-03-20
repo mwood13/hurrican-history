@@ -219,7 +219,7 @@ I begin my analysis by testing for aggregate effects of hurricane forecasts and 
 	\end{subfigure}
 	\begin{subfigure}{0.45\linewidth}
 		\caption{Price}
-		\includegraphics[width=\linewidth]{ES Price.png}
+		\includegraphics[width=\linewidth]{ES Agg Price.png}
 	\end{subfigure}
 	\caption{Aggregate Event Studies of Bottled Water Sales}
 	\floatfoot{Note: Results from event studies following equation~\ref{eq:ES}. The vertical axis represents total revenue per 100 thousand residents in USD in panel (a) and average weekly price in panel (b). The horizontal axis represents weeks. The reference period is week -2. The vertical dashed line at week 0 represents the week when a storm made landfall. The band around the estimates represents the 95\% confidence interval.}
@@ -258,32 +258,63 @@ I test for aggregate effects of repeated high intensity hurricane seasons by rep
 
 While the event studies above fail to show any significant impact of both additional hurricane exposure and additional timing between hurricanes for broad categories, it is still possible that the incremental changes are significant. I continue my analysis by estimated fixed-effects regression model in equation~\ref{eq:gen_reg} for both additional hurricane landfalls, and additional years between subsequent hurricanes.
 
-\begin{table}[t!]
-   \caption{Results of Additional Exposure on Sales}
+% \begin{table}[t!]
+%    \caption{Results of Additional Exposure on Sales}
+%    \centering
+%    \begin{tabular}{lcc}
+%       \tabularnewline\midrule \midrule
+%       Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
+%       Model:                                           & (1)            & (2)\\  
+%       \midrule
+%       \emph{Variables}\\
+%       Threat                                      & 0.1073         & -0.8372$^{**}$\\   
+%                                                        & (0.1564)       & (0.3462)\\   
+%       Landfall                                    & 0.4481$^{***}$ & 1.363$^{***}$\\   
+%                                                        & (0.0683)       & (0.1631)\\   
+%       Landfalls since 1980                          &                & -0.0831$^{***}$\\   
+%                                                        &                & (0.0265)\\   
+%       Threat $\times$ Landfalls since 1980       &                & 0.0662$^{*}$\\   
+%                                                        &                & (0.0319)\\   
+%       Landfall $\times$Landfalls since 1980     &                & -0.0653$^{***}$\\   
+%                                                        &                & (0.0121)\\    
+%       \midrule
+%       \emph{Fit statistics}\\
+%       Observations                                     & 448,123        & 448,123\\  
+%       R$^2$                                            & 0.77057        & 0.77291\\  
+%       \midrule \midrule
+%       \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+%       \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+%    \end{tabular}
+%    \label{tab:hist}
+% \end{table}
+
+
+\begin{table}[htbp]
+   \caption{Historical Exposure Results}
    \centering
-   \begin{tabular}{lcc}
-      \tabularnewline\midrule \midrule
-      Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
-      Model:                                           & (1)            & (2)\\  
+   \begin{tabular}{lccc}
+      \tabularnewline \midrule \midrule
+      Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
+      Model:                                 & (1)            & (2)             & (3)\\  
       \midrule
       \emph{Variables}\\
-      Threat                                      & 0.1073         & -0.8372$^{**}$\\   
-                                                       & (0.1564)       & (0.3462)\\   
-      Landfall                                    & 0.4481$^{***}$ & 1.363$^{***}$\\   
-                                                       & (0.0683)       & (0.1631)\\   
-      Landfalls since 1980                          &                & -0.0831$^{***}$\\   
-                                                       &                & (0.0265)\\   
-      Threat $\times$ Landfalls since 1980       &                & 0.0662$^{*}$\\   
-                                                       &                & (0.0319)\\   
-      Landfall $\times$Landfalls since 1980     &                & -0.0653$^{***}$\\   
-                                                       &                & (0.0121)\\    
+      Threat                                 & 0.1073         & 0.1220          & -0.8372$^{**}$\\   
+                                             & (0.1564)       & (0.1670)        & (0.3462)\\   
+      Landfall                               & 0.4481$^{***}$ & 0.4157$^{***}$  & 1.363$^{***}$\\   
+                                             & (0.0683)       & (0.0650)        & (0.1631)\\   
+      Landfalls Since 1980                   &                & -0.0831$^{***}$ & -0.0831$^{***}$\\   
+                                             &                & (0.0265)        & (0.0265)\\   
+      Threat $\times$ Landfalls Since 1980   &                &                 & 0.0662$^{*}$\\   
+                                             &                &                 & (0.0319)\\   
+      Landfall $\times$ Landfalls Since 1980 &                &                 & -0.0653$^{***}$\\   
+                                             &                &                 & (0.0121)\\   
       \midrule
       \emph{Fit statistics}\\
-      Observations                                     & 448,123        & 448,123\\  
-      R$^2$                                            & 0.77057        & 0.77291\\  
+      Observations                           & 448,123        & 448,123         & 448,123\\  
+      R$^2$                                  & 0.77057        & 0.77291         & 0.77291\\  
       \midrule \midrule
-      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+      \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
    \end{tabular}
    \label{tab:hist}
 \end{table}
@@ -294,40 +325,78 @@ Column (2) shows the results from adding total hurricane landfalls since 1980 to
 
 % Rerun with looking at ts only, hur only, major hur only. See if get stronger results with more specificity.
 
-\begin{table}[!t]
+% \begin{table}[!t]
+%    \caption{Recent Exposure Results}
+%    \centering
+%    \begin{tabular}{lccc}
+%       \tabularnewline \midrule \midrule
+%       Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
+%       Model:                                                  & (1)            & (2)             & (3)\\
+%       \midrule
+%       \emph{Variables}\\
+%       Threat   & 0.1073         & 1.155$^{***}$   & 1.435$^{**}$\\
+%                & (0.1564)       & (0.1954)        & (0.5516)\\
+%       Landfall & 0.4481$^{***}$ & -0.5641$^{**}$  & -0.9166\\
+%                & (0.0683)       & (0.1926)        & (0.5616)\\
+%       Years    &                & 0.0065          & 0.0418$^{**}$\\
+%                &                & (0.0078)        & (0.0143)\\
+%      Threat $\times$ Years      &                & -0.1341$^{***}$ & -0.1830\\
+%                                 &                & (0.0220)        & (0.1503)\\
+%       Landfall $\times$ Years   &                & 0.1278$^{***}$  & 0.1974\\
+%                                 &                & (0.0192)        & (0.1466)\\
+%       Years squared     &                &                 & -0.0028$^{**}$\\
+%                         &                &                 & (0.0009)\\
+%       Threat $\times$ Years squared    &                &                 & 0.0021\\
+%                  &               &                 & (0.0089)\\
+%       Landfall $\times$ Years squared    &                &                 & -0.0033\\
+%                  &                &                 & (0.0085)\\
+%       \midrule
+%       \emph{Fit statistics}\\
+%       Observations                                            & 448,123        & 217,176         & 217,176\\
+%       R$^2$                                                   & 0.77057        & 0.79158         & 0.79303\\
+%       \midrule \midrule
+%       \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+%       \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+%    \end{tabular}
+%    \label{tab:years}
+% \end{table}
+
+\begin{table}[htbp]
    \caption{Recent Exposure Results}
    \centering
    \begin{tabular}{lccc}
       \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
-      Model:                                                  & (1)            & (2)             & (3)\\
+      Dependent Variable: & \multicolumn{3}{c}{log(total\_rev\_per\_cap)}\\
+      Model:                                                  & (1)            & (2)            & (3)\\  
       \midrule
       \emph{Variables}\\
-      Threat   & 0.1073         & 1.155$^{***}$   & 1.435$^{**}$\\
-               & (0.1564)       & (0.1954)        & (0.5516)\\
-      Landfall & 0.4481$^{***}$ & -0.5641$^{**}$  & -0.9166\\
-               & (0.0683)       & (0.1926)        & (0.5616)\\
-      Years    &                & 0.0065          & 0.0418$^{**}$\\
-               &                & (0.0078)        & (0.0143)\\
-     Threat $\times$ Years      &                & -0.1341$^{***}$ & -0.1830\\
-                                &                & (0.0220)        & (0.1503)\\
-      Landfall $\times$ Years   &                & 0.1278$^{***}$  & 0.1974\\
-                                &                & (0.0192)        & (0.1466)\\
-      Years squared     &                &                 & -0.0028$^{**}$\\
-                        &                &                 & (0.0009)\\
-      Threat $\times$ Years squared    &                &                 & 0.0021\\
-                 &               &                 & (0.0089)\\
-      Landfall $\times$ Years squared    &                &                 & -0.0033\\
-                 &                &                 & (0.0085)\\
+      Hur\_Threat                                             & 0.1073         & -0.0129        & 1.155$^{***}$\\   
+                                                              & (0.1564)       & (0.1616)       & (0.1954)\\   
+      Hur\_Landfall                                           & 0.4481$^{***}$ & 0.5639$^{***}$ & -0.5641$^{**}$\\   
+                                                              & (0.0683)       & (0.0653)       & (0.1926)\\   
+      temp\_mean                                              & 0.0046$^{***}$ & 0.0066$^{***}$ & 0.0066$^{***}$\\   
+                                                              & (0.0010)       & (0.0010)       & (0.0010)\\   
+      total\_hist\_landfall                                   &                & -0.0779$^{**}$ & -0.0779$^{**}$\\   
+                                                              &                & (0.0290)       & (0.0290)\\   
+      years\_since\_landfall\_hur                             &                & 0.0065         & 0.0065\\   
+                                                              &                & (0.0078)       & (0.0078)\\   
+      Hur\_Threat $\times$ years\_since\_landfall\_hur        &                &                & -0.1341$^{***}$\\   
+                                                              &                &                & (0.0220)\\   
+      Hur\_Landfall $\times$ years\_since\_landfall\_hur      &                &                & 0.1278$^{***}$\\   
+                                                              &                &                & (0.0192)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      year                                                    & Yes            & Yes            & Yes\\  
+      month                                                   & Yes            & Yes            & Yes\\  
+      fips                                                    & Yes            & Yes            & Yes\\  
       \midrule
       \emph{Fit statistics}\\
-      Observations                                            & 448,123        & 217,176         & 217,176\\
-      R$^2$                                                   & 0.77057        & 0.79158         & 0.79303\\
+      Observations                                            & 448,123        & 217,176        & 217,176\\  
+      R$^2$                                                   & 0.77057        & 0.79157        & 0.79158\\  
       \midrule \midrule
       \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
       \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
    \end{tabular}
-   \label{tab:years}
 \end{table}
 
 Next, I analyze the effect of additional years between subsequent hurricanes. Table~\ref{tab:years} shows the results from both equations~\ref{eq:gen_reg} and~\ref{eq:square}. In addition to controlling for temperature in these regressions, I also control for the total historical landfalls from above. The result is a significant decrease in early sales by roughly 13\% with an equal increase in sales closer to landfall. This is consistent with the results observed in the event study, and with the notion of fading memory. 
@@ -382,60 +451,38 @@ As climate change continues, the intensity of natural disasters and extent of th
 
 \begin{figure}[h!]
     \centering
+    \includegraphics[width =0.9\linewidth]{ES Agg Vol.png}
+    \caption{Event Studies by Hurricane Category}
+    \label{fig:type_ci}
+    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
     \includegraphics[width =0.9\linewidth]{Agg by Type Error.png}
     \caption{Event Studies by Hurricane Category}
     \label{fig:type_ci}
     \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
 \end{figure}
 
-\begin{figure}[h!]
-   \centering
-	\begin{subfigure}{0.75\linewidth}
-		\caption{All Hurricane Landfalls}
-		\includegraphics[width=\linewidth]{ES Hist.png}
-	\end{subfigure}
-	\begin{subfigure}{0.75\linewidth}
-		\caption{Minor Hurricane Landfalls}
-		\includegraphics[width=\linewidth]{Es hist minor.png}
-	\end{subfigure}
-    \caption{Event Studies of Historical Landfalls by Type}
-    \label{fig:hist_full}
-        \floatfoot{Note: Results from event study with subsets based on the total count of prior hurricanes to hit the county since 1980. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
-\end{figure}
-
-
-\begin{figure}[h!]
-   \centering
-	\begin{subfigure}{0.75\linewidth}
-		\caption{All Hurricane Landfalls}
-		\includegraphics[width=\linewidth]{ES Time Hur.png}
-	\end{subfigure}
-	\begin{subfigure}{0.75\linewidth}
-		\caption{Minor Hurricane Landfalls}
-		\includegraphics[width=\linewidth]{ES Years minor.png}
-	\end{subfigure}
-    \caption{Event Studies of Recency Landfalls by Type}
-    \label{fig:hist_full}
-        \floatfoot{Note: Results from event study with subsets based on the total count of prior hurricanes to hit the county since 1980. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
-\end{figure}
-
 
 \begin{figure}[h!]
    \centering
 	\begin{subfigure}{0.45\linewidth}
-		\caption{1 to 7 Landfalls}
+		\caption{1 to 10 Landfalls}
 		\includegraphics[width=\linewidth]{hist q1.png}
 	\end{subfigure}
 	\begin{subfigure}{0.45\linewidth}
-		\caption{8 to 12 Landfalls}
+		\caption{11 to 15 Landfalls}
 		\includegraphics[width=\linewidth]{hist q2.png}
 	\end{subfigure}
 		\begin{subfigure}{0.45\linewidth}
-		\caption{13 to 16 Landfalls}
+		\caption{16 to 17 Landfalls}
 		\includegraphics[width=\linewidth]{hist q3.png}
 	\end{subfigure}
 		\begin{subfigure}{0.45\linewidth}
-		\caption{17 to 25 Landfalls}
+		\caption{18 to 25 Landfalls}
 		\includegraphics[width=\linewidth]{hist q4.png}
 	\end{subfigure}
     \caption{Event Studies By Historical Landfalls}
@@ -467,6 +514,76 @@ As climate change continues, the intensity of natural disasters and extent of th
     \label{fig:disc_full}
         \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
 \end{figure}
+
+
+\begin{table}[t!]
+   \caption{Base Results}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline \midrule \midrule
+      Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
+      Model:          All Storms            & Hurricanes \\  
+      \midrule
+      \emph{Variables}\\
+      Threat         & 0.0401$^{*}$   &0.1073   \\   
+                     & (0.0193)       &(0.1564)   \\   
+      Landfall       & 0.1962$^{***}$ & 0.4481$^{***}$  \\   
+                     & (0.0606)       & (0.0683)  \\   
+      temp\_mean     & 0.0046$^{***}$ & 0.0046$^{***}$\\   
+                     & (0.0010)       & (0.0010)\\   
+      \midrule
+      \emph{Fit statistics}\\
+      Observations   & 448,123        & 448,123\\  
+      R$^2$          & 0.77052        & 0.77057\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+\end{table}
+
+\begin{sidewaystable}[t!]
+   \caption{Recent Exposure Results}
+   \centering
+   \begin{tabular}{lcccccc}
+      \tabularnewline \midrule \midrule
+      Dependent Variable: & \multicolumn{6}{c}{log(total\_rev\_per\_cap)}\\
+      Model:                                                  & (1)            & (2)            & (3)             & (4)             & (5)            & (6)\\  
+      \midrule
+      \emph{Variables}\\
+      Hur\_Threat                                             & 0.1073         & -0.0129        & 1.155$^{***}$   & 1.271$^{***}$   & -0.0162        & 1.435$^{**}$\\   
+                                                              & (0.1564)       & (0.1616)       & (0.1954)        & (0.1938)        & (0.2339)       & (0.5516)\\   
+      Hur\_Landfall                                           & 0.4481$^{***}$ & 0.5639$^{***}$ & -0.5641$^{**}$  & -0.7123$^{***}$ & 0.5344$^{***}$ & -0.9166\\   
+                                                              & (0.0683)       & (0.0653)       & (0.1926)        & (0.1918)        & (0.0678)       & (0.5616)\\   
+      temp\_mean                                              & 0.0046$^{***}$ & 0.0066$^{***}$ & 0.0066$^{***}$  & 0.0066$^{***}$  & 0.0066$^{***}$ & 0.0066$^{***}$\\   
+                                                              & (0.0010)       & (0.0010)       & (0.0010)        & (0.0010)        & (0.0010)       & (0.0010)\\   
+      total\_hist\_landfall                                   &                & -0.0779$^{**}$ & -0.0779$^{**}$  & -0.0893$^{**}$  & -0.0893$^{**}$ & -0.0893$^{**}$\\   
+                                                              &                & (0.0290)       & (0.0290)        & (0.0303)        & (0.0303)       & (0.0303)\\   
+      years\_since\_landfall\_hur                             &                & 0.0065         & 0.0065          & 0.0418$^{**}$   & 0.0418$^{**}$  & 0.0418$^{**}$\\   
+                                                              &                & (0.0078)       & (0.0078)        & (0.0143)        & (0.0143)       & (0.0143)\\   
+      Hur\_Threat $\times$ years\_since\_landfall\_hur        &                &                & -0.1341$^{***}$ & -0.1448$^{***}$ & 0.0144         & -0.1830\\   
+                                                              &                &                & (0.0220)        & (0.0208)        & (0.0613)       & (0.1503)\\   
+      Hur\_Landfall $\times$ years\_since\_landfall\_hur      &                &                & 0.1278$^{***}$  & 0.1412$^{***}$  &                & 0.1974\\   
+                                                              &                &                & (0.0192)        & (0.0188)        &                & (0.1466)\\   
+      yrs\_since\_hur\_sq                                     &                &                &                 & -0.0028$^{**}$  & -0.0028$^{**}$ & -0.0028$^{**}$\\   
+                                                              &                &                &                 & (0.0009)        & (0.0009)       & (0.0009)\\   
+      Hur\_Threat $\times$ yrs\_since\_hur\_sq                &                &                &                 &                 & -0.0013        & 0.0021\\   
+                                                              &                &                &                 &                 & (0.0040)       & (0.0089)\\   
+      Hur\_Landfall $\times$ yrs\_since\_hur\_sq              &                &                &                 &                 &                & -0.0033\\   
+                                                              &                &                &                 &                 &                & (0.0085)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      year                                                    & Yes            & Yes            & Yes             & Yes             & Yes            & Yes\\  
+      month                                                   & Yes            & Yes            & Yes             & Yes             & Yes            & Yes\\  
+      fips                                                    & Yes            & Yes            & Yes             & Yes             & Yes            & Yes\\  
+      \midrule
+      \emph{Fit statistics}\\
+      Observations                                            & 448,123        & 217,176        & 217,176         & 217,176         & 217,176        & 217,176\\  
+      R$^2$                                                   & 0.77057        & 0.79157        & 0.79158         & 0.79303         & 0.79301        & 0.79303\\  
+      \midrule \midrule
+      \multicolumn{7}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{7}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+\end{sidewaystable}
 
 
 \begin{figure}[h!]

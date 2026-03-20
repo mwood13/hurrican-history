@@ -26,8 +26,6 @@ scanner <- scanner[order(scanner$fips, scanner$week_end), ]
 
 scanner <- subset(scanner, fips_state_code != "51")
 
-
-
 # run regressions for hurricane effect ---------------------------------------
 
 # base regression
@@ -50,7 +48,8 @@ current_hur_lm <- feols(data = scanner,
 
 summary(current_hur_lm)
 
-esttex(current_hur_lm,
+
+esttex(current_lm, current_hur_lm,
        title = "Base Results",
        fitstat = ~n + r2)
 
@@ -85,27 +84,6 @@ scanner <- scanner |> rename("past_hist_landfall" = "total_hist_landfall")
 
 scanner <- left_join(scanner, sub_df, by = c("fips", "year"))
 
-# regressions with historical landfall count
-hist_lm1 <- feols(data = scanner,
-                  log(total_rev_per_cap) ~ Threat + Landfall +
-                    temp_mean + total_hist_landfall |
-                    year + month + fips,
-                  cluster = c("fips", "year"),
-                  mem.clean = TRUE)
-
-summary(hist_lm1)
-
-
-#regression with historical landfall count and interaction
-hist_lm2 <- feols(data = scanner,
-                  log(total_rev_per_cap) ~ Threat + Landfall +
-                    temp_mean + total_hist_landfall +
-                    Threat:total_hist_landfall + Landfall:total_hist_landfall |
-                    year + month + fips,
-                  cluster = c("fips", "year"),
-                  mem.clean = TRUE)
-
-summary(hist_lm2)
 
 # regressions with historical landfall count, but only looking at hurricanes
 hist_hur_lm1 <- feols(data = scanner,
@@ -132,13 +110,17 @@ hist_hur_lm2 <- feols(data = scanner,
 summary(hist_hur_lm2)
 
 
+esttex(current_hur_lm, hist_hur_lm1 ,hist_hur_lm2,
+       title = "Historical Exposure Results",
+       fitstat = ~n + r2)
 
 # Discounting effect -----------------------------------------------------------
 
 # regressions with years since last landfall
 disc_lm1 <- feols(data = scanner,
-                  log(total_rev_per_cap) ~ Threat + Landfall +
-                    temp_mean + years_since_landfall |
+                  log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur |
                     year + month + fips,
                   cluster = c("fips", "year"),
                   mem.clean = TRUE)
@@ -147,157 +129,105 @@ summary(disc_lm1)
 
 # regression with years since last landfall and interaction
 disc_lm2 <- feols(data = scanner,
-                  log(total_rev_per_cap) ~ Threat + Landfall +
-                    temp_mean + years_since_landfall +
-                    Threat:years_since_landfall +
-                    Landfall:years_since_landfall |
+                  log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur +
+                    Hur_Threat:years_since_landfall_hur +
+                    Hur_Landfall:years_since_landfall_hur |
                     year + month + fips,
                   cluster = c("fips", "year"),
                   mem.clean = TRUE)
 
 summary(disc_lm2)
 
-
-
-# current hurricane
-
-# regressions with years since last landfall, but only looking at hurricanes
-disc_hur_lm1 <- feols(data = scanner,
-                      log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                        temp_mean + years_since_landfall |
-                        year + month + fips,
-                      cluster = c("fips", "year"),
-                      mem.clean = TRUE)
-
-summary(disc_hur_lm1)
-
-# regression with years since last landfall and interaction,
-# but only looking at hurricanes
-disc_hur_lm2 <- feols(data = scanner,
-                      log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                        temp_mean + years_since_landfall +
-                        Hur_Threat:years_since_landfall +
-                        Hur_Landfall:years_since_landfall |
-                        year + month + fips,
-                      cluster = c("fips", "year"),
-                      mem.clean = TRUE)
-
-summary(disc_hur_lm2)
-
-
-
 # current hurricane squared
 
 # create squared variable for years since last landfall
 scanner <- scanner |> mutate(
-  yrs_since_sq = years_since_landfall^2,
   yrs_since_hur_sq = years_since_landfall_hur^2
 )
 
-# regressions with years since last landfall squared,
-# but only looking at hurricanes
-disc_hur_lm1 <- feols(data = scanner,
-                      log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                        temp_mean + years_since_landfall +
-                        yrs_since_sq |
+# other functional forms
+disc_lm3 <- feols(data = scanner,
+                      log(total_rev_per_cap) ~  Hur_Threat+
+                        Hur_Landfall +
+                        temp_mean + total_hist_landfall +
+                        years_since_landfall_hur +
+                        yrs_since_hur_sq |
                         year + month + fips,
                       cluster = c("fips", "year"),
                       mem.clean = TRUE)
 
-summary(disc_hur_lm1)
+summary(disc_lm3)
 
-# regression with years since last landfall squared and interaction,
-# but only looking at hurricanes
-disc_hur_lm2 <- feols(data = scanner,
-                      log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                        temp_mean + years_since_landfall +
-                        Hur_Threat:years_since_landfall +
-                        Hur_Landfall:years_since_landfall +
-                        Hur_Threat:yrs_since_sq + Hur_Landfall:yrs_since_sq |
-                        year + month + fips,
-                      cluster = c("fips", "year"),
-                      mem.clean = TRUE)
+disc_lm4 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~  Hur_Threat+
+                    Hur_Landfall +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur +
+                    yrs_since_hur_sq +
+                    Hur_Landfall:years_since_landfall_hur +
+                    Hur_Landfall:yrs_since_hur_sq|
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
 
-summary(disc_hur_lm2)
-
-
-
-# current and last hurricane
-
-# regressions with years since last hurricane, but only looking at hurricanes
-disc_hur2_lm1 <- feols(data = scanner,
-                       log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                         temp_mean + years_since_landfall_hur  +
-                         total_hist_landfall |
-                         year + month + fips,
-                       cluster = c("fips", "year"),
-                       mem.clean = TRUE)
-
-summary(disc_hur2_lm1)
-
-# regression with years since last hurricane and interaction,
-# but only looking at hurricanes
-disc_hur2_lm2 <- feols(data = scanner,
-                       log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                         temp_mean + years_since_landfall_hur +
-                         Hur_Threat:years_since_landfall_hur +
-                         Hur_Landfall:years_since_landfall_hur +
-                         total_hist_landfall |
-                         year + month + fips,
-                       cluster = c("fips", "year"),
-                       mem.clean = TRUE)
-
-summary(disc_hur2_lm2)
+summary(disc_lm4)
 
 
+disc_lm5 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~  Hur_Threat+
+                    Hur_Landfall +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur +
+                    yrs_since_hur_sq +
+                    Hur_Threat:years_since_landfall_hur +
+                    Hur_Threat:yrs_since_hur_sq|
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
 
-# current and last hurricane squared
+summary(disc_lm5)
 
-# regressions with years since last hurricane squared,
-#but only looking at hurricanes
-disc_hur2_sq_lm1 <- feols(data = scanner,
-                          log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                            temp_mean + years_since_landfall_hur +
-                            yrs_since_hur_sq + total_hist_landfall |
-                            year + month + fips,
-                          cluster = c("fips", "year"),
-                          mem.clean = TRUE)
 
-summary(disc_hur2_sq_lm1)
-
-# regression with years since last hurricane squared and interaction,
-#but only looking at hurricanes
-disc_hur2_sq_lm2 <- feols(data = scanner,
-                          log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
-                            temp_mean + years_since_landfall_hur +
-                            yrs_since_hur_sq +
-                            Hur_Threat:years_since_landfall_hur +
-                            Hur_Landfall:years_since_landfall_hur +
-                            Hur_Threat:yrs_since_hur_sq +
-                            Hur_Landfall:yrs_since_hur_sq +
-                            total_hist_landfall |
-                            year + month + fips,
-                          cluster = c("fips", "year"),
-                          mem.clean = TRUE)
-
-summary(disc_hur2_sq_lm2)
+disc_lm6 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~  Hur_Threat+
+                    Hur_Landfall +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur +
+                    yrs_since_hur_sq +
+                    Hur_Threat:years_since_landfall_hur +
+                    Hur_Threat:yrs_since_hur_sq +
+                    Hur_Landfall:years_since_landfall_hur +
+                    Hur_Landfall:yrs_since_hur_sq|
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
 
 
 
-# get tables for latex ------------------------------------------
-
-esttex(current_hur_lm, hist_hur_lm2,
-       title = "Historical Exposure Results",
-       fitstat = ~n + r2)
+summary(disc_lm6)
 
 
-esttex(current_hur_lm, disc_hur2_lm2, disc_hur2_sq_lm2,
+disc_lm7 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~ Hur_Threat + Hur_Landfall +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur +
+                    yrs_since_hur_sq +
+                    Hur_Threat:years_since_landfall_hur +
+                    Hur_Landfall:years_since_landfall_hur |
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
+
+summary(disc_lm7)
+
+
+esttex(current_hur_lm, disc_lm1 ,disc_lm2,disc_lm7, disc_lm5, disc_lm6,
        title = "Recent Exposure Results",
        fitstat = ~n + r2)
 
 
-
-esttex(current_hur_lm, hist_hur_lm2,disc_hur2_lm2,
-       title = "Historical Exposure Results",
+esttex(current_hur_lm, disc_lm1 ,disc_lm2,
+       title = "Recent Exposure Results",
        fitstat = ~n + r2)
-
