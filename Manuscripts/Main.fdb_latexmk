@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Main"] 1774031013.67941 "Main.aux" "Main.bbl" "Main" 1774031018.01248 0
+["bibtex Main"] 1774031460.03535 "Main.aux" "Main.bbl" "Main" 1774031464.74382 0
   "./biblio.bib" 1773344916 24650 44e4645802b61ae0159fb2a8472a5980 ""
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/apalike.bst" 1291972791 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "Main.aux" 1774031017 9807 3e2c86b7c797950c1808a5442a8ede9f "pdflatex"
+  "Main.aux" 1774031463 9807 22aca9e76b603dbcf676ac9b7828b92a "pdflatex"
   (generated)
   "Main.bbl"
   "Main.blg"
   (rewritten before read)
-["pdflatex"] 1774031013.99848 "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" "Main.pdf" "Main" 1774031018.01488 0
+["pdflatex"] 1774031460.49161 "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" "Main.pdf" "Main" 1774031464.74624 0
   "C:/Users/mwood1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1773674131 172975 d4e9b4c3f33aea9e16fec33229dd8a1b ""
   "C:/Users/mwood1/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0600.pk" 1757688793 7284 589e7340cece601f629680426368d8af ""
   "C:/Users/mwood1/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0800.pk" 1757688793 9292 5acc8533f3090065ebe4bce4dfefd7e1 ""
@@ -125,11 +125,11 @@
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/tex/latex/tools/multicol.sty" 1749468414 33259 db80f750a01491473161bd4d0f6986d2 ""
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1749468414 4545 d7bb86d489a8ad5263e4c34304c03aee ""
   "C:/Users/mwood1/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "Main.aux" 1774031017 9807 3e2c86b7c797950c1808a5442a8ede9f "pdflatex"
-  "Main.bbl" 1774031013 6956 244a5ddc1e658ccbc0777c5294378c03 "bibtex Main"
-  "Main.out" 1774031017 1782 1d794914bed2cdf6d1428fa738d6fee7 "pdflatex"
-  "Main.tex" 1774031008 69755 bf4c2defead14e37a9f87f19c8ecbbfa ""
-  "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" 1774031008 69755 bf4c2defead14e37a9f87f19c8ecbbfa ""
+  "Main.aux" 1774031463 9807 22aca9e76b603dbcf676ac9b7828b92a "pdflatex"
+  "Main.bbl" 1774031460 6956 244a5ddc1e658ccbc0777c5294378c03 "bibtex Main"
+  "Main.out" 1774031463 1782 1d794914bed2cdf6d1428fa738d6fee7 "pdflatex"
+  "Main.tex" 1774031454 69751 f378554c0153192e2d17cf115bcc4ae5 ""
+  "c:/Users/mwood1/OneDrive - Oglethorpe University/Research/Hist Trend Hurricanes/Data Analysis/hurrican-history/Manuscripts/Main.tex" 1774031454 69751 f378554c0153192e2d17cf115bcc4ae5 ""
   "images///ES Agg.png" 1773174800 65549 26f72b59e277dd312b8fa57489ec42b9 ""
   "images/Agg by Type Error.png" 1773174800 100089 49fd1e6ec1f4f6eb73f66aa82414ba62 ""
   "images/Current Landfalls.png" 1773174800 243850 63a212c414046f35f6c00a63b541b326 ""
