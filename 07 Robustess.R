@@ -87,7 +87,7 @@ ggplot(data = ES_results, aes(x = time, y = estimate))+
 
 
 
-# Event study for start of summer ------------------------------------------------
+# Event study for start of summer ---------------------------------------------
 
 landfall_counties <- unique(subset(scanner, Landfall ==1 & Wind >= 64)$fips)
 

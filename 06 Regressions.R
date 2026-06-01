@@ -19,7 +19,8 @@ scanner <- scanner |> mutate(
   month = str_sub(week_end, start = 6, end = 7),
   Hur_Landfall = ifelse(Landfall == 1 & Wind >= 64, 1, 0),
   next_wind = lag(Wind, -1L),
-  Hur_Threat = ifelse(Threat == 1 & (Wind >= 64 | next_wind >= 64), 1, 0)
+  Hur_Threat = ifelse(Threat == 1 & (Wind >= 64 | next_wind >= 64), 1, 0),
+  Event = ifelse(Hur_Threat == 1 | Hur_Landfall == 1, 1, 0)
 )
 
 scanner <- scanner[order(scanner$fips, scanner$week_end), ]
@@ -48,8 +49,17 @@ current_hur_lm <- feols(data = scanner,
 
 summary(current_hur_lm)
 
+current_event_lm <- feols(data = scanner,
+                          log(total_rev_per_cap) ~ Event +
+                            temp_mean |
+                            year + month + fips,
+                          cluster = c("fips", "year"),
+                          mem.clean = TRUE)
 
-esttex(current_lm, current_hur_lm,
+summary(current_event_lm)
+
+
+esttex(current_lm, current_hur_lm, current_event_lm,
        title = "Base Results",
        fitstat = ~n + r2)
 
@@ -108,6 +118,29 @@ hist_hur_lm2 <- feols(data = scanner,
                       mem.clean = TRUE)
 
 summary(hist_hur_lm2)
+
+
+
+
+# rerun but only using event
+hist_event_lm1 <- feols(data = scanner,
+                      log(total_rev_per_cap) ~ Event +
+                        temp_mean + total_hist_landfall |
+                        year + month + fips,
+                      cluster = c("fips", "year"),
+                      mem.clean = TRUE)
+
+summary(hist_event_lm1)
+
+hist_event_lm2 <- feols(data = scanner,
+                      log(total_rev_per_cap) ~ Event +
+                        temp_mean + total_hist_landfall +
+                        Event:total_hist_landfall |
+                        year + month + fips,
+                      cluster = c("fips", "year"),
+                      mem.clean = TRUE)
+
+summary(hist_event_lm2)
 
 
 esttex(current_hur_lm, hist_hur_lm1 ,hist_hur_lm2,
@@ -231,3 +264,44 @@ esttex(current_hur_lm, disc_lm1 ,disc_lm2,disc_lm7, disc_lm5, disc_lm6,
 esttex(current_hur_lm, disc_lm1 ,disc_lm2,
        title = "Recent Exposure Results",
        fitstat = ~n + r2)
+
+
+
+# Recency using event as the treatment and controlling for historical exposure----
+
+disc_lm1 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~ Event +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur |
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
+
+summary(disc_lm1)
+
+
+disc_lm2 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~ Event +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur +
+                    Event:years_since_landfall_hur|
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
+
+summary(disc_lm2)
+
+
+disc_lm3 <- feols(data = scanner,
+                  log(total_rev_per_cap) ~ Event +
+                    temp_mean + total_hist_landfall +
+                    years_since_landfall_hur+
+                    Event:years_since_landfall_hur+
+                    Event:total_hist_landfall + 
+                    total_hist_landfall:years_since_landfall_hur+
+                    Event:total_hist_landfall:years_since_landfall_hur|
+                    year + month + fips,
+                  cluster = c("fips", "year"),
+                  mem.clean = TRUE)
+
+summary(disc_lm3)

@@ -60,10 +60,13 @@ scanner <- left_join(scanner, sub_df, by = c("fips", "year"))
 scanner <- subset(scanner, total_hist_landfall>0)
 
 graph_df <- subset(scanner, Landfall == 1 & Wind >= 64)
+graph_df <- graph_df %>% group_by(fips) %>% summarize(
+  total_hist_landfall = head(total_hist_landfall, 1L)
+)
 
 # get quartiles
 quantile(graph_df$total_hist_landfall, prob = c(0,0.25, 0.50, 0.75, 1), na.rm=T)
-# 1, 10, 15, 17, 25
+# 1, 8, 13, 16, 22
 
 ggplot(data=graph_df, aes(x=total_hist_landfall))+
   geom_histogram(binwidth = 1, color = "black", fill = "grey", alpha = 0.5)+
@@ -75,15 +78,15 @@ ggplot(data=graph_df, aes(x=total_hist_landfall))+
 
 
 
-# run event study for 1st quartile (1 to 10 landfalls) -------------------------
+# run event study for 1st quartile (1 to 8 landfalls) -------------------------
 
 
 scanner <- na.omit(scanner)
 
-q1_df <- get_event_data(scanner, "total", c(0,10), c(64,200))
+q1_df <- get_event_data(scanner, "total", c(0,8), c(64,200))
 ES_q1 = feols(data = q1_df, total_rev_per_cap ~ ref_num + temp_mean |
                 fips + year + month, cluster = q1_df$fips)
-q1_results <- make_ES_table(ES_q1, " 1 to 10 landfalls")
+q1_results <- make_ES_table(ES_q1, " 1 to 8 landfalls")
 
 
 ggplot(data = q1_results, aes(x = time, y = estimate))+
@@ -99,12 +102,12 @@ ggplot(data = q1_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 2nd quartile (11-15 landfall counties) ------------------
+# run event study for 2nd quartile (9-13 landfall counties) ------------------
 
-q2_df <- get_event_data(scanner, "total", c(10,15), c(64,200))
+q2_df <- get_event_data(scanner, "total", c(8,13), c(64,200))
 ES_q2 = feols(data = q2_df, total_rev_per_cap ~ ref_num + temp_mean |
                 fips + year + month, cluster = q2_df$fips)
-q2_results <- make_ES_table(ES_q2, "11 to 15 landfalls")
+q2_results <- make_ES_table(ES_q2, " 9 to 13 landfalls")
 
 ggplot(data = q2_results, aes(x = time, y = estimate))+
   geom_line()+
@@ -119,12 +122,12 @@ ggplot(data = q2_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 3rd quartile (16-17 landfall counties) -------------------
+# run event study for 3rd quartile (14-16 landfall counties) -------------------
 
-q3_df <- get_event_data(scanner, "total", c(15,17), c(64,200))
+q3_df <- get_event_data(scanner, "total", c(13,16), c(64,200))
 ES_q3 = feols(data = q3_df, total_rev_per_cap ~ ref_num + temp_mean |
                 fips + year + month, cluster = q3_df$fips)
-q3_results <- make_ES_table(ES_q3, "16 to 17 landfalls")
+q3_results <- make_ES_table(ES_q3, "14 to 16 landfalls")
 
 ggplot(data = q3_results, aes(x = time, y = estimate))+
   geom_line()+
@@ -140,12 +143,12 @@ ggplot(data = q3_results, aes(x = time, y = estimate))+
 
 
 
-# run event study for 4th quantile (18-22 landfall counties) -------------------
+# run event study for 4th quantile (17-22 landfall counties) -------------------
 
-q4_df <- get_event_data(scanner, "total", c(17,100), c(64,200))
+q4_df <- get_event_data(scanner, "total", c(16,100), c(64,200))
 ES_q4 = feols(data = q4_df, total_rev_per_cap ~ ref_num + temp_mean |
                 fips + year + month, cluster = q4_df$fips)
-q4_results <- make_ES_table(ES_q4, "17 to 25 landfalls")
+q4_results <- make_ES_table(ES_q4, "16 to 22 landfalls")
 
 ggplot(data = q4_results, aes(x = time, y = estimate))+
   geom_line()+
@@ -180,3 +183,125 @@ ggplot(data = graph_df, aes(y = estimate, x = seq(1,12, by = 1))) +
   labs(title = "", x = "Weeks", 
        y = "Total Revenue per 100K Residents", color="Landfalls since 1980")
 
+
+
+# run by count from 6-18 -------------------------------------------------------
+
+# 6
+df <- get_event_data(scanner, "total", c(5,6), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+                fips + year + month, cluster = df$fips)
+results6 <- make_ES_table(ES, " 6 landfalls")
+
+# 7 
+df <- get_event_data(scanner, "total", c(6,7), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results7 <- make_ES_table(ES, " 7 landfalls")
+
+# 8 
+df <- get_event_data(scanner, "total", c(7,8), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results8 <- make_ES_table(ES, " 8 landfalls")
+
+# 9
+df <- get_event_data(scanner, "total", c(8,9), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results9 <- make_ES_table(ES, " 9 landfalls")
+
+# 10
+df <- get_event_data(scanner, "total", c(9,10), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results10 <- make_ES_table(ES, "10 landfalls")
+
+# 11
+df <- get_event_data(scanner, "total", c(10,11), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results11 <- make_ES_table(ES, "11 landfalls")
+
+# 12
+df <- get_event_data(scanner, "total", c(11,12), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results12 <- make_ES_table(ES, "12 landfalls")
+
+# 13
+df <- get_event_data(scanner, "total", c(12,13), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results13 <- make_ES_table(ES, "13 landfalls")
+
+# 14
+df <- get_event_data(scanner, "total", c(13,14), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results14 <- make_ES_table(ES, "14 landfalls")
+
+# 15
+df <- get_event_data(scanner, "total", c(14,15), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results15 <- make_ES_table(ES, "15 landfalls")
+
+# 16
+df <- get_event_data(scanner, "total", c(15,16), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results16 <- make_ES_table(ES, "16 landfalls")
+
+# 17 
+df <- get_event_data(scanner, "total", c(16,17), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results17 <- make_ES_table(ES, "17 landfalls")
+
+# 18
+df <- get_event_data(scanner, "total", c(17,18), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean |
+             fips + year + month, cluster = df$fips)
+results18 <- make_ES_table(ES, "18 landfalls")
+
+
+# graph week before
+
+all_results <- rbind(results6, results7, results8, results9, results10,
+                     results11, results12, results13, results14,results15,
+                     results16, results17, results18)
+graph_df <- subset(all_results, time == -1)
+
+ggplot(data = graph_df, aes(y = estimate, x = seq(1,13, by = 1))) + 
+  geom_point(aes(y = estimate), size = 3)+
+  geom_hline(yintercept = 0)+
+  geom_errorbar(aes(ymin = lci, ymax = uci), linewidth = 0.9)+
+  theme_minimal()+
+  scale_x_continuous(breaks=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13),
+                     labels=c("6", "7", "8", "9", "10", "11", "12", "13",
+                              "14", "15", "16", "17", "18"))+
+  theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20), 
+        legend.text = element_text(size = 15), legend.title = element_text(size = 20), 
+        plot.title = element_text(size = 30))+
+  labs(title = "", x = "Historical Landfall Count", 
+       y = "Total Revenue per 100K Residents")
+
+
+
+# graph week of
+graph_df <- subset(all_results, time == 0)
+
+ggplot(data = graph_df, aes(y = estimate, x = seq(1,13, by = 1))) + 
+  geom_point(aes(y = estimate), size = 3)+
+  geom_hline(yintercept = 0)+
+  geom_errorbar(aes(ymin = lci, ymax = uci), linewidth = 0.9)+
+  theme_minimal()+
+  scale_x_continuous(breaks=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13),
+                     labels=c("6", "7", "8", "9", "10", "11", "12", "13",
+                              "14", "15", "16", "17", "18"))+
+  theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20), 
+        legend.text = element_text(size = 15), legend.title = element_text(size = 20), 
+        plot.title = element_text(size = 30))+
+  labs(title = "", x = "Historical Landfall Count", 
+       y = "Total Revenue per 100K Residents")

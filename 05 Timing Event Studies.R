@@ -190,3 +190,91 @@ ggplot(data = graph_df, aes(y = estimate, x = seq(1,12, by = 1))) +
        y = "Total Revenue per 100K Residents", color="Years Since Last Hurricane")
 
 
+
+
+# Run for 1-5, 7, 9, and 12 years ----------------------------------------------
+
+# 1
+
+df <- get_event_data(scanner, "years", c(0,1.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num+ temp_mean +total_hist_landfall|
+             fips + year + month, cluster = df$fips)
+results1 <- make_ES_table(ES, " 1 year")
+
+# 2
+df <- get_event_data(scanner, "years", c(1.5,2.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean+total_hist_landfall |
+             fips + year + month, cluster = df$fips)
+results2 <- make_ES_table(ES, " 2 years")
+
+# 3 
+df <- get_event_data(scanner, "years", c(2.5,3.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean+total_hist_landfall |
+             fips + year + month, cluster = df$fips)
+results3 <- make_ES_table(ES, " 3 years")
+
+# 4
+df <- get_event_data(scanner, "years", c(3.5,4.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean+total_hist_landfall |
+             fips + year + month, cluster = df$fips)
+results4 <- make_ES_table(ES, " 4 years")
+
+# 5
+df <- get_event_data(scanner, "years", c(4.5,5.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean +total_hist_landfall|
+             fips + year + month, cluster = df$fips)
+results5 <- make_ES_table(ES, " 5 years")
+
+# 7
+df <- get_event_data(scanner, "years", c(6.5,7.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean +total_hist_landfall|
+             fips + year + month, cluster = df$fips)
+results7 <- make_ES_table(ES, " 7 years")
+
+# 9
+df <- get_event_data(scanner, "years", c(8.5,9.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean +total_hist_landfall|
+             fips + year + month, cluster = df$fips)
+results9 <- make_ES_table(ES, " 9 years")
+
+# 12
+df <- get_event_data(scanner, "years", c(11.5,12.5), c(64,200))
+ES = feols(data = df, total_rev_per_cap ~ ref_num + temp_mean +total_hist_landfall|
+             fips + year + month, cluster = df$fips)
+results12 <- make_ES_table(ES, "12 years")
+
+
+# plot week before landfall
+all_results <- rbind(results1, results2, results3, results4, results5,
+                     results7, results9, results12)
+graph_df <- subset(all_results, time == -1)
+
+ggplot(data = graph_df, aes(y = estimate, x = seq(1,8, by = 1))) + 
+  geom_point(aes(y = estimate), size = 3)+
+  geom_hline(yintercept = 0)+
+  geom_errorbar(aes(ymin = lci, ymax = uci), linewidth = 0.9)+
+  theme_minimal()+
+  scale_x_continuous(breaks=c(1, 2, 3, 4, 5, 6, 7, 8),
+                     labels=c("1", "2", "3", "4", "5", "7", "9", "12"))+
+  theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20), 
+        legend.text = element_text(size = 15), legend.title = element_text(size = 20), 
+        plot.title = element_text(size = 30))+
+  labs(title = "", x = "Years Since Last Hurricane", 
+       y = "Total Revenue per 100K Residents")
+
+
+# plot week of landfall
+graph_df <- subset(all_results, time == 0)
+
+ggplot(data = graph_df, aes(y = estimate, x = seq(1,8, by = 1))) + 
+  geom_point(aes(y = estimate), size = 3)+
+  geom_hline(yintercept = 0)+
+  geom_errorbar(aes(ymin = lci, ymax = uci), linewidth = 0.9)+
+  theme_minimal()+
+  scale_x_continuous(breaks=c(1, 2, 3, 4, 5, 6, 7, 8),
+                     labels=c("1", "2", "3", "4", "5", "7", "9", "12"))+
+  theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20), 
+        legend.text = element_text(size = 15), legend.title = element_text(size = 20), 
+        plot.title = element_text(size = 30))+
+  labs(title = "", x = "Years Since Last Hurricane", 
+       y = "Total Revenue per 100K Residents")
