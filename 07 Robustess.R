@@ -24,69 +24,6 @@ scanner<- scanner[order(scanner$fips, scanner$week_end),]
 
 scanner <- subset(scanner, fips_state_code != '51')
 
-
-# Event study for price ------------------------------------------------
-L = length(scanner$fips)
-event_df <- scanner [0,]
-
-for(i in 1:L){
-  
-  if(scanner$Landfall[i] == 1 & scanner$Wind[i] >= 64){
-    df <- scanner[i,]
-    week <- as.Date(df$week_end)
-    fip_now <- df$fips
-    county <- scanner %>% filter(scanner$fips == fip_now)
-    result <- county %>% filter(week_end >= week-70 & week_end <= week+70 )
-    result <- result %>% mutate(
-      ref_num = (as.Date(week_end) - week)/7
-    )
-  }else{next}
-  
-  event_df <- rbind(event_df, result)
-}
-
-event_df$ref_num = relevel(as.factor(event_df$ref_num), ref = "-2")
-
-# run event study
-ES = feols(data = event_df, price ~ ref_num | fips + year + month, cluster = event_df$fips)
-results= tidy(ES)     
-
-test <- confint(ES, level =0.95)
-
-#get 95% confidence intervals
-ES_results = results %>% mutate(
-  lci = confint(ES, level = 0.95)$'2.5 %',
-  uci = confint(ES, level = 0.95)$'97.5 %',
-  time = as.integer(str_sub(term, start = 8))
-)
-
-ref_point <- results [1,]
-ref_point <- ref_point %>% mutate(
-  term = "ref_num-2",
-  estimate = 0,
-  std.error=0,
-  time = -2,
-  lci = 0,
-  uci = 0
-)
-
-ES_results <- rbind(ES_results, ref_point)
-
-#plot event study
-ggplot(data = ES_results, aes(x = time, y = estimate))+
-  geom_line()+
-  geom_point()+
-  theme_minimal()+
-  geom_ribbon(aes(ymin = lci, ymax = uci), alpha = 0.2)+
-  geom_vline(xintercept = 0, linetype = "dashed")+
-  geom_hline(yintercept = 0)+
-  geom_point(aes(x = -2, y = 0), fill = "white", shape = 21, size = 2)+
-  theme(axis.title = element_text(size = 25), axis.text = element_text(size = 20))+
-  labs(title = " ", x = "Weeks", y = "Average Price")
-
-
-
-
 # Event study for start of summer ---------------------------------------------
 
 landfall_counties <- unique(subset(scanner, Landfall ==1 & Wind >= 64)$fips)

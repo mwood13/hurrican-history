@@ -26,135 +26,144 @@
 \DeclareRobustCommand{\firstsecond}[2]{#1}
 
 
-\title{Experience, Memory, and the Timing of Disaster Preparation\footnote{I thank John Chalmers at the University of Oregon for providing access to the \citeauthor{Nielsen} Datasets. This paper represents the researcher's own analyses calculated (or derived) based in part on data from Nielsen Consumer LLC and marketing databases provided through the NielsenIQ Datasets at the Kilts Center for Marketing Data Center at The University of Chicago Booth School of Business. Conclusions drawn from the NielsenIQ data are those of the researcher and do not reflect the views of NielsenIQ.\@ NielsenIQ is not responsible for, had no role in, and was not involved in analyzing and preparing the results reported herein}}
+\title{When Experience Breeds Complacency: Hurricane Exposure and Emergency Supply Purchases\footnote{I thank John Chalmers at the University of Oregon for providing access to the \citeauthor{Nielsen} Datasets. This paper represents the researcher's own analyses calculated (or derived) based in part on data from Nielsen Consumer LLC and marketing databases provided through the NielsenIQ Datasets at the Kilts Center for Marketing Data Center at The University of Chicago Booth School of Business. Conclusions drawn from the NielsenIQ data are those of the researcher and do not reflect the views of NielsenIQ.\@ NielsenIQ is not responsible for, had no role in, and was not involved in analyzing and preparing the results reported herein}}
 \author{\href{https://www.micaelawood.com/}{Micaela D. Wood}\footnote{Email: mwood1@oglethorpe.edu Website: micaelawood.com}}
-%\date{\today}
+\date{}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-Natural disasters have become more frequent and severe causing some people to experience them multiple times in quick succession. Additionally, changes in weather patterns and atmospheric conditions have made previously predictable aspects of natural disasters less so. While increasing experience with disasters  be give people opportunities to learn how to prepare, any long lapses between subsequent disasters  be result in discounting of the disaster's severity. I study the effects of experience and discounting on the average response to natural disasters by analyzing sales of emergency supplies, namely bottle water, during the 2008--2019 Atlantic hurricane seasons. Through event study analysis, I find that increases in historical exposure have little effect on the responsiveness of consumers; however, consumers respond increasingly to current hurricanes as the length of time since the most recent hurricane increases.
+In the days before a hurricane, many people go to stores to purchase emergency supplies --- commonly referred to as ``panic buying''.  Panic buying can potentially lead to inefficiencies and equity concerns, while under preparing may lead to an increased burden on relief efforts. Reducing the extent of panic buying that occurs requires us to first better understand the why. Using a combination of retail scanner data and hurricane forecast and landfall data, I estimate the effects of both historical hurricane exposure and timing between subsequent hurricanes on sales of emergency supplies, namely bottled water. Through difference-in-difference and triple difference estimation, I find no changes in panic buying from historical exposure alone, and exponentially decreasing panic buying as historical expose and time between hurricanes increases. These findings indicate that there is little knowledge increases happening while also indicating complacency taking hold in the most exposed areas.  
 \end{abstract}
 
 \section{Introduction}
 
-Natural disasters are becoming more frequent and severe \citep{anderson2006climate, van2006impacts}. This trend has led to broad impacts on the economy as natural disasters cause poorer labor market outcomes, decreased land values, stalls in international trade, and increased government transfer payments \citep{ibarraran2009climate, deryugina2017fiscal, deryugina2018economic, sytsma2020impact}. As disasters become more frequent, individuals living in threatened areas  be experience an increasing number of disasters during their lifespan. This frequency allows people more opportunities to learn from disasters and use that information when preparing for future disasters. However, as storm patterns change, people who live in areas which previously experienced few storms  be face disasters without having had prior learning opportunities. This lack of experience and information could lead to people not properly preparing when a disaster finally affects them. Additionally, because many years can pass before a person faces a subsequent disaster, the average person  be face a discounting problem. If significant time has passed, the people  be discount the effect of disasters and by extension, their need to remain prepared. The destruction caused by natural disasters can pose difficulties and safety hazards for people purchasing emergency supplies after the disaster. Hazardous road conditions after natural disasters can also make it more difficult for relief efforts to provide support for those who were not able to properly prepare \citep{horner2011effects}. In some areas, a lack of experience with storms or extreme discounting due to a lack of recent disasters  be lead to an increase in the required funds and efforts needed to restore the area. Thus, it is important to understand how experience and discounting of disasters influences preparation in the future. By identifying any gaps in responsiveness and the mechanisms that drive them, firms can better prepare for the response of their customers and avoid any shortages or supply chain issues that  be arise. Understanding the mechanisms driving the response to natural disasters would also allow government agencies to make and propose policies that target the issues before hand, rather than waiting to respond after the fact. 
+Natural disasters are becoming more frequent and severe \citep{anderson2006climate, van2006impacts}. This trend has led to broad impacts on the economy as natural disasters cause poorer labor market outcomes, decreased land values, stalls in international trade, and increased government transfer payments \citep{ibarraran2009climate, deryugina2017fiscal, deryugina2018economic, sytsma2020impact}. As disasters become more frequent, individuals living in threatened areas may experience an increasing number of disasters during their lifespan. This frequency allows people more opportunities to learn from disasters and use that information when preparing for future disasters. However, as storm patterns change, people who live in areas which previously experienced few storms may face disasters without having had prior learning opportunities. This lack of experience and information could lead to people not properly preparing when a disaster finally affects them. Additionally, because many years can pass before a person faces a subsequent disaster, the average person may face a memory problem. If significant time has passed, the people may forget the effect of disasters and by extension, the extent to which they should prepare. 
 
+The destruction caused by natural disasters can pose difficulties and safety hazards for people purchasing emergency supplies after the disaster. Hazardous road conditions after natural disasters can also make it more difficult for relief efforts to provide support for those who were not able to properly prepare \citep{horner2011effects}. In some areas, a lack of experience with storms or extreme memory fade due to a lack of recent disasters may lead to an increase in the required funds and efforts needed to restore the area. Thus, it is important to understand how experience and memory of disasters influences preparation in the future. By identifying any gaps in responsiveness and the mechanisms that drive them, firms and government agencies can better prepare for the response of their customers and citizens and avoid any shortages, supply chain issues, or barriers to responding that may arise. Additionally, understanding why people prepare differently for different storms can help governments enact preemptive policies to reduce the costs of response in the future. 
 
-In this paper, I explore how experience with hurricanes and the time between subsequent hurricanes affects purchasing patterns of emergency supplies in the Atlantic and Gulf Coast regions of the United States (i.e.\ areas most often subject to the annual Atlantic hurricane season). To understand this relationship, I combine NielsenIQ Scanner Data with geographic forecast data from the National Oceanic and Atmospheric Association (\citeauthor{NOAAGIS}) from 2008--2019. With modern forecasting techniques, consumers can respond to the threat of a hurricane days before it lands.\footnote{Hurricane seasons produce cyclonic storms of different intensities, including storms labeled by NOAA as ``disturbances'', ``tropical depressions'', ``tropical storms'', and ``hurricanes'', all of which can cause damage to infrastructure and housing. I primarily focus on the effects of hurricanes and major hurricanes and thus only use the term ``hurricanes''.} This allows them to purchase emergency supplies in response to the forecast rather than the hurricane itself. Using the scanner data I observe the sale of emergency supplies throughout the year for nearly all counties in the Southeast. Additionally, I employ \citeauthor{HURDAT2}'s  historical hurricane landfall data (HURDAT2) in order to build out each county's hurricane history.
+In this paper, I explore how experience with hurricanes and the time between subsequent hurricanes affects purchasing patterns of emergency supplies in the Atlantic and Gulf Coast regions of the United States (i.e.\ areas most often subject to the annual Atlantic hurricane season). To understand this relationship, I combine sales of bottled water from the NielsenIQ Scanner Data with hurricane forecasts from the National Oceanic and Atmospheric Association (\citeauthor{NOAAGIS}) from 2008--2019. With modern forecasting techniques, consumers can respond to the threat of a hurricane days before it lands.\footnote{Hurricane seasons produce cyclonic storms of different intensities, including storms labeled by NOAA as ``disturbances'', ``tropical depressions'', ``tropical storms'', and ``hurricanes'', all of which can cause damage to infrastructure and housing. I primarily focus on the effects of hurricanes and major hurricanes and thus only use the term ``hurricanes''.} This allows them to purchase emergency supplies in response to the forecast rather than the hurricane itself. Using the scanner data I observe the sale of emergency supplies throughout the year for nearly all counties in the Southeast. Additionally, I employ \citeauthor{HURDAT2}'s  historical hurricane landfall data (HURDAT2) in order to build out each county's hurricane history.
 
-My analysis begins with a baseline exploration of the effect of hurricane forecasts and landfalls on the sales of different emergency supplies in the style of~\cite{beatty2019disaster}, before deviating to explore the effects of historical, county specific attributes. I focus solely on sales of purified drinking water. While there are many items on the Department of Homeland Security's emergency kit checklist, I believe water most easily captures the responsiveness of the population. The reasons for this choice are that water is the first item on the checklist, it is the most homogeneous product on the list, it is readily available at nearly every store nation-wide, and it is often in the news and social media during natural disasters. I find that not only do sales of bottled water increase from 20--30\% during the weeks surrounding any general hurricane, but I also find that this result is entirely driven by storms classified as a category 1 hurricane or higher. 
+My analysis begins with a baseline exploration of the effect of hurricane forecasts and landfalls on the sales of different emergency supplies in the style of~\cite{beatty2019disaster}. I find similar aggregate results, but also note that the panic buying response is almost entirely driven by storms which are category 1 and above, with virtually no response to storms of the ``Tropical Storm'' classification or lower. I then expand on their work by analyzing differences in responses across counties and storms. During a current storm, each affected county may have had a slightly different sequence of past storms from which they gather knowledge. The differences in these sequences is likely to result in different responses in different counties for similar current hurricanes. These sequences will vary on two fronts: the total number of past landfalls in the sequence, and the relative frequency of events within the sequence. 
 
-I then diverge from their analysis by exploring the effects of county specific historical experience variables on sales of emergency supplies during a current hurricane. The first historical variable I analyze is the county's total historical landfall count since 1983. This allows me to test for the possibility of learning behavior. I analyze the responce to a current hurricane in counties with different levels of past hurricane landfalls. While migration and other factorrs  be change the makeup of the county. The average person living in a high exposure area will likely have a different understanding of the general risk of hurricanes compared to people in less esposed regions. While the event studies do not show any significant quartile differences, the regression results show that additional hurricane exposure leads to roughly an additional 6\% inrease in sales durign a hurricane forecast.
+I first analyze the effects of counties with different total past landfalls. Using the HURDAT2 data I calculate the total number of landfalls for each county in the 25 years before my analysis begins. Through both event study analysis and difference-in-differences modeling I find no evidence that the historical exposure of a county affects sales of panic buying when there is a current hurricane. However, I find strong evidence that average water sales decline by roughly 9.5\% for each additional past hurricane a county has faced. Theoretically, the increased risks of future storms and damage to infrastructure from past storms would lead to increased year round purchases for areas with high past exposure. Thus, this combination of no response to current hurricanes and a reduction in rest of year sales, indicates that there is some level of complacency that develops from high levels of past exposure. 
 
-I next analyze the effects of the length of time that passes between subsequent hurricanes. If a county has not been hit for many years, regardless of its historical exposure, people's perceptions of the risk  be start to fade. Through event study analysis I find a weak pattern indicating that the sales of bottled water during a hurricane increase as the time since the last hurricane increases up to 6 years. However, after the 7th year, the sales begin to decrease. The regression analyzes the impact of one additional year between subsequent landfalls. While the linear model show a significant increase in sales close to a hurricane landfall of roughly 13\%, the results of the quadratic model are insignificant.
+I then analyze the changes in sales of bottled water between hurricanes for counties with the same historical exposure.  For counties with the same past exposure, the remaining difference in their past hurricane sequences is the timing since the last hurricane. Through a triple difference analysis, I find that, conditional on past total landfalls, additional years between subsequent hurricanes weakly increases baseline sales by 1.5\%, and significantly reduces panic buying sales by 1.3\% for each past hurricane.  The weak baseline response is likely due to household inventories being consumed over time and needing to be replenished as time goes on. The reduction in panic buying as years go by along with the historical landfall results further strengthens the argument of complacency from high levels of exposure. 
 
-Much of the current literature on natural disasters focuses on changes in markets after a disaster. Such literature includes effects of insurance take-up rates, labor market impacts, and government assistance applications \citep{hallstrom2005market, gallagher2014learning, mccoy2018wildfire, bakkensen2019flood, groen2008effect, deryugina2017fiscal, deryugina2018economic}. Others focus on how markets and decisions are made in the days leading up to a singular disaster through the use of phone surveys \citep{kelly2012evolution, MeyerEtAl14}. I focus on the intersection of this literature by studying how past experiences with hurricanes affect the responses in the current period. I find that the historical exposure leads to an increase in early purchases of emergency supplies.
+Much of the current literature on natural disasters focuses on changes in markets after a disaster. Such literature includes effects of insurance take-up rates, labor market impacts, and government assistance applications \citep{hallstrom2005market, gallagher2014learning, mccoy2018wildfire, bakkensen2019flood, groen2008effect, deryugina2017fiscal, deryugina2018economic}. Others focus on how markets and decisions are made in the days leading up to a singular disaster through the use of phone surveys \citep{kelly2012evolution, MeyerEtAl14}. I focus on the intersection of this literature by studying how past hurricanes influence the behavior of consumers during future disasters, as these two event are not likely to be unrelated. Similar to past research I find decrease in responses as time between hurricanes increase, however I also find that responses decrease faster for counties with more overall exposure, indicating not only is there fading responsiveness, but likely complacency.
 
 The literature on the salience of disasters tends to use variables with lower purchasing frequencies such as houses and insurance or changes in financial markets to understand how recent disasters affect decisions \citep{mccoy2018wildfire, bakkensen2019flood, bourdeau2020natural}. Others that focus on a more individual response rely on either general surveys or surveys after disasters to understand feelings around risk and preparation steps that had been taken \citep{lazo2010household, Baker11, MeyerEtAl14}. The closest research to mine is that in the wildfire literature which looks at people's interest in home air purifiers, and the decision to stay indoors \citep{burke2022exposures}. I add to this literature by utilizing sales data of emergency supplies that are more liquid than a home or insurance and can be purchased much more frequently. Additionally, emergency supplies are relatively inexpensive, allowing me to capture the salience of hurricanes for a larger portion of the affected population. My findings follow the pattern that behavioral responses tend to fall off after six years. I also find that this leads to an increase in purchases closer to the time of landfall.
 
-The rest of the paper proceeds as follows. Section II discusses the background of hurricane preparation. Section III explains the data followed by the methodology is section IV. Main results are found in section V while section VI concludes.
+The rest of the paper proceeds as follows. Section II discusses the background and data. Section IV discusses the methodology. Main results are found in section V while section VI concludes.
 
 
-\section{Background}
+\section{Background and Data}
 
-The Department of Homeland Security (DHS) along with other federal, state, and local government agencies distribute information on how to prepare for a myriad of natural disasters. Part of preparing for such events is the building a ``Disaster Supply Kit''. The list of emergency supplies to include in each kit is identical among agencies, as they all use the DHS checklist as a guide. The specifics of this list can be found at the DHS website, \href{https://www.ready.gov/kit}{ready.gov}. This checklist includes items such as purified drinking water, non-perishable foods, batteries, flashlights, first-aid kits, and many more. 
+\subsection{Emergency Supply Data}
 
-When signs of a tropical system (potential hurricane) first appear, the National Oceanic and Atmospheric Administration (NOAA) begins tracking the system. NOAA gathers information on the size, wind speed, movement speed, ocean temperature, and other atmospheric conditions that will affect the tropical system. Using this information, they begin forecasting the system for the next 5 days. Specifically they forecast the expected wind speed and location along with storm surge, tropical storm watches and warnings, and hurricane watches and warnings \citep{NOAAforecast}. To keep the populous well-informed on the formation and expected path of the system, NOAA posts a new forecast advisory every six hours. 
+The Department of Homeland Security (DHS) along with other federal, state, and local government agencies distribute information on how to prepare for a myriad of natural disasters. Part of preparing for such events is building a ``Disaster Supply Kit''. The list of emergency supplies to include in each kit is identical among agencies, as they all use the DHS checklist as a guide. The specifics of this list can be found at the DHS website, \href{https://www.ready.gov/kit}{ready.gov}, and in figure \ref{fig:checklist}. This checklist includes items such as purified drinking water, non-perishable foods, batteries, flashlights, first-aid kits, and many more, with water being the first item on the list. 
 
-Because of the frequent updates, as well as modern technology providing quick access to information, people have time to respond to the threat of an impending hurricane well before it ever makes landfall. This provides the unique opportunity to observe how the population responds to such information. Additionally, we can observe how prior experiences and knowledge play a role in how people utilize the information they are being given in relation to disasters.
+NielsenIQ Retail Scanner Data contain weekly-level sales in thousands of stores across the United States. Each reporting store shares the total quantity, revenue, and price of every universal product code (UPC) sold for each week. It is infeasible to analyze sales of all goods on the emergency-supply checklist. I choose to focus on sales of bottled water in states that are most often affected  by the Atlantic hurricane season\footnote{States included are Alabama, Florida, Georgia, Louisiana, Mississippi, North Carolina, South Carolina, and Texas.}. I focus on bottled water over other products for four reasons. First, water is the first item listed on the official emergency kit checklist. Second, its low price makes it accessible to a broad set of consumers. Third, bottled water is relatively homogeneous compared with broader categories such as non-perishable foods, which are more likely to rely on local tastes and preferences. Finally, because the scanner data primarily covers grocery-type stores, bottled water is observed more consistently than some other goods on the list. 
 
-\section{Data}
+ \begin{figure}[t!]
+ \centering
+	\includegraphics[width=0.75\linewidth]{images/total sales.png}
+  \caption{Average Sales of Bottled Water}
+  \floatfoot{Note: A map of the average total revenue from bottled water sales per store in each county from 2008 to 2019.}
+\label{fig:sales}
+\end{figure}
+
+In order to understand average county-level responses to hurricanes, I aggregate the data to a county-week level. First I aggregate the sales of individual bottled water products in each store by calculating total revenue from and total volume\footnote{Volume is recorded in fluid ounces.} of bottled water sales and average price of all water sold. Then I combine the store level sales to the county by calculating the average total revenue per store, average total volume per store,  and the average price per store. The average weekly store revenue from bottled water sales for each county can be seen in figure~\ref{fig:sales}. 
 
 \subsection{Hurricane Data}
 
-The National Hurricane Center (NHC) GIS Archive of Tropical Cyclone Forecasts contains all shape files used to build the hurricane forecasts and watch/warning advisories since the 2008 Atlantic Hurricane Season. There is a new file for each advisory update that occurred: every six hours from the system's conception to its dissipation. Additionally, each file contains information on the system's current location and wind speed as well as the forecast paths, wind speed, and weather advisories for the next five days. Using this information, I am able to replicate the forecast as it appeared in the past.  Figure~\ref{fig:forecasts} shows the results of using the archived shape files to replicate the forecast as it was seen by individuals in the past. 
+When signs of a tropical system (potential hurricane) first appear, the National Oceanic and Atmospheric Administration (NOAA) begins tracking the system. NOAA gathers information on the size, wind speed, movement speed, ocean temperature, and other atmospheric conditions that will affect the tropical system. Using this information, they begin forecasting the system for the next 5 days. Specifically they forecast the expected wind speed and location along with potential storm surge, tropical storm watches and warnings, and hurricane watches and warnings \citep{NOAAforecast}. To keep the public well-informed on the formation and expected path of the system, NOAA posts a new forecast advisory every six hours. 
+
+The National Hurricane Center (NHC) within NOAA houses extensive data sets on all current and past hurricanes. I utilize two of these data sets to build out variables on current and past hurricane activity. I build variables about hurricane forecasts and landfalls from 2008-2019 using the GIS Archive of Tropical Cyclone Forecasts. This archive contains all shapefiles used to build the hurricane forecasts and watch/warning advisories since the 2008 Atlantic Hurricane Season. The archive contains a new file for each advisory update, which occur every six hours from the system's formation to its dissipation. The files contain the geometries for the center track line, the forecast location of the hurricane at different times along the center track, and the cone-of-uncertainty around the center track.  Figure~\ref{fig:forecasts} shows the results of using the archived shape files to replicate the forecast as it was shared by NOAA in the past. 
 
 \begin{figure}[t!]
    \centering
 	\begin{subfigure}{0.45\linewidth}
-		%\caption{Official Forecast August 28, 2008}
+		%\caption{Official Forecast}
 		\includegraphics[width=\linewidth]{images/Gustav Official.png}
 	\end{subfigure}
 	\begin{subfigure}{0.45\linewidth}
-		%\caption{Replication from Archive of August 28, 2008}
-		\includegraphics[width=\linewidth]{images/Gustav Rep.png}
+		%\caption{Replication}
+		\includegraphics[width=\linewidth]{images/forecast Rep.png}
 	\end{subfigure}
   \caption{Replication of Official NOAA Forecast}
   \floatfoot{Note: Maps of official and replicated forecasts of Hurricane Gustav (2008). Official advisory (left) is from August 28, 2008, at 2pm with the replication (right) made from the archived shape file of the same advisory. Gustav made initial landfall in Louisiana at 10pm on Monday, September 1, 2008.}
 \label{fig:forecasts}
 \end{figure}
 
-To build out the advisories I follow an approach similar to that of~\cite{beatty2019disaster}. By drawing a circle with a 100 nautical mile radius around the current location of the hurricane, I am able to identify any counties that are in the average affected area of any given hurricane. I then draw circles around the forecast locations in varying sizes. The circle around the one-day out location has a radius of 100 nautical miles, two days out has a radius of 150 nautical miles, three days out 200, 4 days out 250, and 5 days out 300. Through this I am able to replicate the forecast track and accompanying cone of uncertainty shown to the public during the initial forecast. This allows me to identify which counties are within the forecast, and at which point they  be be affected by the impending hurricane. Because of the speed at which some hurricanes move, occasionally a county is inside of two forecast circles at the same time. While this  be seem like a challenge at first glance, it does not pose any issues. Because the movement speed of hurricanes can speed up and slow down with the weather, it is possible for the forecast timing of when a hurricane is predicted to make landfall to shift. Additionally, because the advisories are updated every six hours, there are 4 observations for every day. This would result in counties often being in two different forecast circles even without overlap. 
+Using the archive I build out variables to indicate when a county is in the path of a hurricane, $Threatened$, and when a county is directly affected by a hurricane landfall, $Landfall$. To build out the $Threatened$ variable, I utilize the cone-of-uncertainty. If the county is within a cone-of-uncertainty at any point during the week of observation, it is classified as threatened. Because the cone-of-uncertainty is not actually showing where the entire hurricane may go, but rather where the center may go, I also define two additional threatened variables by buffering the cone-of-uncertainty at 50 and 100 nautical miles (NM)\footnote{NOAA measures distance in nautical miles and speed in knots. 50 and 100 nautical miles are respectively 57.5 and 115 miles and 92.6 and 185 kilometers.}.
+
+I construct the $Landfall$ variable using the definition from the glossary of NHC terms: ``The intersection of the surface center of a tropical cyclone with a coastline'' \citep{NHCglossary}. I begin by mapping each recorded hurricane location and determining whether the hurricane center is over land or over water. Initial landfall occurs when the hurricane center moves from over water in one advisory to over land in the next advisory. For each point determined as an initial landfall, a circle is drawn around the point with a radius of 100NM. Any county that lies within this circle is considered to be affected by the landfall, and is indicated as such. Similar to $Threatened$, I draw additional circles to indicate landfall that extend the radius an additional 50 and 100NM. 
 
  \begin{figure}[t!]
    \centering
 	\begin{subfigure}{0.7\linewidth}
 		%\caption{Official NOAA Forecast August 28, 2008}
-		\includegraphics[width=\linewidth]{images/Past Landfall Count.png}
+		\includegraphics[width=0.95\linewidth]{images/past landfall count.png}
 	\end{subfigure}
 	\begin{subfigure}{0.7\linewidth}
 		%\caption{Replication from Archive of August 28, 2008}
-		\includegraphics[width=\linewidth]{images/Current Landfalls.png}
+		\includegraphics[width=\linewidth]{images/current landfall count.png}
 	\end{subfigure}
   \caption{Total Hurricane Landfalls}
-  \floatfoot{Note: Maps of official total tropical systems to make landfall from 1980 to 2007 (top) and from 2008 to 2019 (bottom). The lighter colors represent more landfalls during the given time frame.}
+  \floatfoot{Note: Maps of total initial hurricane landfalls from 1983 to 2007 (top) and from 2008 to 2019 (bottom). The lighter colors represent more landfalls during the given time frame.}
 \label{fig:hur_count}
 \end{figure}
 
 
-In addition to the GIS Archive, I also use \citeauthor{HURDAT2}'s HURDAT2 (a.k.a. ``Best Track'') data. This data set contains the location and wind speed of all recorded hurricanes since the early 1900s in six hour increments. Because hurricane tracking did not become consistent until more recently, I only use the data since the 1980s as recommended by NOAA. By combining these two data sets, I observe a complete history of hurricanes since the 1980s. Figure~\ref{fig:hur_count} shows the total count of hurricanes to make landfall in each county from 1980 to 2007, during which I only have the HURDAT2 data, and from 2008 to 2019, once the GIS Archive is made available. It can be observed from these maps which specific regions of the Southeast are hot-spots for hurricane landfalls. Interestingly, historical landfall counts do not perfectly correlate with the most recent decade of landfall. Specifically with the Gulf Coast from Texas to Alabama seeing fewer hurricanes, while North Florida and Georgia became the most affected by hurricanes. 
+In addition to the GIS Archive, I also use \citeauthor{HURDAT2}'s HURDAT2, also known as the ``Best Track'' data set, to construct variables regarding each county's history with hurricanes. This data set contains the location and wind speed and an initial landfall indicator from each advisory of all recorded hurricanes as far back as the 1850s. Because hurricane tracking did not become consistent until more recently, I use the 25 years prior (1983--2007) to determine baseline historical variables. From this data, I create two variables to capture different aspects of a county's history with hurricanes. The first variable I create is the total hurricane landfalls in the last 25 years, $PastCount$. I create two versions of this variable, a static version based on the start of the data, and a continuous version that depends on the year in the data. 
 
-From combining the HURDAT2 and GIS Archive, I create two new variables to capture different aspects of a county's history with hurricanes. The first variable I create is the total historical landfall count of each county, $HurCount$. This variable will capture the impact of living in an area that is more geographically prone to hurricane landfalls. Additionally, this variable will capture any effects of permanent shifts in hurricane landfall locations due to climate change. To build this variable, I first use the HURDAT2 data to set a baseline for each county. The total number of hurricanes to make landfall in each county from 1980 to 2007 is used as their starting hurricane count on January 1, 2008. The relative starting values are observed in the top panel of figure~\ref{fig:hur_count}. At the beginning of each following year, the sum of landfalls in the year prior are then added to the total landfall count. 
+I begin building the static version in a manner similar to the landfall variable above. For each past initial landfall in the HURDAT2 data, I draw a 100 nautical mile circle around its center and denote any counties within the circle. I then count the number of times each county appeared within a landfall circle in each of the past years. Finally I sum across years for each county to get the total number of landfalls in the 25 years before the scanner data began. To build the continuous version, I drop the oldest year of landfalls and add the most recent year so that in 2008 the past landfall count is from 1983--2007, and in 2009 the count is from 1984--2008. % add in table of summary stats, need to show that while there is enough variation to not lose to county fixed effects, it is not wild variation. 
+
+Figure~\ref{fig:hur_count} shows the total count of hurricanes to make landfall in each county from 1983 to 2007 and from 2008 to 2019. It can be observed from these maps which specific regions of the Southeast are hotspots for hurricane landfalls. Interestingly, historical landfall counts do not perfectly correlate with the most recent decade of landfall. Specifically with parts of the Gulf Coast and South Florida only having 1 hurricane when they had been hit extensively before. This indicates that, while the overall patterns of hurricane landfall locations are not changing substantially, there is still meaningful variation in landfall exposure. 
 
 \begin{figure}[t!]
    \centering
 	\begin{subfigure}{0.7\linewidth}
 
-		\includegraphics[width=\linewidth]{images/Years since last 2012.png}
+		\includegraphics[width=\linewidth]{images/time 2012.png}
 	\end{subfigure}
 	\begin{subfigure}{0.7\linewidth}
 		
-		\includegraphics[width=\linewidth]{images/Years since last 2016.png}
+		\includegraphics[width=\linewidth]{images/time 2016.png}
 	\end{subfigure}
   \caption{Variation in Timing of Hurricane Landfalls}
   \floatfoot{Note: Maps representing the years that have passed since that last hurricane made landfall in a county. Each map is based on the hurricane record during the last week of the year. Thus, counties with 0 years since landfall in the top map were hit by a hurricane sometime in 2012. }
 \label{fig:year between map}
 \end{figure}
 
-The second variable I create from this combined data is the length of time that passes between subsequent landfalls, $YrSince$. This variable captures the effects of the cyclical nature of hurricanes season from the El Ni\~no and La Ni\~na cycles. Due to this cycle hurricane seasons go through subsequent years of high hurricane counts followed by years of low hurricane counts. This can lead to areas which are more geographically prone to hurricanes to go years without any hurricane activity or vice versa. To build this variable I use the HURDAT2 data to find the hurricane that hit each county most recently to January 1, 2008. Each entry in the data adds another week since the prior hurricane landfall. A week is added to this variable for each entry until the county sees a new landfall. After a county is hit by a new hurricane, the time since the prior storm is reset to account for the new landfall. Figure~\ref{fig:year between map} shows this timing variable at the end of both 2012 and 2016. 
+The second variable I create from this combined data is the length of time that passes between subsequent hurricane landfalls, $YearsSince$. While the landfall count gives us an idea of the average time between hurricanes, it is also possible for some counties to have repeat hurricanes rather quickly, and then not experience another hurricane for many years. One notable example is Palm Beach County, Florida which was hit by two hurricanes in both 2004 and 2005, was not hit again until 2016, and then experiences another hurricane in 2017. Using the HURDAT2 data, I find the latest date of landfall for each county. I begin my time between hurricane landfall variable in 2008 from this date. As counties experience new hurricane landfalls, the variable is reset to zero. The maps in figure \ref{fig:year between map} show the value for each county during the last week of the year in 2012 and 2016. Between these two years some counties experiences no additional hurricanes and therefore moved into longer-duration categories. Others experiences recent landfalls and moved into the shortest-duration category. Counties that appear in similar intermediate categories in both maps experiences landfalls between the two mapped years.
 
-\subsection{Scanner Data}
-
-% insert map of sales
-Using NielsenIQ Retail Scanner Data, I am able to observe weekly level sales of emergency supplies and other goods across the Southeast. This data contains weekly sales of all goods sold at each reporting store. In addition to the quantity sold, the data contains information on the price, any sales or specials, the sizes of products, and the county that the store is located in. Although the data set covers the entire nation, I choose to limit my analysis to those states most often affected by the Atlantic hurricane season\footnote{States included are Alabama, Florida, Georgia, Louisiana, Mississippi, North Carolina, South Carolina, and Texas.}. Additionally, I limit the analysis to only sales of bottled water. I choose bottled water over other products first because it is the first item listed on the official emergency kit checklist. Second, because its low price makes it affordable to the vast majority of consumers. Third, it is a rather homogeneous good that relies less on tastes and preferences than more broad category items like non-perishable foods. Finally, because the scanner data primarily covers grocery type stores, giving much more coverage to water than goods such as flashlights. 
-
- \begin{figure}[t!]
- \centering
-	\includegraphics[width=0.75\linewidth]{images/Sales Map.png}
-  \caption{Average Sales of Bottled Water}
-  \floatfoot{Note: A map of the average total revenue from bottled water sales per store in each county from 2008 to 2019.}
-\label{fig:sales}
-\end{figure}
-
-In order to understand how the population as a whole is responding to hurricane forecast, I aggregate the data to a county-week level. First I aggregate the sales of individual bottled water products in each store by calculating total revenue from bottled water sales and average price of all water sold. Then I combine the store level sales to the county by calculating the average total revenue per store and the average price per store. I must use the average revenue per store in a county rather than the total revenue per county because only select stores are represented in the data. Without this weighting, some counties would be over or under-represented in their responsiveness to hurricane forecasts. The average weekly total revenue from bottled water sales for each county can be seen in figure~\ref{fig:sales}. This figure shows that Atlanta, Dallas-Forth Worth, Houston, and the Atlantic Coast areas purchase the most bottled water on average.
 
 \subsection{Control Data}
 
-Because bottled water sales can be affected by high heat days, I use data from \citeauthor{GHCN}'s Global Historical Climatology Network. Average temperature is recorded at the daily level at hundreds of weather stations across each state. I first match each county to its closest weather stations, then I take the average of the temperature across the entire week. While this gets rid of some of the variation, it still provides enough to understand if the week was hotter than average. 
+To standardize the sales of bottled water, I pull in data from the \citeauthor{USCB}. Using the estimated county population measures from 2008 to 2019, I convert total revenue and total volume into totals per 100,000 residents. This transformation reduces the possibility that differences in county size or population changes mechanically drive the sales measures. After this transformation, cross-county variation in aggregate sales are substantially reduced, as shown in figure \ref{fig:per_cap_map} of the Appendix.   
 
-There is also significant variation in the population of counties in the data. Due to this, average sales per store are likely to be significantly larger in more populous counties skewing any results. To correct for this, I use population data from the \citeauthor{USCB}. Using the county level population from the 2010 census, I create a sales per 100,000 residents variable. 
+Because bottled water sales may be affected by high heat days, I use data from \citeauthor{GHCN}'s Global Historical Climatology Network. Average temperature is recorded at the daily level at hundreds of weather stations across each state. I first match each county to its closest weather stations, then I take the average of the temperature across the entire week. Although weekly averaging smooths daily temperature variation, it captures whether a county-week was unusually hot and therefore more likely to have higher bottled-water demand unrelated to hurricanes. 
 
 \section{Methodology}
+% pick back up here
 
-There are two dominant mechanisms for historical experience to play a role in the level of ``panic buying'' that occurs during a hurricane forecast. The first is the accumulated knowledge of the current county population through both the knowledge of prior generations that is passed on, and the knowledge gained through personal experiences. Living in an area that is prone to a certain type of natural disaster allows people to learn about that specific disaster either through personal experiences or through the shared knowledge of those around them, regardless of how long they have lived in the area. As areas are affected by more and more hurricanes, the average knowledge of the population in those areas  be increase following traditional learning models. This would likely reflect in sales of emergency supplies with the total sales during a hurricane forecast being at different ``equilibrium'' reaction levels based on the accumulated experiences.
+The empirical analysis estimates how bottled-water purchases respond to current hurricane threats and landfalls, and whether those responses differ with a county's hurricane history. The central empirical challenge is to distinguish the immediate effect of a current hurricane from differences in baseline purchasing patterns across counties with different levels of historical exposure. I therefore estimate models that compare sales within counties over time while controlling for common seasonal patterns, annual shocks, and local weather conditions.
 
-The second mechanism likely to influence ``panic buying'' is the time that has passed since the last hurricane hit an area. Regardless of the baseline knowledge of a county, when a hurricane has just made landfall, the memory of the results is fresh. As time passes memory tends to fade. This memory likely also affects the responsiveness of consumers to hurricane forecasts. This affect may also be impacted by the strength of the last hurricane as well. If a recent storm was a tropical depression, it would likely not change the area's responsiveness since the damage and impact would be minimal. However, if the last hurricane were a major hurricane, the damage would be extensive, and its impact of the general population much larger. Conditional on the last hurricane strength, an increases in sales as time passes likely indicates that memory has a large effect on ``panic buying''. 
+The analysis proceeds in three steps. First, I estimate event-study models around hurricane landfalls to document the timing of bottled-water purchases before and after a current hurricane. Second, I estimate difference-in-differences models that test whether counties with greater historical hurricane exposure exhibit different baseline purchases or different storm-response purchases. Third, I estimate models that incorporate the time since the most recent hurricane landfall, conditional on historical exposure, to test whether responses weaken as hurricanes become less recent. This final specification is the primary test of whether repeated exposure is associated with complacency rather than stronger preparedness responses.
 
-While it may seem that these two variables, overall experience and years between subsequent hurricanes, are collinear in nature and cannot be separately identified, they are actually driven by separate forces. The total experience and therefore the likeliness of a county being hit by a hurricane during any given hurricane season is purely geographic in nature. South Florida around Miami juts out into the Atlantic Ocean setting it right in the path of hurricanes. However, North Florida around Jacksonville, is hardly ever hit due to the currents in the ocean and atmosphere pushing hurricanes farther north and east. The relative timing between subsequent events, or the intensity of subsequent hurricane seasons, is far more driven by meteorological conditions, namely the El Ni\~no and La Ni\~na cycle and the Atlantic Multi-Decadal Oscillation \citep{HurClimate}. Specifically, being in a La Ni\~na cycle makes weather conditions more favorable for hurricanes to form and remain active, thus increasing the likelihood of all coastal counties to be hit in the year. Vice versa, the El Ni\~no cycle makes conditions unfavorable for hurricanes to form and stay active, thus reducing the chance of any coastal counties getting hit. One clear example of the difference in these two variable is seen in Miami-Dade County, Florida. Miami-Dade had 15 landfalls from 1980 to 2007, a relatively high number. Miami-Dade was hit by hurricanes in 2008 and 2010, a two-year gap, but was not hit again until 2017, a 7-year gap. It was then hit again the same year and the following. 
+\subsection{Preliminary Analysis}
 
+Before analyzing the effects of past county experiences on current purchases of bottled water, I first use a simple event study and regression model to test that there is observable changes in sales when there is a hurricane forecast in the likeness of \cite{beatty2019disaster}. 
+
+\subsection{Historical Exposure and Storm Response Purchasing}
+
+\subsection{Recency of Hurricane Experience}
+
+\subsection{Robustness}
 
 \subsection{Event Study Models}
 
@@ -215,14 +224,14 @@ I begin my analysis by testing for aggregate effects of hurricane forecasts and 
 	\centering
 	\begin{subfigure}{0.45\linewidth}
 		\caption{Bottled Water Sales}
-		\includegraphics[width=\linewidth]{/ES Agg.png}
+		\includegraphics[width=\linewidth]{rev.png}
 	\end{subfigure}
 	\begin{subfigure}{0.45\linewidth}
 		\caption{Price}
-		\includegraphics[width=\linewidth]{ES Agg Price.png}
+		\includegraphics[width=\linewidth]{price.png}
 	\end{subfigure}
 	\caption{Aggregate Event Studies of Bottled Water Sales}
-	\floatfoot{Note: Results from event studies following equation~\ref{eq:ES}. The vertical axis represents total revenue per 100 thousand residents in USD in panel (a) and average weekly price in panel (b). The horizontal axis represents weeks. The reference period is week -2. The vertical dashed line at week 0 represents the week when a storm made landfall. The band around the estimates represents the 95\% confidence interval.}
+	\floatfoot{Note: Results from event studies following equation~\ref{eq:ES}. The vertical axis represents total revenue per 100 thousand residents in USD in panel (a) and average weekly price in panel (b). The horizontal axis represents weeks. The reference period is week -2. The vertical dashed line at week 0 represents the week when a storm made landfall. The ribbon around the estimates represents the 95\% confidence interval.}
 	\label{fig:AGG_ES}	
 \end{figure}
 
@@ -233,7 +242,7 @@ The HURDAT2 and GIS data include all classifications of tropical systems, yet ne
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width =0.9\linewidth]{ES Hist.png}
+    \includegraphics[width =0.9\linewidth]{hist quartiles.png}
     \caption{Event Studies of Historical Exposure on Sales}
     \label{fig:hist}
     \floatfoot{Note: Results from event study with subsets based on historical exposure of the county to hurricanes. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 95\% confidence interval around the point estimate.}
@@ -244,13 +253,7 @@ I test for general effects of living in a more hurricane prone location by subse
 
 
 % Recency
-\begin{figure}[t!]
-    \centering
-        \includegraphics[width=.9\linewidth]{images/ES Time Hur.png}
-    \caption{Event Studies of Timing on Sales}
-    \label{fig:disc}
-        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 95\% confidence interval around the point estimate.}
-\end{figure}
+
 
 I test for aggregate effects of repeated high intensity hurricane seasons by repeating the event study from equation (\ref{eq:ES}) with the panel subset by variable $YrSince$. The data is split into the following quartiles: 1 to 2 years between hurricanes, 3 year, 4 to 6 years, and 7 or more years. Figure~\ref{fig:disc} shows the results from this split of the data. The results seem to indicate a weak pattern of increased purchases as the number of years between subsequent years grows, eventually declining some time after year 6. The standard errors, however, are quite large resulting in estimates that are not significantly different from one another. 
 
@@ -258,65 +261,54 @@ I test for aggregate effects of repeated high intensity hurricane seasons by rep
 
 While the event studies above fail to show any significant impact of both additional hurricane exposure and additional timing between hurricanes for broad categories, it is still possible that the incremental changes are significant. I continue my analysis by estimated fixed-effects regression model in equation~\ref{eq:gen_reg} for both additional hurricane landfalls, and additional years between subsequent hurricanes.
 
-% \begin{table}[t!]
-%    \caption{Results of Additional Exposure on Sales}
-%    \centering
-%    \begin{tabular}{lcc}
-%       \tabularnewline\midrule \midrule
-%       Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
-%       Model:                                           & (1)            & (2)\\  
-%       \midrule
-%       \emph{Variables}\\
-%       Threat                                      & 0.1073         & -0.8372$^{**}$\\   
-%                                                        & (0.1564)       & (0.3462)\\   
-%       Landfall                                    & 0.4481$^{***}$ & 1.363$^{***}$\\   
-%                                                        & (0.0683)       & (0.1631)\\   
-%       Landfalls since 1980                          &                & -0.0831$^{***}$\\   
-%                                                        &                & (0.0265)\\   
-%       Threat $\times$ Landfalls since 1980       &                & 0.0662$^{*}$\\   
-%                                                        &                & (0.0319)\\   
-%       Landfall $\times$Landfalls since 1980     &                & -0.0653$^{***}$\\   
-%                                                        &                & (0.0121)\\    
-%       \midrule
-%       \emph{Fit statistics}\\
-%       Observations                                     & 448,123        & 448,123\\  
-%       R$^2$                                            & 0.77057        & 0.77291\\  
-%       \midrule \midrule
-%       \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-%       \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
-%    \end{tabular}
-%    \label{tab:hist}
-% \end{table}
+\begin{table}[htbp]
+   \caption{Base Results}
+   \centering
+   \begin{tabular}{lccc}
+      \tabularnewline \midrule \midrule
+      Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
+      Model:         & All Storms            & Hurricanes            & Hurricane Events\\  
+      \midrule
+      \emph{Variables}\\
+      Threatened         & 0.0634$^{**}$  &  2.677$^{***}$              &   \\   
+                     & (0.0266)       &   (0.0442)              &   \\   
+      Landfall       & 0.1796$^{**}$  &      -2.060$^{***}$           &   \\   
+                     & (0.0678)       &    (0.0446)            &   \\   
+      Event          &                &                & 0.5645$^{***}$\\   
+                     &                &                & (0.1143)\\   
+      \midrule
+      \emph{Fit statistics}\\
+      Observations   & 448,123        & 448,123        & 448,123\\  
+      R$^2$          & 0.77143        & 0.77155        & 0.77146\\  
+      \midrule \midrule
+      \floatfoot{Note: Column one runs the regression using all recorded systems. Column two using only systems that were classified as a category 1 hurricane or higher. Column three using systems category one and higher and combines Threatened and Landfall into one variable, Event. Log sales are the log total revenue from bottled water sales in U.S. dollars.  Mean weekly temperature is included as a control. standard errors reported in parentheses are clustered at the county-year level. Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}
+   \end{tabular}
+\end{table}
 
 
-\begin{table}[t!]
+
+\begin{table}[htbp]
    \caption{Historical Exposure Results}
    \centering
    \begin{tabular}{lccc}
       \tabularnewline \midrule \midrule
       Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
-      Model:                                 & (1)            & (2)             & (3)\\  
+      Model:                             & (1)            & (2)            & (3)\\  
       \midrule
       \emph{Variables}\\
-      Threat                                 & 0.1073         & 0.1220          & -0.8372$^{**}$\\   
-                                             & (0.1564)       & (0.1670)        & (0.3462)\\   
-      Landfall                               & 0.4481$^{***}$ & 0.4157$^{***}$  & 1.363$^{***}$\\   
-                                             & (0.0683)       & (0.0650)        & (0.1631)\\   
-      Landfalls Since 1980                   &                & -0.0831$^{***}$ & -0.0831$^{***}$\\   
-                                             &                & (0.0265)        & (0.0265)\\   
-      Threat $\times$ Landfalls Since 1980   &                &                 & 0.0662$^{*}$\\   
-                                             &                &                 & (0.0319)\\   
-      Landfall $\times$ Landfalls Since 1980 &                &                 & -0.0653$^{***}$\\   
-                                             &                &                 & (0.0121)\\   
+      Event                              & 0.5645$^{***}$ & 0.5371$^{***}$ & 0.5657$^{***}$\\   
+                                         & (0.1143)       & (0.1150)       & (0.1755)\\   
+      Past Count                    &                & -0.0868$^{**}$ & -0.0868$^{**}$\\   
+                                         &                & (0.0369)       & (0.0369)\\   
+      Event $\times$ Past Count     &                &                & -0.0057\\   
+                                         &                &                & (0.0484)\\   
       \midrule
-      \emph{Fit statistics}\\
-      Observations                           & 448,123        & 448,123         & 448,123\\  
-      R$^2$                                  & 0.77057        & 0.77291         & 0.77291\\  
+          \emph{Fit statistics}\\
+      Observations                       & 448,123        & 448,123        & 448,123\\  
+      R$^2$                              & 0.77146        & 0.77247        & 0.77247\\  
       \midrule \midrule
-      \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+       \floatfoot{Note: Past Count is the total count of hurricanes for the 25 years before the current county-week observation. Log sales is the log total revenue from sales of bottled water in USD. Mean weekly temperature is included as a control. standard errors reported in parentheses are clustered at the county-year level. Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}
    \end{tabular}
-   \label{tab:hist}
 \end{table}
 
 I start by estimating the effect of additional hurricane landfalls on sales. Table~\ref{tab:hist} shows the results from this specification. Column (1) shows the results of the base regression which excludes the historic county level variables. This column represents the average response of all counties. Although there is not a significant response to a hurricane threat, sales of bottled water increase by roughly 56\% when there is a hurricane landfall. 
@@ -325,77 +317,35 @@ Column (2) shows the results from adding total hurricane landfalls since 1980 to
 
 % Rerun with looking at ts only, hur only, major hur only. See if get stronger results with more specificity.
 
-% \begin{table}[!t]
-%    \caption{Recent Exposure Results}
-%    \centering
-%    \begin{tabular}{lccc}
-%       \tabularnewline \midrule \midrule
-%       Dependent Variable: & \multicolumn{3}{c}{Log Sales}\\
-%       Model:                                                  & (1)            & (2)             & (3)\\
-%       \midrule
-%       \emph{Variables}\\
-%       Threat   & 0.1073         & 1.155$^{***}$   & 1.435$^{**}$\\
-%                & (0.1564)       & (0.1954)        & (0.5516)\\
-%       Landfall & 0.4481$^{***}$ & -0.5641$^{**}$  & -0.9166\\
-%                & (0.0683)       & (0.1926)        & (0.5616)\\
-%       Years    &                & 0.0065          & 0.0418$^{**}$\\
-%                &                & (0.0078)        & (0.0143)\\
-%      Threat $\times$ Years      &                & -0.1341$^{***}$ & -0.1830\\
-%                                 &                & (0.0220)        & (0.1503)\\
-%       Landfall $\times$ Years   &                & 0.1278$^{***}$  & 0.1974\\
-%                                 &                & (0.0192)        & (0.1466)\\
-%       Years squared     &                &                 & -0.0028$^{**}$\\
-%                         &                &                 & (0.0009)\\
-%       Threat $\times$ Years squared    &                &                 & 0.0021\\
-%                  &               &                 & (0.0089)\\
-%       Landfall $\times$ Years squared    &                &                 & -0.0033\\
-%                  &                &                 & (0.0085)\\
-%       \midrule
-%       \emph{Fit statistics}\\
-%       Observations                                            & 448,123        & 217,176         & 217,176\\
-%       R$^2$                                                   & 0.77057        & 0.79158         & 0.79303\\
-%       \midrule \midrule
-%       \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-%       \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
-%    \end{tabular}
-%    \label{tab:years}
-% \end{table}
-
-\begin{table}[t!]
+\begin{table}[htbp]
    \caption{Recent Exposure Results}
    \centering
-   \begin{tabular}{lccc}
+   \begin{tabular}{lcccc}
       \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{3}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                                  & (1)            & (2)            & (3)\\  
+      Dependent Variable: & \multicolumn{4}{c}{Log Sales)}\\
+      Model:                                                                & (1)            & (2)            & (3)            & (4)\\  
       \midrule
       \emph{Variables}\\
-      Hur\_Threat                                             & 0.1073         & -0.0129        & 1.155$^{***}$\\   
-                                                              & (0.1564)       & (0.1616)       & (0.1954)\\   
-      Hur\_Landfall                                           & 0.4481$^{***}$ & 0.5639$^{***}$ & -0.5641$^{**}$\\   
-                                                              & (0.0683)       & (0.0653)       & (0.1926)\\   
-      temp\_mean                                              & 0.0046$^{***}$ & 0.0066$^{***}$ & 0.0066$^{***}$\\   
-                                                              & (0.0010)       & (0.0010)       & (0.0010)\\   
-      total\_hist\_landfall                                   &                & -0.0779$^{**}$ & -0.0779$^{**}$\\   
-                                                              &                & (0.0290)       & (0.0290)\\   
-      years\_since\_landfall\_hur                             &                & 0.0065         & 0.0065\\   
-                                                              &                & (0.0078)       & (0.0078)\\   
-      Hur\_Threat $\times$ years\_since\_landfall\_hur        &                &                & -0.1341$^{***}$\\   
-                                                              &                &                & (0.0220)\\   
-      Hur\_Landfall $\times$ years\_since\_landfall\_hur      &                &                & 0.1278$^{***}$\\   
-                                                              &                &                & (0.0192)\\   
-      \midrule
-      \emph{Fixed-effects}\\
-      year                                                    & Yes            & Yes            & Yes\\  
-      month                                                   & Yes            & Yes            & Yes\\  
-      fips                                                    & Yes            & Yes            & Yes\\  
+      Event                                                                 & 0.5645$^{***}$ & 0.5291$^{***}$ & 0.6481$^{***}$ & 0.5207\\   
+                                                                            & (0.1143)       & (0.1164)       & (0.1444)       & (0.4161)\\   
+        Past Count                                                       &                & -0.0869$^{**}$ & -0.0869$^{**}$ & -0.0868$^{**}$\\   
+                                                                            &                & (0.0345)       & (0.0345)       & (0.0350)\\   
+      Years Since                                                &                & 0.0145$^{**}$  & 0.0146$^{**}$  & 0.0152$^{*}$\\   
+                                                                            &                & (0.0065)       & (0.0065)       & (0.0082)\\   
+      Event $\times$ Years Since                                 &                &                & -0.0156        & 0.0153\\   
+                                                                            &                &                & (0.0089)       & (0.0205)\\   
+      Event $\times$ Past Count                                        &                &                &                & 0.0489\\   
+                                                                            &                &                &                & (0.0416)\\   
+      Past Count$\times$ Years Since                       &                &                &                & -0.0002\\   
+                                                                            &                &                &                & (0.0015)\\   
+      Event $\times$ Past Count $\times$ Years Since        &                &                &                & -0.0115$^{*}$\\   
+                                                                            &                &                &                & (0.0058)\\   
       \midrule
       \emph{Fit statistics}\\
-      Observations                                            & 448,123        & 217,176        & 217,176\\  
-      R$^2$                                                   & 0.77057        & 0.79157        & 0.79158\\  
+      Observations                                                          & 448,123        & 190,566        & 190,566        & 190,566\\  
+      R$^2$                                                                 & 0.77146        & 0.79132        & 0.79134        & 0.79141\\  
       \midrule \midrule
-      \multicolumn{4}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{4}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+         \floatfoot{Note: Past Count is the total count of hurricanes for the 25 years before the current county-week observation. Log sales is the log total revenue from sales of bottled water in USD. Mean weekly temperature is included as a control. standard errors reported in parentheses are clustered at the county-year level. Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}
    \end{tabular}
 \end{table}
 
@@ -433,279 +383,159 @@ As climate change continues, the intensity of natural disasters and extent of th
 \renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\thefigure}{A\arabic{figure}}
 
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.65\linewidth]{historical count hist.png}
-    \caption{Histogram of Observation Level Total Landfalls}
-    \label{fig:type_ci}
-    \floatfoot{Note:}
+    \includegraphics[width =0.8\linewidth]{scanner map.png}
+    \caption{Counties Represented in Scanner Data}
+    \label{fig:county_rep}
+    \floatfoot{Note: A map of all counties that are represented in the scanner data. Represented counties have at least one store that reports to NielsenIQ. Unshaded counties do not have any reporting stores and so do not appear in the data. }
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width =0.8\linewidth]{per cap sales.png}
+    \caption{Weekly Sales Per 100,000 Residents}
+    \label{fig:per_cap_map}
+    \floatfoot{Note: Total revenue in USD per 100,000 residents by county. Population measures are from the 2010 U.S. Census. Counties in grey are not represented in the NielsenIQ data.  }
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width =0.65\linewidth]{hist hur dist.png}
+    \caption{Histogram of Hurricane Landfall Counts}
+    \label{fig:hist_total}
+    \floatfoot{Note: The distribution of total hurricane landfall count from 1983 to 2007. Each observation is one county. }
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.65\linewidth]{years since hist.png}
-    \caption{Histogram of Years Betwen Hurricanes}
-    \label{fig:type_ci}
-    \floatfoot{Note: }
+    \includegraphics[width =0.65\linewidth]{time dist.png}
+    \caption{Histogram of Years Between Hurricanes}
+    \label{fig:hist_time}
+    \floatfoot{Note: The distribution of time since the most recent hurricane for all county-hurricane landfalls from 2008-2019. Each observation is one county-hurricane instance.}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.9\linewidth]{ES Agg Vol.png}
+    \includegraphics[width =0.7\linewidth]{log rev.png}
+    \caption{Event Studies of Log Total Revenue}
+    \label{fig:ES_log_rev}
+    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents natural log of total revenue from sales of bottled water in a county. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The ribbon around each point represents the 95\% confidence interval.}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width =0.7\linewidth]{log price.png}
+    \caption{Event Studies of Log Price}
+    \label{fig:ES_log_price}
+    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents log average price of bottled water in a county. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The ribbon around each point represents the 95\% confidence interval.}
+\end{figure}
+
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width =0.7\linewidth]{ES type errors.png}
     \caption{Event Studies by Hurricane Category}
     \label{fig:type_ci}
     \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
 \end{figure}
 
 
+\begin{figure}[t!]
+   \centering
+	\begin{subfigure}{0.45\linewidth}
+		\caption{1 to 4}
+		\includegraphics[width=\linewidth]{images/hist q1.png}
+	\end{subfigure}
+	\begin{subfigure}{0.45\linewidth}
+		\caption{5 to 6}
+		\includegraphics[width=\linewidth]{images/hist q2.png}
+	\end{subfigure}
+		\begin{subfigure}{0.45\linewidth}
+		\caption{7 to 8}
+		\includegraphics[width=\linewidth]{images/hist q3.png}
+	\end{subfigure}
+		\begin{subfigure}{0.45\linewidth}
+		\caption{9 to 13}
+		\includegraphics[width=\linewidth]{images/hist q4.png}
+	\end{subfigure}
+  \caption{Event Study by Prior Landfall Count}
+  \floatfoot{Note: Results from event study with subsets by landfall count from 1983 to 2007. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The ribbon around the point estimates represents the 95\% confidence interval.}
+\label{fig:ES_hist_quant}
+\end{figure}
+
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width =0.9\linewidth]{Agg by Type Error.png}
-    \caption{Event Studies by Hurricane Category}
-    \label{fig:type_ci}
-    \floatfoot{Note: Results from event study with subsets based on hurricane category. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars around each point represents the 95\% confidence interval.}
+    \includegraphics[width =0.7\linewidth]{ES past week 1.png}
+    \caption{Event Study of Sales One Week Before Landfall}
+    \label{fig:hist_before}
+    \floatfoot{Note: Results from event study with subsets by hurricane landfall count from 1983 to 2007. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. The bars around each point represents the 95\% confidence interval.}
 \end{figure}
 
 
 \begin{figure}[h!]
-   \centering
-	\begin{subfigure}{0.45\linewidth}
-		\caption{1 to 10 Landfalls}
-		\includegraphics[width=\linewidth]{hist q1.png}
-	\end{subfigure}
-	\begin{subfigure}{0.45\linewidth}
-		\caption{11 to 15 Landfalls}
-		\includegraphics[width=\linewidth]{hist q2.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{16 to 17 Landfalls}
-		\includegraphics[width=\linewidth]{hist q3.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{18 to 25 Landfalls}
-		\includegraphics[width=\linewidth]{hist q4.png}
-	\end{subfigure}
-    \caption{Event Studies By Historical Landfalls}
-    \label{fig:hist_full}
-        \floatfoot{Note: Results from event study with subsets based on the total count of prior hurricanes to hit the county since 1980. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
+    \centering
+    \includegraphics[width =0.7\linewidth]{ES hist week 0.png}
+    \caption{Event Study of Sales the Week of Landfall}
+    \label{fig:hist_during}
+    \floatfoot{Note: Results from event study with subsets by hurricane landfall count from 1983 to 2007. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. The bars around each point represents the 95\% confidence interval.}
 \end{figure}
 
 
 
-\begin{figure}[h!]
-   \centering
-	\begin{subfigure}{0.45\linewidth}
-		\caption{1 to 2 Years}
-		\includegraphics[width=\linewidth]{time hur q1.png}
-	\end{subfigure}
-	\begin{subfigure}{0.45\linewidth}
-		\caption{3 Years}
-		\includegraphics[width=\linewidth]{time hur q2.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{4 to 6 Years}
-		\includegraphics[width=\linewidth]{time hur q3.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{7 of More Years}
-		\includegraphics[width=\linewidth]{time hur q4.png}
-	\end{subfigure}
-    \caption{Event Studies By Years Between Subsequent Hurricanes}
-    \label{fig:disc_full}
-        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
-\end{figure}
-
-
-\begin{table}[t!]
-   \caption{Base Results}
-   \centering
-   \begin{tabular}{lcc}
-      \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{2}{c}{Log Sales}\\
-      Model:          All Storms            & Hurricanes \\  
-      \midrule
-      \emph{Variables}\\
-      Threat         & 0.0401$^{*}$   &0.1073   \\   
-                     & (0.0193)       &(0.1564)   \\   
-      Landfall       & 0.1962$^{***}$ & 0.4481$^{***}$  \\   
-                     & (0.0606)       & (0.0683)  \\   
-      temp\_mean     & 0.0046$^{***}$ & 0.0046$^{***}$\\   
-                     & (0.0010)       & (0.0010)\\   
-      \midrule
-      \emph{Fit statistics}\\
-      Observations   & 448,123        & 448,123\\  
-      R$^2$          & 0.77052        & 0.77057\\  
-      \midrule \midrule
-      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
-   \end{tabular}
-\end{table}
-
-\begin{sidewaystable}[t!]
+\begin{table}[htbp]
    \caption{Recent Exposure Results}
    \centering
-   \begin{tabular}{lcccccc}
+   \begin{tabular}{lcccc}
       \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{6}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                                  & (1)            & (2)            & (3)             & (4)             & (5)            & (6)\\  
+      Dependent Variable: & \multicolumn{4}{c}{log(total\_rev\_per\_cap)}\\
+      Model:                                   & (1)            & (2)            & (3)            & (4)\\  
       \midrule
       \emph{Variables}\\
-      Hur\_Threat                                             & 0.1073         & -0.0129        & 1.155$^{***}$   & 1.271$^{***}$   & -0.0162        & 1.435$^{**}$\\   
-                                                              & (0.1564)       & (0.1616)       & (0.1954)        & (0.1938)        & (0.2339)       & (0.5516)\\   
-      Hur\_Landfall                                           & 0.4481$^{***}$ & 0.5639$^{***}$ & -0.5641$^{**}$  & -0.7123$^{***}$ & 0.5344$^{***}$ & -0.9166\\   
-                                                              & (0.0683)       & (0.0653)       & (0.1926)        & (0.1918)        & (0.0678)       & (0.5616)\\   
-      temp\_mean                                              & 0.0046$^{***}$ & 0.0066$^{***}$ & 0.0066$^{***}$  & 0.0066$^{***}$  & 0.0066$^{***}$ & 0.0066$^{***}$\\   
-                                                              & (0.0010)       & (0.0010)       & (0.0010)        & (0.0010)        & (0.0010)       & (0.0010)\\   
-      total\_hist\_landfall                                   &                & -0.0779$^{**}$ & -0.0779$^{**}$  & -0.0893$^{**}$  & -0.0893$^{**}$ & -0.0893$^{**}$\\   
-                                                              &                & (0.0290)       & (0.0290)        & (0.0303)        & (0.0303)       & (0.0303)\\   
-      years\_since\_landfall\_hur                             &                & 0.0065         & 0.0065          & 0.0418$^{**}$   & 0.0418$^{**}$  & 0.0418$^{**}$\\   
-                                                              &                & (0.0078)       & (0.0078)        & (0.0143)        & (0.0143)       & (0.0143)\\   
-      Hur\_Threat $\times$ years\_since\_landfall\_hur        &                &                & -0.1341$^{***}$ & -0.1448$^{***}$ & 0.0144         & -0.1830\\   
-                                                              &                &                & (0.0220)        & (0.0208)        & (0.0613)       & (0.1503)\\   
-      Hur\_Landfall $\times$ years\_since\_landfall\_hur      &                &                & 0.1278$^{***}$  & 0.1412$^{***}$  &                & 0.1974\\   
-                                                              &                &                & (0.0192)        & (0.0188)        &                & (0.1466)\\   
-      yrs\_since\_hur\_sq                                     &                &                &                 & -0.0028$^{**}$  & -0.0028$^{**}$ & -0.0028$^{**}$\\   
-                                                              &                &                &                 & (0.0009)        & (0.0009)       & (0.0009)\\   
-      Hur\_Threat $\times$ yrs\_since\_hur\_sq                &                &                &                 &                 & -0.0013        & 0.0021\\   
-                                                              &                &                &                 &                 & (0.0040)       & (0.0089)\\   
-      Hur\_Landfall $\times$ yrs\_since\_hur\_sq              &                &                &                 &                 &                & -0.0033\\   
-                                                              &                &                &                 &                 &                & (0.0085)\\   
+      event                                    & 0.5645$^{***}$ & 0.5291$^{***}$ & 0.6481$^{***}$ & 0.7545$^{***}$\\   
+                                               & (0.1143)       & (0.1164)       & (0.1444)       & (0.1812)\\   
+      temp\_mean                               & 0.0045$^{***}$ & 0.0065$^{***}$ & 0.0065$^{***}$ & 0.0065$^{***}$\\   
+                                               & (0.0010)       & (0.0010)       & (0.0010)       & (0.0009)\\   
+      past\_25\_h1\_5                          &                & -0.0869$^{**}$ & -0.0869$^{**}$ & -0.0755$^{**}$\\   
+                                               &                & (0.0345)       & (0.0345)       & (0.0330)\\   
+      years\_since\_landfall                   &                & 0.0145$^{**}$  & 0.0146$^{**}$  & 0.0397$^{***}$\\   
+                                               &                & (0.0065)       & (0.0065)       & (0.0101)\\   
+      event $\times$ years\_since\_landfall    &                &                & -0.0156        & -0.0522$^{*}$\\   
+                                               &                &                & (0.0089)       & (0.0277)\\   
+      yrs\_since\_hur\_sq                      &                &                &                & -0.0014$^{**}$\\   
+                                               &                &                &                & (0.0005)\\   
+      event $\times$ yrs\_since\_hur\_sq       &                &                &                & 0.0018$^{*}$\\   
+                                               &                &                &                & (0.0010)\\   
       \midrule
       \emph{Fixed-effects}\\
-      year                                                    & Yes            & Yes            & Yes             & Yes             & Yes            & Yes\\  
-      month                                                   & Yes            & Yes            & Yes             & Yes             & Yes            & Yes\\  
-      fips                                                    & Yes            & Yes            & Yes             & Yes             & Yes            & Yes\\  
+      fips                                     & Yes            & Yes            & Yes            & Yes\\  
+      year                                     & Yes            & Yes            & Yes            & Yes\\  
+      month                                    & Yes            & Yes            & Yes            & Yes\\  
       \midrule
       \emph{Fit statistics}\\
-      Observations                                            & 448,123        & 217,176        & 217,176         & 217,176         & 217,176        & 217,176\\  
-      R$^2$                                                   & 0.77057        & 0.79157        & 0.79158         & 0.79303         & 0.79301        & 0.79303\\  
+      Observations                             & 448,123        & 190,566        & 190,566        & 190,566\\  
+      R$^2$                                    & 0.77146        & 0.79132        & 0.79134        & 0.79392\\  
       \midrule \midrule
-      \multicolumn{7}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{7}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
-   \end{tabular}
-\end{sidewaystable}
-
-
-\begin{figure}[h!]
-   \centering
-	\begin{subfigure}{0.45\linewidth}
-		\caption{1 to 2 Years}
-		\includegraphics[width=\linewidth]{hist pl q1.png}
-	\end{subfigure}
-	\begin{subfigure}{0.45\linewidth}
-		\caption{3 Years}
-		\includegraphics[width=\linewidth]{hist pl q2.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{4 to 6 Years}
-		\includegraphics[width=\linewidth]{hist pl q3.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{7 of More Years}
-		\includegraphics[width=\linewidth]{hist pl q4.png}
-	\end{subfigure}
-    \caption{Placebo History}
-    \label{fig:disc_full}
-        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
-\end{figure}
-
-\begin{figure}[h!]
-   \centering
-	\begin{subfigure}{0.45\linewidth}
-		\caption{1 to 2 Years}
-		\includegraphics[width=\linewidth]{year pl q1.png}
-	\end{subfigure}
-	\begin{subfigure}{0.45\linewidth}
-		\caption{3 Years}
-		\includegraphics[width=\linewidth]{year pl q2.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{4 to 6 Years}
-		\includegraphics[width=\linewidth]{year pl q3.png}
-	\end{subfigure}
-		\begin{subfigure}{0.45\linewidth}
-		\caption{7 of More Years}
-		\includegraphics[width=\linewidth]{year pl q4.png}
-	\end{subfigure}
-    \caption{Placebo By Years Between Subsequent Hurricanes}
-    \label{fig:disc_full}
-        \floatfoot{Note: Results from event study with subsets based on the years that have passed since that last storm made landfall in a county. The vertical axis represents total revenue per 100 thousand residents in USD. The horizontal axis represents weeks. Week 0 is the week that a tropical hurricane made landfall in a county. The bars represent the 5\% confidence interval around the point estimate.}
-\end{figure}
-
-
-\begin{table}[h!]
-   \caption{Historical Exposure Robustness Test}
-   \centering
-   \begin{tabular}{lcc}
-      \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{2}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                          & (1)            & (2)\\  
-      \midrule
-      \emph{Variables}\\
-      plac\_threat                                    & 0.0308         & -0.2274\\   
-                                                      & (0.0642)       & (0.2544)\\   
-      plac\_land                                      & 0.0748         & 0.2803$^{*}$\\   
-                                                      & (0.0575)       & (0.1311)\\   
-      temp\_mean                                      & 0.0057$^{***}$ & 0.0057$^{***}$\\   
-                                                      & (0.0007)       & (0.0007)\\   
-      total\_hist\_landfall                           & -0.0767$^{*}$  & -0.0768$^{*}$\\   
-                                                      & (0.0358)       & (0.0358)\\   
-      plac\_threat $\times$ total\_hist\_landfall     &                & 0.0181\\   
-                                                      &                & (0.0155)\\   
-      plac\_land $\times$ total\_hist\_landfall       &                & -0.0142\\   
-                                                      &                & (0.0110)\\   
-      \midrule
-      \emph{Fixed-effects}\\
-      year                                            & Yes            & Yes\\  
-      month                                           & Yes            & Yes\\  
-      fips                                            & Yes            & Yes\\  
-      \midrule
-      \emph{Fit statistics}\\
-      Observations                                    & 407,459        & 407,459\\  
-      R$^2$                                           & 0.79756        & 0.79756\\  
-      \midrule \midrule
-      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+      \multicolumn{5}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
+      \multicolumn{5}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
    \end{tabular}
 \end{table}
 
 
+\begin{figure}[htbp]
+    \centering
+    % Embed the first page of the PDF as a scaled image
+    \includegraphics[width=\textwidth, page=2]{ready-supply-kit-checklist.pdf}
+    \caption{Emergency Supply Checklist from ``ready.gov''}
+    \label{fig:checklist}
+\end{figure}
 
-\begin{table}[h!]
-   \caption{Years Between Robustness Test}
-   \centering
-   \begin{tabular}{lcc}
-      \tabularnewline \midrule \midrule
-      Dependent Variable: & \multicolumn{2}{c}{log(total\_rev\_per\_cap)}\\
-      Model:                                                 & (1)            & (2)\\  
-      \midrule
-      \emph{Variables}\\
-      plac\_threat                                           & 0.1025$^{**}$  & 0.2976\\   
-                                                             & (0.0428)       & (0.2509)\\   
-      plac\_land                                             & 0.0220         & 0.0297\\   
-                                                             & (0.0380)       & (0.1570)\\   
-      temp\_mean                                             & 0.0073$^{***}$ & 0.0073$^{***}$\\   
-                                                             & (0.0007)       & (0.0007)\\   
-      years\_since\_landfall\_hur                            & 0.0121         & 0.0122\\   
-                                                             & (0.0083)       & (0.0082)\\   
-      plac\_threat $\times$ years\_since\_landfall\_hur      &                & -0.0314\\   
-                                                             &                & (0.0407)\\   
-      plac\_land $\times$ years\_since\_landfall\_hur        &                & -0.0011\\   
-                                                             &                & (0.0177)\\   
-      \midrule
-      \emph{Fixed-effects}\\
-      year                                                   & Yes            & Yes\\  
-      month                                                  & Yes            & Yes\\  
-      fips                                                   & Yes            & Yes\\  
-      \midrule
-      \emph{Fit statistics}\\
-      Observations                                           & 197,654        & 197,654\\  
-      R$^2$                                                  & 0.82215        & 0.82217\\  
-      \midrule \midrule
-      \multicolumn{3}{l}{\emph{Clustered (fips \& year) standard-errors in parentheses}}\\
-      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
-   \end{tabular}
-\end{table}
 
 
 \end{appendices}
